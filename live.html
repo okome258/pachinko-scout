@@ -67,6 +67,7 @@
     #verdictPanel.compact #evBox,
     #verdictPanel.compact #retreatBox,
     #verdictPanel.compact #verdictReasons { display: none; }
+    #verdictPanel.compact #borderBox .border-detail { display: none; }
     .scan-block {
       margin-top: 10px;
       padding: 10px 12px;
@@ -230,6 +231,31 @@
       color: #bae6fd;
     }
     #evBox .ev-title { font-weight: 800; font-size: 15px; color: #7dd3fc; }
+    #borderBox {
+      margin-top: 10px;
+      padding: 10px 12px;
+      background: rgba(52, 211, 153, 0.12);
+      border: 1px solid rgba(52, 211, 153, 0.35);
+      border-radius: 10px;
+      font-size: 13px;
+      line-height: 1.5;
+      color: #d1fae5;
+    }
+    #borderBox .border-title { font-weight: 800; font-size: 15px; color: #6ee7b7; }
+    #borderBox .border-detail { margin-top: 4px; font-size: 12px; color: #a7f3d0; }
+    #exchangeChips {
+      display: flex; flex-wrap: wrap; gap: 6px;
+      margin-top: 8px;
+    }
+    .exchange-chip {
+      flex: 0 0 auto; padding: 5px 10px;
+      font-size: 11px; font-weight: 700; border-radius: 999px;
+      background: rgba(15, 23, 42, 0.55); color: #a7f3d0;
+      border: 1px solid rgba(52, 211, 153, 0.35);
+    }
+    .exchange-chip.active {
+      background: #34d399; color: #064e3b; border-color: #34d399;
+    }
     #pickMachineBtn {
       background: rgba(56, 189, 248, 0.85) !important;
       color: #0f172a !important;
@@ -516,6 +542,11 @@
         <div class="ev-title" id="evSummary"></div>
         <div id="evLines"></div>
       </div>
+      <div id="borderBox" hidden>
+        <div class="border-title" id="borderSummary"></div>
+        <div class="border-detail" id="borderDetail"></div>
+        <div id="exchangeChips"></div>
+      </div>
       <div id="retreatBox" hidden>
         <div class="retreat-title" id="retreatSummary"></div>
         <div id="retreatLines"></div>
@@ -573,6 +604,12 @@
     import { applyLearnedBias, recordFeedback } from "./learn.js";
     import { calcExpectedValue } from "./ev.js";
     import {
+      calcBorder,
+      getExchangeYen,
+      setExchangeYen,
+      EXCHANGE_PRESETS,
+    } from "./border.js";
+    import {
       getAllMachineOptions,
       getSelectedMachineId,
       setSelectedMachineId,
@@ -602,6 +639,7 @@
     let machinePicker = null;
 
     let lastEntry = null;
+    let lastShowArgs = null;
     let panelHideTimer = null;
     let panelExpanded = false;
     const PANEL_AUTO_HIDE_MS = 6000;
@@ -712,6 +750,7 @@
         result.biasApplied = bias.biasApplied;
       }
       const ev = calcExpectedValue(data, machineSpec);
+      const border = calcBorder(machineSpec);
       const retreat = calcRetreatPlan(data, machineSpec);
       const nameFeedback = getMachineNameFeedback(
         scanSession.ocrMachineName,
@@ -736,6 +775,7 @@
         retreat,
         ev,
         nameFeedback,
+        border,
       );
     }
 
@@ -863,7 +903,36 @@
     };
     panelCloseBtn.onclick = () => hideResultPanel();
 
-    function showResult(result, confidence, machineSpec, counterType, data, retreat, ev) {
+    function renderExchangeChips(machineSpec) {
+      const chips = document.getElementById("exchangeChips");
+      if (!chips) return;
+      const current = getExchangeYen();
+      chips.innerHTML = "";
+      for (const p of EXCHANGE_PRESETS) {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = `exchange-chip${Math.abs(p.yen - current) < 0.001 ? " active" : ""}`;
+        btn.textContent = p.label;
+        btn.onclick = () => {
+          setExchangeYen(p.yen);
+          if (scanSession.ocrData) recalculateFromSession();
+          else updateBorderOnly(machineSpec);
+        };
+        chips.appendChild(btn);
+      }
+    }
+
+    function updateBorderOnly(machineSpec) {
+      const border = calcBorder(machineSpec || {});
+      const box = document.getElementById("borderBox");
+      box.hidden = false;
+      document.getElementById("borderSummary").textContent = border.summary;
+      document.getElementById("borderDetail").textContent = border.detail;
+      renderExchangeChips(machineSpec);
+    }
+
+    function showResult(result, confidence, machineSpec, counterType, data, retreat, ev, _nameFeedback, border) {
+      lastShowArgs = { result, confidence, machineSpec, counterType, data, retreat, ev };
       const color = verdictColor(result.verdict);
       frame.style.setProperty("--frame-color", color);
 
@@ -873,9 +942,11 @@
       document.getElementById("verdictMain").textContent = `${result.score}点 ${result.verdict}`;
       document.getElementById("verdictMain").style.color = color;
 
+      const borderInfo = border || calcBorder(machineSpec || {});
       let sub = "";
       if (machineSpec?.first_hit_denom) sub += `1/${Math.round(machineSpec.first_hit_denom)}`;
       if (ev) sub += ` / ${ev.summary}`;
+      sub += ` / ${borderInfo.summary}`;
       if (result.biasApplied) sub += ` / 学習${result.biasApplied > 0 ? "+" : ""}${result.biasApplied}`;
       if (confidence === "low") sub += " ※読み取り不完全";
       document.getElementById("verdictSub").textContent = sub || "—";
@@ -893,6 +964,12 @@
       } else {
         evBox.hidden = true;
       }
+
+      const borderBox = document.getElementById("borderBox");
+      borderBox.hidden = false;
+      document.getElementById("borderSummary").textContent = borderInfo.summary;
+      document.getElementById("borderDetail").textContent = borderInfo.detail;
+      renderExchangeChips(machineSpec);
 
       const rb = document.getElementById("retreatBox");
       if (retreat) {
