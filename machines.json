@@ -381,9 +381,14 @@
     },
     {
       "id": "p_p_ゴジラ対エヴァンゲリオン2_超デカシルバー",
+      "display_name": "ゴジエヴァ",
+      "picker_label": "ゴジエヴァ2 シルバー",
+      "picker_index": "ご",
       "names": [
         "P ゴジラ対エヴァンゲリオン2 超デカシルバー",
-        "ゴジラ対エヴァンゲリオン2 超デカシルバー"
+        "ゴジラ対エヴァンゲリオン2 超デカシルバー",
+        "ゴジエヴァ",
+        "ゴジラエヴァ"
       ],
       "type": "light_mid",
       "first_hit_denom": 174.9,
@@ -2564,9 +2569,14 @@
     },
     {
       "id": "p_e_ゴジラ対エヴァンゲリオン2_超デカゴールド",
+      "display_name": "ゴジエヴァ",
+      "picker_label": "ゴジエヴァ2 ゴールド",
+      "picker_index": "ご",
       "names": [
         "e ゴジラ対エヴァンゲリオン2 超デカゴールド",
-        "ゴジラ対エヴァンゲリオン2 超デカゴールド"
+        "ゴジラ対エヴァンゲリオン2 超デカゴールド",
+        "ゴジエヴァ",
+        "ゴジラエヴァ"
       ],
       "type": "mid",
       "first_hit_denom": 299.9,
@@ -3087,10 +3097,51 @@
       }
     },
     {
+      "id": "p_p_新世紀エヴァンゲリオン_319_red",
+      "display_name": "エヴァ",
+      "picker_label": "エヴァ RED",
+      "picker_index": "え",
+      "names": [
+        "P 新世紀エヴァンゲリオン -319 RED-",
+        "P 新世紀エヴァンゲリオン -319 RED",
+        "新世紀エヴァンゲリオン -319 RED-",
+        "エヴァ RED",
+        "エヴァ319",
+        "エヴァ17 RED"
+      ],
+      "type": "mid",
+      "first_hit_denom": 319.7,
+      "high_prob_denom": 98.9,
+      "ceiling_spins": 896,
+      "lt_critical": true,
+      "small_hit_max": 300,
+      "good_hit_min": 3000,
+      "ceiling_near_ratio": 0.75,
+      "source": "manual",
+      "ev_spec": {
+        "spec_level": "manual",
+        "first_hit_denom": 319.7,
+        "high_prob_denom": 98.9,
+        "machine_mode": "rush",
+        "rush_entry_rate": 0.75,
+        "rush_continuation_rate": 0.81,
+        "entry_rate_primary": 0.75,
+        "continuation_rate": 0.81,
+        "avg_big_payout": 1500,
+        "small_hit_payout": 300
+      }
+    },
+    {
       "id": "p_e_新世紀エヴァンゲリオン_はじまりの記憶_",
+      "display_name": "エヴァ",
+      "picker_label": "はじまりの記憶",
+      "picker_index": "え",
       "names": [
         "e 新世紀エヴァンゲリオン 〜はじまりの記憶〜",
-        "新世紀エヴァンゲリオン 〜はじまりの記憶〜"
+        "新世紀エヴァンゲリオン 〜はじまりの記憶〜",
+        "エヴァ",
+        "エヴァ17",
+        "はじまりの記憶"
       ],
       "type": "mid",
       "first_hit_denom": 399.9,

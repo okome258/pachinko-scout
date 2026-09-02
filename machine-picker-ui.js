@@ -284,11 +284,10 @@ export function mountMachinePicker(modalEl, db, handlers) {
       const official = m.names?.[0] && m.names[0] !== title ? m.names[0] : "";
       const denom = m.first_hit_denom ? `1/${Math.round(m.first_hit_denom)}` : "";
       const seriesTag = (m.series || [])[0] ? `<span class="picker-item-tag">${m.series[0]}</span>` : "";
-      const groupSub =
-        group && group !== title ? `<span class="picker-item-sub">${group}</span>` : "";
+      const sub = official || (group && group !== title ? group : "");
       btn.innerHTML = `${seriesTag}<span class="picker-item-name">${title}</span><span class="picker-item-meta">${denom}</span>${
-        official ? `<span class="picker-item-sub">${official}</span>` : ""
-      }${groupSub && !official ? groupSub : ""}`;
+        sub ? `<span class="picker-item-sub">${sub}</span>` : ""
+      }`;
       btn.onclick = () => {
         onSelect(m);
         renderCurrent();
