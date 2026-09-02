@@ -5,15 +5,16 @@ const LOAN_KEY = "pachinko_loan_yen";
 
 export const EXCHANGE_PRESETS = [
   { yen: 4.0, label: "等価4.00" },
-  { yen: 3.57, label: "3.57" },
-  { yen: 3.33, label: "3.33" },
-  { yen: 3.03, label: "3.03" },
-  { yen: 2.5, label: "2.50" },
+  { yen: 3.85, label: "3.85(26玉)" },
+  { yen: 3.64, label: "3.64(27.5玉)" },
+  { yen: 3.57, label: "3.57(28玉)" },
 ];
 
 export function getExchangeYen() {
   const v = Number(localStorage.getItem(EXCHANGE_KEY));
-  return v > 0 ? v : 3.57;
+  // 旧プリセット（3.33以下）が残っていたら現行デフォルトへ
+  if (!(v > 0) || v < 3.57) return 3.57;
+  return v;
 }
 
 export function setExchangeYen(yen) {
