@@ -60,6 +60,20 @@
     }
     #verdictPanel.show { opacity: 1; transform: translateY(0); }
 
+    #machineNameBadge {
+      font-size: clamp(16px, 4.5vw, 20px);
+      font-weight: 800;
+      margin-bottom: 6px;
+      color: #e2e8f0;
+    }
+    #machineNameBadge.none { color: #f87171; }
+    #machineNameBadge.hit { color: #4ade80; }
+    #machineNameBadge.ocr { color: #fbbf24; }
+    #machineStatus {
+      font-size: 12px;
+      color: #94a3b8;
+      margin-bottom: 4px;
+    }
     #verdictMain {
       font-size: clamp(28px, 8vw, 42px);
       font-weight: 900;
@@ -112,7 +126,48 @@
     }
     #fbWin { background: rgba(34,197,94,0.9); color: #052e16; }
     #fbLose { background: rgba(239,68,68,0.9); color: #fff; }
-    #fbSkip { background: rgba(30,41,59,0.9); color: #cbd5e1; }
+    #evBox {
+      margin-top: 10px;
+      padding: 10px 12px;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      border-radius: 10px;
+      font-size: 13px;
+      line-height: 1.5;
+      color: #bae6fd;
+    }
+    #evBox .ev-title { font-weight: 800; font-size: 15px; color: #7dd3fc; }
+    #machinePanel {
+      position: fixed;
+      bottom: max(150px, calc(130px + env(safe-area-inset-bottom)));
+      left: 12px; right: 12px;
+      z-index: 11;
+      background: rgba(15, 23, 42, 0.92);
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 12px;
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+      max-height: 45vh;
+      overflow-y: auto;
+    }
+    #machinePanel.show { display: flex; }
+    #machinePanel label { font-size: 12px; color: #94a3b8; }
+    #machinePanel select, #machinePanel input {
+      width: 100%; padding: 10px; border-radius: 8px;
+      border: 1px solid #334155; background: #1e293b; color: #fff; font-size: 14px;
+    }
+    #machinePanel .row { display: flex; gap: 8px; }
+    #machinePanel .row label { display: flex; align-items: center; gap: 6px; color: #e2e8f0; }
+    #machinePanel button.save-custom {
+      background: #38bdf8; color: #0f172a; font-weight: 700; padding: 10px;
+    }
+    #pickMachineBtn {
+      background: rgba(56, 189, 248, 0.85) !important;
+      color: #0f172a !important;
+      flex: 0.8 !important;
+    }
 
     #statusBar {
       position: fixed;
@@ -156,6 +211,48 @@
       color: #e2e8f0;
     }
     #autoBtn.on { background: rgba(56, 189, 248, 0.9); color: #0f172a; }
+
+    /* 横持ち：データ画面が横長なので枠を広げ、結果は右サイドに */
+    @media (orientation: landscape) {
+      #video { object-fit: contain; background: #000; }
+      .frame { inset: 5% 38% 10% 2%; }
+      .frame-hint {
+        bottom: calc(10% + 4px);
+        left: 2%;
+        right: 38%;
+        font-size: 10px;
+      }
+      #verdictPanel {
+        top: max(8px, env(safe-area-inset-top));
+        left: auto;
+        right: max(8px, env(safe-area-inset-right));
+        width: min(36vw, 340px);
+        max-height: calc(100vh - 80px);
+        overflow-y: auto;
+        padding: 10px 12px;
+      }
+      #verdictMain { font-size: clamp(22px, 4vw, 32px); }
+      #feedbackRow {
+        left: auto;
+        right: max(8px, env(safe-area-inset-right));
+        width: min(36vw, 340px);
+        bottom: max(64px, calc(52px + env(safe-area-inset-bottom)));
+      }
+      #statusBar {
+        left: 12px;
+        right: auto;
+        width: 55%;
+        text-align: left;
+        bottom: max(64px, calc(52px + env(safe-area-inset-bottom)));
+      }
+      #machinePanel {
+        left: auto;
+        right: max(8px, env(safe-area-inset-right));
+        width: min(36vw, 340px);
+        bottom: max(64px, calc(52px + env(safe-area-inset-bottom)));
+        max-height: 70vh;
+      }
+    }
 
     #startScreen {
       position: fixed; inset: 0; z-index: 20;
@@ -207,16 +304,39 @@
 
   <div id="hud">
     <div class="frame" id="frame"></div>
-    <div class="frame-hint">上:本日/LT/出玉　下:直近当たり・回転数</div>
+    <div class="frame-hint">枠内にデータ画面を合わせる（縦・横どちらでもOK）</div>
     <div id="verdictPanel">
+      <div id="machineNameBadge"></div>
+      <div id="machineStatus"></div>
       <div id="verdictMain">—</div>
       <div id="verdictSub"></div>
       <div id="verdictReasons"></div>
+      <div id="evBox" hidden>
+        <div class="ev-title" id="evSummary"></div>
+        <div id="evLines"></div>
+      </div>
       <div id="retreatBox" hidden>
         <div class="retreat-title" id="retreatSummary"></div>
         <div id="retreatLines"></div>
       </div>
     </div>
+  </div>
+
+  <div id="machinePanel">
+    <label>機種選択（OCRより優先）</label>
+    <select id="machineSelect"></select>
+    <details>
+      <summary style="color:#94a3b8;font-size:13px;cursor:pointer">＋ カスタム機種を登録</summary>
+      <div style="margin-top:8px;display:flex;flex-direction:column;gap:8px">
+        <input id="customName" placeholder="機種名（例: 新世紀エヴァ）" />
+        <div class="row">
+          <input id="customDenom" type="number" placeholder="初当り 1/319 → 319" />
+          <input id="customCeiling" type="number" placeholder="天井 840" />
+        </div>
+        <label><input type="checkbox" id="customLt" checked /> LT重要機種</label>
+        <button type="button" class="save-custom" id="saveCustomBtn">登録して選択</button>
+      </div>
+    </details>
   </div>
 
   <div id="feedbackRow">
@@ -228,6 +348,7 @@
   <div id="statusBar">画面に合わせて長押し</div>
 
   <div id="controls">
+    <button id="pickMachineBtn">機種</button>
     <button id="autoBtn">自動: OFF</button>
     <button id="holdBtn">かざして長押し</button>
   </div>
@@ -235,9 +356,17 @@
   <script type="module">
     import { parseOcrText } from "./parser.js";
     import { scoreMachine, verdictColor } from "./score.js";
-    import { loadMachines, matchMachine, detectCounterType } from "./machines.js";
+    import { loadMachines, matchMachine, detectCounterType, getMachineNameFeedback } from "./machines.js";
     import { calcRetreatPlan } from "./retreat.js";
     import { applyLearnedBias, recordFeedback } from "./learn.js";
+    import { calcExpectedValue } from "./ev.js";
+    import {
+      getAllMachineOptions,
+      getSelectedMachineId,
+      setSelectedMachineId,
+      resolveMachineSpecSync,
+      saveCustomMachine,
+    } from "./machine-picker.js";
 
     const video = document.getElementById("video");
     const canvas = document.getElementById("canvas");
@@ -260,12 +389,55 @@
     const feedbackRow = document.getElementById("feedbackRow");
     const SCAN_COOLDOWN_MS = 2500;
 
+    const machineSelect = document.getElementById("machineSelect");
+    const machinePanel = document.getElementById("machinePanel");
+
+    function populateMachineSelect() {
+      machineSelect.innerHTML = '<option value="auto">自動（OCRで判定）</option>';
+      for (const m of getAllMachineOptions(machineDb)) {
+        const opt = document.createElement("option");
+        opt.value = m.id;
+        opt.textContent = `${m.names[0]}（1/${m.first_hit_denom || "?"} 天井${m.ceiling_spins || "?"})`;
+        machineSelect.appendChild(opt);
+      }
+      machineSelect.value = getSelectedMachineId();
+    }
+
     document.getElementById("startBtn").onclick = async () => {
       document.getElementById("startScreen").classList.add("hide");
       statusBar.textContent = "機種データ取得中…";
       machineDb = await loadMachines(window.location.origin);
+      populateMachineSelect();
       await startCamera();
-      statusBar.textContent = `準備OK（機種DB ${machineDb.version || "?"}）— 長押し`;
+      statusBar.textContent = `準備OK — 機種選択 or 長押し`;
+    };
+
+    machineSelect.onchange = () => {
+      setSelectedMachineId(machineSelect.value);
+      statusBar.textContent =
+        machineSelect.value === "auto"
+          ? "自動判定モード"
+          : `機種固定: ${machineSelect.selectedOptions[0].textContent}`;
+    };
+
+    document.getElementById("pickMachineBtn").onclick = () => {
+      machinePanel.classList.toggle("show");
+    };
+
+    document.getElementById("saveCustomBtn").onclick = () => {
+      const name = document.getElementById("customName").value.trim();
+      if (!name) return alert("機種名を入力");
+      const entry = saveCustomMachine({
+        name,
+        first_hit_denom: document.getElementById("customDenom").value || 319,
+        ceiling_spins: document.getElementById("customCeiling").value || 840,
+        lt_critical: document.getElementById("customLt").checked,
+      });
+      populateMachineSelect();
+      machineSelect.value = entry.id;
+      setSelectedMachineId(entry.id);
+      machinePanel.classList.remove("show");
+      statusBar.textContent = `登録: ${name}`;
     };
 
     async function startCamera() {
@@ -313,25 +485,43 @@
       return canvas;
     }
 
-    function showResult(result, confidence, machineSpec, counterType, data, retreat) {
+    function showResult(result, confidence, machineSpec, counterType, data, retreat, ev, nameFeedback) {
       const color = verdictColor(result.verdict);
       frame.style.setProperty("--frame-color", color);
-      const machineLabel = result.machine_matched || machineSpec?.names?.[0] || "";
+
+      const badge = document.getElementById("machineNameBadge");
+      const fb = nameFeedback || { display: "機種名なし", status: "no_name", statusLabel: "" };
+      badge.textContent = `📛 ${fb.display}`;
+      badge.className = "none";
+      if (fb.status === "db_hit" || fb.status === "manual") badge.className = "hit";
+      else if (fb.status === "ocr_only") badge.className = "ocr";
+      else if (fb.status === "no_name") badge.className = "none";
+
+      document.getElementById("machineStatus").textContent = fb.statusLabel || "";
+
       document.getElementById("verdictMain").textContent = `${result.score}点 ${result.verdict}`;
       document.getElementById("verdictMain").style.color = color;
 
-      let sub = machineLabel ? `機種: ${machineLabel}` : "データ画面を認識";
-      if (result.biasApplied) sub += ` / 学習補正${result.biasApplied > 0 ? "+" : ""}${result.biasApplied}`;
-      if (counterType) {
-        sub += counterType.machine_name_on_screen === false
-          ? " / 機種名なし"
-          : counterType.machine_name_on_screen
-            ? " / 機種名あり"
-            : "";
-      }
+      let sub = "";
+      if (machineSpec?.first_hit_denom) sub += `1/${Math.round(machineSpec.first_hit_denom)}`;
+      if (ev) sub += ` / ${ev.summary}`;
+      if (result.biasApplied) sub += ` / 学習${result.biasApplied > 0 ? "+" : ""}${result.biasApplied}`;
       if (confidence === "low") sub += " ※読み取り不完全";
-      document.getElementById("verdictSub").textContent = sub;
+      document.getElementById("verdictSub").textContent = sub || "—";
       document.getElementById("verdictReasons").textContent = result.reasons.slice(0, 3).join(" / ");
+
+      const evBox = document.getElementById("evBox");
+      if (ev) {
+        evBox.hidden = false;
+        document.getElementById("evSummary").textContent = ev.summary;
+        document.getElementById("evLines").innerHTML = [
+          `${ev.mode_label || "—"}: 1/${ev.spec_used.denom} 天井${ev.spec_used.ceiling}${ev.spec_used.lt_critical ? " LT重要" : ""}${ev.spec_used.entry_rate != null ? ` 突入${Math.round(ev.spec_used.entry_rate * 100)}%` : ""}`,
+          ...ev.factors,
+          ev.retreat_hint,
+        ].map((l) => `<div>${l}</div>`).join("");
+      } else {
+        evBox.hidden = true;
+      }
 
       const rb = document.getElementById("retreatBox");
       if (retreat) {
@@ -371,7 +561,8 @@
 
         if (!machineDb) machineDb = await loadMachines(window.location.origin);
         const counterType = detectCounterType(text, machineDb);
-        const machineSpec = matchMachine(data.machine_name, machineDb, data);
+        const selectedId = getSelectedMachineId();
+        const machineSpec = resolveMachineSpecSync(data, machineDb, selectedId, matchMachine);
         let result = scoreMachine(data, machineSpec);
         const bias = applyLearnedBias(
           result.score,
@@ -385,7 +576,14 @@
           else result.verdict = "様子見";
           result.biasApplied = bias.biasApplied;
         }
+        const ev = calcExpectedValue(data, machineSpec);
         const retreat = calcRetreatPlan(data, machineSpec);
+        const nameFeedback = getMachineNameFeedback(
+          data.machine_name,
+          machineDb,
+          machineSpec,
+          selectedId,
+        );
 
         lastEntry = {
           machine: machineSpec?.names?.[0],
@@ -393,10 +591,11 @@
           score: result.score,
           verdict: result.verdict,
           spins: data.current_spins,
+          ev: ev.ev,
         };
 
-        showResult(result, confidence, machineSpec, counterType, data, retreat);
-        statusBar.textContent = `${retreat.summary}`;
+        showResult(result, confidence, machineSpec, counterType, data, retreat, ev, nameFeedback);
+        statusBar.textContent = `${nameFeedback.display} / ${retreat.summary}`;
       } catch (e) {
         statusBar.textContent = "エラー: " + e.message;
       } finally {

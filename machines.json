@@ -1,10 +1,13 @@
 {
-  "version": "2026-09-02b",
+  "version": "2026-09-02",
   "updated": "2026-09-02",
   "_note": "machinesは人気機種の追加データ。全機種は画面スペック(1/319等)とtype_profilesでカバー。狭める意図はない。",
   "type_profiles": {
     "amadeji": {
-      "spec_range": [1, 120],
+      "spec_range": [
+        1,
+        120
+      ],
       "ceiling_spins": 500,
       "small_hit_max": 500,
       "good_hit_min": 1500,
@@ -12,7 +15,10 @@
       "notes": "甘デジ。回転数・初当り実績重視"
     },
     "light_mid": {
-      "spec_range": [121, 250],
+      "spec_range": [
+        121,
+        250
+      ],
       "ceiling_spins": 666,
       "small_hit_max": 450,
       "good_hit_min": 2000,
@@ -20,7 +26,10 @@
       "notes": "ライトミドル"
     },
     "mid": {
-      "spec_range": [251, 400],
+      "spec_range": [
+        251,
+        400
+      ],
       "ceiling_spins": 1000,
       "small_hit_max": 300,
       "good_hit_min": 3000,
@@ -28,7 +37,10 @@
       "notes": "ミドル（1/319前後）"
     },
     "heavy": {
-      "spec_range": [401, 999],
+      "spec_range": [
+        401,
+        999
+      ],
       "ceiling_spins": 1200,
       "small_hit_max": 250,
       "good_hit_min": 4000,
@@ -46,9 +58,5941 @@
   },
   "machines": [
     {
-      "id": "p_biohazard",
-      "names": ["バイオ", "BIOHAZARD", "バイオハザード", "HAZARD"],
+      "id": "p_cr777",
+      "names": [
+        "CRパチンコ777",
+        "パチンコ777",
+        "777"
+      ],
       "type": "mid",
+      "lt_critical": false,
+      "ceiling_spins": 900,
+      "small_hit_max": 350,
+      "good_hit_min": 3000,
+      "ceiling_near_ratio": 0.75
+    },
+    {
+      "id": "p_p_re_ゼロから始める異世界生活_season2_129ver_",
+      "names": [
+        "P Re:ゼロから始める異世界生活 season2 129ver.",
+        "Re:ゼロから始める異世界生活 season2 129ver."
+      ],
+      "type": "light_mid",
+      "first_hit_denom": 129.9,
+      "ceiling_spins": 364,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 99.9,
+      "dmm_id": "4971",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4971",
+        "first_hit_denom": 129.9,
+        "high_prob_denom": 99.9,
+        "dmm_url": "https://p-town.dmm.com/machines/4971",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.5,
+        "lt_entry_rate": 0.5,
+        "entry_rate_primary": 0.5,
+        "rush_continuation_rate": 0.7,
+        "continuation_rate": 0.7,
+        "payouts": [
+          300,
+          750,
+          1500
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 1500,
+        "electric_support_spins": [
+          120
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 577.37
+      }
+    },
+    {
+      "id": "p_p_re_ゼロから始める異世界生活_season2_249ver_",
+      "names": [
+        "P Re:ゼロから始める異世界生活 season2 249ver.",
+        "Re:ゼロから始める異世界生活 season2 249ver."
+      ],
+      "type": "light_mid",
+      "first_hit_denom": 249.9,
+      "ceiling_spins": 700,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 99.9,
+      "dmm_id": "4972",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4972",
+        "first_hit_denom": 249.9,
+        "high_prob_denom": 99.9,
+        "dmm_url": "https://p-town.dmm.com/machines/4972",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.6,
+        "lt_entry_rate": 0.6,
+        "entry_rate_primary": 0.6,
+        "rush_continuation_rate": 0.81,
+        "continuation_rate": 0.81,
+        "payouts": [
+          240,
+          600,
+          1200,
+          2400
+        ],
+        "small_hit_payout": 240,
+        "avg_big_payout": 1800,
+        "electric_support_spins": [
+          163
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 432.17
+      }
+    },
+    {
+      "id": "p_p_re_ゼロから始める異世界生活_鬼がかり_199ver_",
+      "names": [
+        "P Re:ゼロから始める異世界生活 鬼がかり 199ver.",
+        "Re:ゼロから始める異世界生活 鬼がかり 199ver."
+      ],
+      "type": "light_mid",
+      "first_hit_denom": 199.8,
+      "ceiling_spins": 559,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 105.9,
+      "dmm_id": "4902",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4902",
+        "first_hit_denom": 199.8,
+        "high_prob_denom": 105.9,
+        "dmm_url": "https://p-town.dmm.com/machines/4902",
+        "machine_mode": "rush_lt",
+        "rush_denom": 105.9,
+        "rush_entry_rate": 0.55,
+        "lt_entry_rate": 0.55,
+        "entry_rate_primary": 0.55,
+        "rush_continuation_rate": 0.75,
+        "continuation_rate": 0.75,
+        "payouts": [
+          300,
+          1500,
+          3000
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 2250,
+        "electric_support_spins": [
+          144
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 619.37
+      }
+    },
+    {
+      "id": "p_p_re_ゼロから始める異世界生活_鬼がかり_99ver_",
+      "names": [
+        "P Re:ゼロから始める異世界生活 鬼がかり 99ver.",
+        "Re:ゼロから始める異世界生活 鬼がかり 99ver."
+      ],
+      "type": "amadeji",
+      "first_hit_denom": 99.9,
+      "ceiling_spins": 280,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 79.9,
+      "dmm_id": "4901",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4901",
+        "first_hit_denom": 99.9,
+        "high_prob_denom": 79.9,
+        "dmm_url": "https://p-town.dmm.com/machines/4901",
+        "machine_mode": "rush_lt",
+        "rush_denom": 79.9,
+        "rush_entry_rate": 0.5,
+        "lt_entry_rate": 0.5,
+        "entry_rate_primary": 0.5,
+        "rush_continuation_rate": 0.73,
+        "continuation_rate": 0.73,
+        "payouts": [
+          300,
+          900,
+          1800
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 1800,
+        "electric_support_spins": [
+          104
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 900.9
+      }
+    },
+    {
+      "id": "p_p_いくさの子_戦極最強ドデカ199ver_",
+      "names": [
+        "P いくさの子 戦極最強ドデカ199ver.",
+        "いくさの子 戦極最強ドデカ199ver."
+      ],
+      "type": "light_mid",
+      "first_hit_denom": 199.0,
+      "high_prob_denom": 69.9,
+      "dmm_id": "4872",
+      "ceiling_spins": 557,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4872",
+        "first_hit_denom": 199.0,
+        "high_prob_denom": 69.9,
+        "dmm_url": "https://p-town.dmm.com/machines/4872",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.2,
+        "entry_rate_primary": 0.2,
+        "payouts": [
+          300,
+          1500
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 1500,
+        "electric_support_spins": [],
+        "fetched": "2026-09-02",
+        "theoretical_index": 150.75,
+        "lt_entry_rate": 0.2
+      }
+    },
+    {
+      "id": "p_p_にゃんこ大戦争_多様性のネコ_神さまにおまかせ_88ver_",
+      "names": [
+        "P にゃんこ大戦争 多様性のネコ 神さまにおまかせ 88ver.",
+        "にゃんこ大戦争 多様性のネコ 神さまにおまかせ 88ver."
+      ],
+      "type": "amadeji",
+      "first_hit_denom": 88.9,
+      "high_prob_denom": 26.2,
+      "dmm_id": "4988",
+      "ceiling_spins": 249,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4988",
+        "first_hit_denom": 88.9,
+        "high_prob_denom": 26.2,
+        "dmm_url": "https://p-town.dmm.com/machines/4988",
+        "machine_mode": "rush_lt",
+        "payouts": [
+          200,
+          800,
+          1000
+        ],
+        "small_hit_payout": 200,
+        "avg_big_payout": 1000,
+        "electric_support_spins": [],
+        "fetched": "2026-09-02",
+        "rush_entry_rate": 0.5,
+        "entry_rate_primary": 0.5,
+        "theoretical_index": 562.43
+      }
+    },
+    {
+      "id": "p_p_ウルトラマンメビウス_デカヘソ319",
+      "names": [
+        "P ウルトラマンメビウス デカヘソ319",
+        "ウルトラマンメビウス デカヘソ319"
+      ],
+      "type": "mid",
+      "first_hit_denom": 319.9,
+      "ceiling_spins": 896,
+      "lt_critical": true,
+      "small_hit_max": 300,
+      "good_hit_min": 3000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 12.3,
+      "dmm_id": "4991",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4991",
+        "first_hit_denom": 319.9,
+        "high_prob_denom": 12.3,
+        "dmm_url": "https://p-town.dmm.com/machines/4991",
+        "machine_mode": "lt_st",
+        "payouts": [
+          600,
+          1050,
+          2100,
+          3150,
+          5250
+        ],
+        "small_hit_payout": 600,
+        "avg_big_payout": 2888,
+        "electric_support_spins": [
+          10
+        ],
+        "fetched": "2026-09-02",
+        "lt_entry_rate": 0.51,
+        "entry_rate_primary": 0.51,
+        "theoretical_index": 460.42
+      }
+    },
+    {
+      "id": "p_p_ゴジラ対エヴァンゲリオン2_超デカシルバー",
+      "names": [
+        "P ゴジラ対エヴァンゲリオン2 超デカシルバー",
+        "ゴジラ対エヴァンゲリオン2 超デカシルバー"
+      ],
+      "type": "light_mid",
+      "first_hit_denom": 174.9,
+      "high_prob_denom": 15.1,
+      "dmm_id": "4938",
+      "ceiling_spins": 490,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4938",
+        "first_hit_denom": 174.9,
+        "high_prob_denom": 15.1,
+        "dmm_url": "https://p-town.dmm.com/machines/4938",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.25,
+        "lt_entry_rate": 0.25,
+        "entry_rate_primary": 0.25,
+        "lt_continuation_rate": 0.9,
+        "continuation_rate": 0.9,
+        "payouts": [
+          300,
+          400,
+          800,
+          1000
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 1000,
+        "electric_support_spins": [
+          10000
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 142.94
+      }
+    },
+    {
+      "id": "p_p_モモキュンソード_速撃99ver_",
+      "names": [
+        "P モモキュンソード 速撃99ver.",
+        "モモキュンソード 速撃99ver."
+      ],
+      "type": "amadeji",
+      "first_hit_denom": 99.9,
+      "ceiling_spins": 280,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown+manual",
+      "high_prob_denom": 1.36,
+      "dmm_id": "4975",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4975",
+        "first_hit_denom": 99.9,
+        "high_prob_denom": 1.36,
+        "dmm_url": "https://p-town.dmm.com/machines/4975",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.5,
+        "entry_rate_primary": 0.5,
+        "rush_continuation_rate": 0.81,
+        "continuation_rate": 0.81,
+        "payouts": [
+          400,
+          1000
+        ],
+        "small_hit_payout": 400,
+        "avg_big_payout": 1000,
+        "electric_support_spins": [
+          100
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 500.5
+      }
+    },
+    {
+      "id": "p_p_リングにかけろ1_129ver_",
+      "names": [
+        "P リングにかけろ1 129ver.",
+        "リングにかけろ1 129ver."
+      ],
+      "type": "light_mid",
+      "first_hit_denom": 129.77,
+      "ceiling_spins": 363,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 89.79,
+      "dmm_id": "4937",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4937",
+        "first_hit_denom": 129.77,
+        "high_prob_denom": 89.79,
+        "dmm_url": "https://p-town.dmm.com/machines/4937",
+        "machine_mode": "rush_lt",
+        "rush_denom": 129.77,
+        "lt_denom": 89.79,
+        "rush_entry_rate": 0.5,
+        "lt_entry_rate": 0.5,
+        "entry_rate_primary": 0.5,
+        "lt_continuation_rate": 0.795,
+        "continuation_rate": 0.795,
+        "payouts": [
+          480,
+          720,
+          1200,
+          2400
+        ],
+        "small_hit_payout": 480,
+        "avg_big_payout": 1800,
+        "electric_support_spins": [
+          129
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 693.53
+      }
+    },
+    {
+      "id": "p_p_俺の妹がこんなに可愛いわけがない_攻略_スキップ159ver_",
+      "names": [
+        "P 俺の妹がこんなに可愛いわけがない。攻略!!スキップ159ver.",
+        "俺の妹がこんなに可愛いわけがない。攻略!!スキップ159ver."
+      ],
+      "type": "light_mid",
+      "first_hit_denom": 159.9,
+      "ceiling_spins": 448,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 12.0,
+      "dmm_id": "4952",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4952",
+        "first_hit_denom": 159.9,
+        "high_prob_denom": 12.0,
+        "dmm_url": "https://p-town.dmm.com/machines/4952",
+        "machine_mode": "unknown",
+        "rush_entry_rate": 0.5,
+        "lt_entry_rate": 0.5,
+        "entry_rate_primary": 0.5,
+        "payouts": [
+          300,
+          750,
+          1500
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 1500,
+        "electric_support_spins": [
+          8
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 469.04
+      }
+    },
+    {
+      "id": "p_p_冬のソナタ_my_memory_sweet_version",
+      "names": [
+        "P 冬のソナタ My Memory SWEET Version",
+        "冬のソナタ My Memory SWEET Version"
+      ],
+      "type": "amadeji",
+      "first_hit_denom": 99.9,
+      "ceiling_spins": 280,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 19.9,
+      "dmm_id": "4883",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4883",
+        "first_hit_denom": 99.9,
+        "high_prob_denom": 19.9,
+        "dmm_url": "https://p-town.dmm.com/machines/4883",
+        "machine_mode": "kakuhen",
+        "kakuhen_entry_rate": 0.6,
+        "entry_rate_primary": 0.6,
+        "payouts": [
+          400,
+          1000
+        ],
+        "small_hit_payout": 400,
+        "avg_big_payout": 1000,
+        "electric_support_spins": [
+          30
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 600.6
+      }
+    },
+    {
+      "id": "p_p_春一番_2026",
+      "names": [
+        "P 春一番 2026",
+        "春一番 2026"
+      ],
+      "type": "amadeji",
+      "first_hit_denom": 89.9,
+      "ceiling_spins": 252,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 65.9,
+      "dmm_id": "5071",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "5071",
+        "first_hit_denom": 89.9,
+        "high_prob_denom": 65.9,
+        "dmm_url": "https://p-town.dmm.com/machines/5071",
+        "machine_mode": "unknown",
+        "payouts": [
+          200,
+          400,
+          1000
+        ],
+        "small_hit_payout": 200,
+        "avg_big_payout": 1000,
+        "electric_support_spins": [
+          60
+        ],
+        "fetched": "2026-09-02",
+        "lt_entry_rate": 1.0,
+        "entry_rate_primary": 1.0,
+        "theoretical_index": 1112.35
+      }
+    },
+    {
+      "id": "p_p_犬夜叉3_0_大入り_甘spec",
+      "names": [
+        "P 犬夜叉3.0 大入り 甘SPEC",
+        "犬夜叉3.0 大入り 甘SPEC"
+      ],
+      "type": "amadeji",
+      "first_hit_denom": 119.0,
+      "high_prob_denom": 8.4,
+      "dmm_id": "5014",
+      "ceiling_spins": 333,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "5014",
+        "first_hit_denom": 119.0,
+        "high_prob_denom": 8.4,
+        "dmm_url": "https://p-town.dmm.com/machines/5014",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.505,
+        "lt_entry_rate_total": 0.72,
+        "entry_rate_primary": 0.505,
+        "rush_continuation_rate": 0.72,
+        "continuation_rate": 0.72,
+        "payouts": [
+          200,
+          1000,
+          2000
+        ],
+        "small_hit_payout": 200,
+        "avg_big_payout": 1500,
+        "electric_support_spins": [
+          6
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 636.55
+      }
+    },
+    {
+      "id": "p_p_魔法少女まどか_マギカ3_キュゥべえver_",
+      "names": [
+        "P 魔法少女まどか☆マギカ3 キュゥべえver.",
+        "魔法少女まどか☆マギカ3 キュゥべえver."
+      ],
+      "type": "amadeji",
+      "first_hit_denom": 99.9,
+      "ceiling_spins": 280,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 62.1,
+      "dmm_id": "5022",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "5022",
+        "first_hit_denom": 99.9,
+        "high_prob_denom": 62.1,
+        "dmm_url": "https://p-town.dmm.com/machines/5022",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.55,
+        "entry_rate_primary": 0.55,
+        "rush_continuation_rate": 0.65,
+        "continuation_rate": 0.65,
+        "payouts": [
+          200,
+          400,
+          1000
+        ],
+        "small_hit_payout": 200,
+        "avg_big_payout": 1000,
+        "electric_support_spins": [
+          135
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 550.55
+      }
+    },
+    {
+      "id": "p_paコマコマ倶楽部_with_坂本冬美_89確変ループ10ラウンド極",
+      "names": [
+        "PAコマコマ倶楽部 with 坂本冬美 89確変ループ10ラウンド極",
+        "コマコマ倶楽部 with 坂本冬美 89確変ループ10ラウンド極"
+      ],
+      "type": "amadeji",
+      "first_hit_denom": 89.2,
+      "ceiling_spins": 251,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 14.7,
+      "dmm_id": "4989",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4989",
+        "first_hit_denom": 89.2,
+        "high_prob_denom": 14.7,
+        "dmm_url": "https://p-town.dmm.com/machines/4989",
+        "machine_mode": "kakuhen",
+        "kakuhen_entry_rate": 0.5,
+        "entry_rate_primary": 0.5,
+        "payouts": [
+          400,
+          800
+        ],
+        "small_hit_payout": 400,
+        "electric_support_spins": [
+          9999
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 448.43
+      }
+    },
+    {
+      "id": "p_paスーパー海物語in沖縄6_withえなこ",
+      "names": [
+        "PAスーパー海物語IN沖縄6 Withえなこ",
+        "スーパー海物語IN沖縄6 Withえなこ"
+      ],
+      "type": "amadeji",
+      "first_hit_denom": 99.9,
+      "ceiling_spins": 280,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 9.9,
+      "dmm_id": "5001",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "5001",
+        "first_hit_denom": 99.9,
+        "high_prob_denom": 9.9,
+        "dmm_url": "https://p-town.dmm.com/machines/5001",
+        "machine_mode": "lt_st",
+        "rush_entry_rate": 0.41,
+        "entry_rate_primary": 1.0,
+        "payouts": [
+          400,
+          600,
+          1000
+        ],
+        "small_hit_payout": 400,
+        "avg_big_payout": 1000,
+        "electric_support_spins": [
+          120
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 1001.0,
+        "lt_entry_rate": 1.0
+      }
+    },
+    {
+      "id": "p_pa乗物娘_with_cyber_japan_dancers_2nd_seaso",
+      "names": [
+        "PA乗物娘 WITH CYBER JAPAN DANCERS 2nd season 77…",
+        "乗物娘 WITH CYBER JAPAN DANCERS 2nd season 77…"
+      ],
+      "type": "amadeji",
+      "first_hit_denom": 77.1,
+      "ceiling_spins": 216,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown+manual",
+      "high_prob_denom": 72.57,
+      "dmm_id": "4951",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4951",
+        "first_hit_denom": 77.1,
+        "high_prob_denom": 72.57,
+        "dmm_url": "https://p-town.dmm.com/machines/4951",
+        "machine_mode": "lt_st",
+        "payouts": [
+          400,
+          1000
+        ],
+        "small_hit_payout": 400,
+        "avg_big_payout": 1000,
+        "electric_support_spins": [
+          50,
+          10000
+        ],
+        "fetched": "2026-09-02",
+        "rush_entry_rate": 1.0,
+        "entry_rate_primary": 1.0,
+        "theoretical_index": 1297.02
+      }
+    },
+    {
+      "id": "p_pa大海物語withアグネス・ラム_premium_edition",
+      "names": [
+        "PA大海物語Withアグネス・ラム Premium Edition",
+        "大海物語Withアグネス・ラム Premium Edition"
+      ],
+      "type": "amadeji",
+      "first_hit_denom": 99.9,
+      "ceiling_spins": 280,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 19.5,
+      "dmm_id": "5058",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "5058",
+        "first_hit_denom": 99.9,
+        "high_prob_denom": 19.5,
+        "dmm_url": "https://p-town.dmm.com/machines/5058",
+        "machine_mode": "lt_st",
+        "payouts": [
+          432,
+          648,
+          1080
+        ],
+        "small_hit_payout": 432,
+        "avg_big_payout": 1080,
+        "electric_support_spins": [
+          100,
+          10000
+        ],
+        "fetched": "2026-09-02",
+        "lt_entry_rate": 1.0,
+        "entry_rate_primary": 1.0,
+        "theoretical_index": 1081.08
+      }
+    },
+    {
+      "id": "p_pa愛の不時着_99スイート_ver_",
+      "names": [
+        "PA愛の不時着 99スイート ver.",
+        "愛の不時着 99スイート ver."
+      ],
+      "type": "amadeji",
+      "first_hit_denom": 99.9,
+      "ceiling_spins": 280,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 54.3,
+      "dmm_id": "5050",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "5050",
+        "first_hit_denom": 99.9,
+        "high_prob_denom": 54.3,
+        "dmm_url": "https://p-town.dmm.com/machines/5050",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.51,
+        "entry_rate_primary": 0.51,
+        "lt_continuation_rate": 0.92,
+        "rush_continuation_rate": 0.7,
+        "continuation_rate": 0.92,
+        "payouts": [
+          300,
+          1000
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 1000,
+        "electric_support_spins": [
+          130
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 510.51
+      }
+    },
+    {
+      "id": "p_pa戦国乙女7_終焉の関ヶ原_ときめき78バージョン",
+      "names": [
+        "PA戦国乙女7 終焉の関ヶ原 ときめき78バージョン",
+        "戦国乙女7 終焉の関ヶ原 ときめき78バージョン"
+      ],
+      "type": "amadeji",
+      "first_hit_denom": 71.94,
+      "ceiling_spins": 219,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 57.74,
+      "dmm_id": "4979",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4979",
+        "first_hit_denom": 71.94,
+        "high_prob_denom": 57.74,
+        "dmm_url": "https://p-town.dmm.com/machines/4979",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.6,
+        "entry_rate_primary": 0.6,
+        "lt_continuation_rate": 0.936,
+        "rush_continuation_rate": 0.701,
+        "continuation_rate": 0.936,
+        "payouts": [
+          280,
+          350,
+          700
+        ],
+        "small_hit_payout": 280,
+        "electric_support_spins": [
+          10000
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 583.82
+      }
+    },
+    {
+      "id": "p_pa海物語_極japan_withナギナミ",
+      "names": [
+        "PA海物語 極JAPAN Withナギナミ",
+        "海物語 極JAPAN Withナギナミ"
+      ],
+      "type": "amadeji",
+      "first_hit_denom": 99.9,
+      "ceiling_spins": 280,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 56.2,
+      "dmm_id": "4899",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4899",
+        "first_hit_denom": 99.9,
+        "high_prob_denom": 56.2,
+        "dmm_url": "https://p-town.dmm.com/machines/4899",
+        "machine_mode": "lt_st",
+        "rush_entry_rate": 0.65,
+        "lt_entry_rate": 0.65,
+        "entry_rate_primary": 0.65,
+        "payouts": [
+          240,
+          800,
+          1600
+        ],
+        "small_hit_payout": 240,
+        "avg_big_payout": 1600,
+        "electric_support_spins": [
+          10000
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 1041.04
+      }
+    },
+    {
+      "id": "p_pa清流物語4_ウキウキ79ver_",
+      "names": [
+        "PA清流物語4 ウキウキ79ver.",
+        "清流物語4 ウキウキ79ver."
+      ],
+      "type": "amadeji",
+      "first_hit_denom": 79.9,
+      "ceiling_spins": 224,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 27.3,
+      "dmm_id": "4919",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4919",
+        "first_hit_denom": 79.9,
+        "high_prob_denom": 27.3,
+        "dmm_url": "https://p-town.dmm.com/machines/4919",
+        "machine_mode": "unknown",
+        "rush_entry_rate": 0.6,
+        "lt_entry_rate": 0.6,
+        "entry_rate_primary": 0.6,
+        "payouts": [
+          210,
+          700,
+          1400
+        ],
+        "small_hit_payout": 210,
+        "avg_big_payout": 1400,
+        "electric_support_spins": [
+          32
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 1051.31
+      }
+    },
+    {
+      "id": "p_pa義風堂_兼続と慶次_3_99ver_",
+      "names": [
+        "PA義風堂々!!〜兼続と慶次〜3 99ver.",
+        "義風堂々!!〜兼続と慶次〜3 99ver."
+      ],
+      "type": "amadeji",
+      "first_hit_denom": 99.9,
+      "ceiling_spins": 280,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 7.73,
+      "dmm_id": "4871",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4871",
+        "first_hit_denom": 99.9,
+        "high_prob_denom": 7.73,
+        "dmm_url": "https://p-town.dmm.com/machines/4871",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.505,
+        "entry_rate_primary": 0.505,
+        "lt_continuation_rate": 0.94,
+        "rush_continuation_rate": 0.75,
+        "continuation_rate": 0.94,
+        "payouts": [
+          340,
+          920
+        ],
+        "small_hit_payout": 340,
+        "electric_support_spins": [
+          6
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 465.07
+      }
+    },
+    {
+      "id": "p_pa花の慶次_傾奇一転_87ver_",
+      "names": [
+        "PA花の慶次〜傾奇一転 87ver.",
+        "花の慶次〜傾奇一転 87ver."
+      ],
+      "type": "amadeji",
+      "first_hit_denom": 87.84,
+      "ceiling_spins": 246,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 87.84,
+      "dmm_id": "5023",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "5023",
+        "first_hit_denom": 87.84,
+        "high_prob_denom": 87.84,
+        "dmm_url": "https://p-town.dmm.com/machines/5023",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 1.0,
+        "entry_rate_primary": 1.0,
+        "payouts": [
+          400,
+          1000
+        ],
+        "small_hit_payout": 400,
+        "avg_big_payout": 1000,
+        "electric_support_spins": [
+          75,
+          5000
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 1138.43
+      }
+    },
+    {
+      "id": "p_pa野生の王国_",
+      "names": [
+        "PA野生の王国Ⅵ",
+        "野生の王国Ⅵ"
+      ],
+      "type": "amadeji",
+      "first_hit_denom": 99.9,
+      "ceiling_spins": 280,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 63.68,
+      "dmm_id": "4922",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4922",
+        "first_hit_denom": 99.9,
+        "high_prob_denom": 63.68,
+        "dmm_url": "https://p-town.dmm.com/machines/4922",
+        "machine_mode": "amadeji",
+        "lt_entry_rate_total": 0.69,
+        "entry_rate_primary": 0.69,
+        "payouts": [
+          400,
+          500,
+          1000
+        ],
+        "small_hit_payout": 400,
+        "avg_big_payout": 1000,
+        "electric_support_spins": [
+          5000
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 690.69,
+        "lt_entry_rate": 1.0
+      }
+    },
+    {
+      "id": "p_p_超甘lt_この素晴らしい世界に祝福を_最終クエスト1_49",
+      "names": [
+        "P【超甘LT】この素晴らしい世界に祝福を！最終クエスト1/49",
+        "【超甘LT】この素晴らしい世界に祝福を！最終クエスト1/49"
+      ],
+      "type": "amadeji",
+      "first_hit_denom": 49.9,
+      "ceiling_spins": 140,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 25.1,
+      "dmm_id": "4914",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4914",
+        "first_hit_denom": 49.9,
+        "high_prob_denom": 25.1,
+        "dmm_url": "https://p-town.dmm.com/machines/4914",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.33,
+        "entry_rate_primary": 0.33,
+        "lt_continuation_rate": 0.97,
+        "rush_continuation_rate": 0.78,
+        "continuation_rate": 0.97,
+        "payouts": [
+          200,
+          220,
+          490
+        ],
+        "small_hit_payout": 200,
+        "electric_support_spins": [
+          10000
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 324.05
+      }
+    },
+    {
+      "id": "p_p_超甘lt_華牌rr_1_49_99de遊タイム",
+      "names": [
+        "P【超甘LT】華牌RR 1/49×99de遊タイム",
+        "【超甘LT】華牌RR 1/49×99de遊タイム"
+      ],
+      "type": "amadeji",
+      "first_hit_denom": 49.9,
+      "ceiling_spins": 140,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 16.5,
+      "dmm_id": "4934",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4934",
+        "first_hit_denom": 49.9,
+        "high_prob_denom": 16.5,
+        "dmm_url": "https://p-town.dmm.com/machines/4934",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.399,
+        "lt_entry_rate": 0.399,
+        "entry_rate_primary": 0.399,
+        "lt_continuation_rate": 0.972,
+        "continuation_rate": 0.972,
+        "payouts": [
+          120,
+          160,
+          180,
+          200,
+          270,
+          360,
+          450
+        ],
+        "small_hit_payout": 120,
+        "electric_support_spins": [
+          53
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 359.82
+      }
+    },
+    {
+      "id": "p_pえとたま2_神祭_干支甘",
+      "names": [
+        "Pえとたま2 神祭 干支甘",
+        "えとたま2 神祭 干支甘"
+      ],
+      "type": "amadeji",
+      "first_hit_denom": 99.9,
+      "ceiling_spins": 280,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 63.44,
+      "dmm_id": "4942",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4942",
+        "first_hit_denom": 99.9,
+        "high_prob_denom": 63.44,
+        "dmm_url": "https://p-town.dmm.com/machines/4942",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.7,
+        "entry_rate_primary": 0.7,
+        "lt_continuation_rate": 0.93,
+        "continuation_rate": 0.93,
+        "payouts": [
+          210,
+          910
+        ],
+        "small_hit_payout": 210,
+        "electric_support_spins": [
+          160
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 637.64,
+        "lt_entry_rate": 0.7
+      }
+    },
+    {
+      "id": "p_pぱちんこ押忍_番長_漢の頂_99ver_",
+      "names": [
+        "Pぱちんこ押忍！番長 漢の頂 99ver.",
+        "ぱちんこ押忍！番長 漢の頂 99ver."
+      ],
+      "type": "amadeji",
+      "first_hit_denom": 99.9,
+      "ceiling_spins": 280,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 99.9,
+      "dmm_id": "5063",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "5063",
+        "first_hit_denom": 99.9,
+        "high_prob_denom": 99.9,
+        "dmm_url": "https://p-town.dmm.com/machines/5063",
+        "machine_mode": "rush_lt",
+        "rush_denom": 99.9,
+        "rush_entry_rate": 0.33,
+        "lt_entry_rate": 0.33,
+        "entry_rate_primary": 0.33,
+        "rush_continuation_rate": 0.77,
+        "continuation_rate": 0.77,
+        "payouts": [
+          300,
+          2100
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 2100,
+        "electric_support_spins": [
+          144
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 693.69
+      }
+    },
+    {
+      "id": "p_pキングモンスターrush_67ver_",
+      "names": [
+        "PキングモンスターRUSH 67Ver.",
+        "キングモンスターRUSH 67Ver."
+      ],
+      "type": "amadeji",
+      "first_hit_denom": 67.6,
+      "ceiling_spins": 189,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 45.5,
+      "dmm_id": "4977",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4977",
+        "first_hit_denom": 67.6,
+        "high_prob_denom": 45.5,
+        "dmm_url": "https://p-town.dmm.com/machines/4977",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.25,
+        "entry_rate_primary": 0.25,
+        "payouts": [
+          260,
+          860
+        ],
+        "small_hit_payout": 260,
+        "electric_support_spins": [],
+        "fetched": "2026-09-02",
+        "theoretical_index": 318.05,
+        "lt_entry_rate": 0.25
+      }
+    },
+    {
+      "id": "p_pゴッドイーター199ゴッドトリガーver_",
+      "names": [
+        "Pゴッドイーター199ゴッドトリガーVER.",
+        "ゴッドイーター199ゴッドトリガーVER."
+      ],
+      "type": "light_mid",
+      "first_hit_denom": 199.5,
+      "ceiling_spins": 559,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 1.0,
+      "dmm_id": "4888",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4888",
+        "first_hit_denom": 199.5,
+        "high_prob_denom": 1.0,
+        "dmm_url": "https://p-town.dmm.com/machines/4888",
+        "machine_mode": "rush_lt",
+        "rush_denom": 1.0,
+        "lt_denom": 1.0,
+        "rush_entry_rate": 0.42,
+        "entry_rate_primary": 0.42,
+        "lt_continuation_rate": 0.85,
+        "continuation_rate": 0.85,
+        "payouts": [
+          154,
+          300,
+          1500
+        ],
+        "small_hit_payout": 154,
+        "avg_big_payout": 1500,
+        "electric_support_spins": [
+          108
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 315.79
+      }
+    },
+    {
+      "id": "p_pシャカrush_z_jr_",
+      "names": [
+        "PシャカRUSH Z Jr.",
+        "シャカRUSH Z Jr."
+      ],
+      "type": "amadeji",
+      "first_hit_denom": 98.7,
+      "ceiling_spins": 276,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 45.7,
+      "dmm_id": "5037",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "5037",
+        "first_hit_denom": 98.7,
+        "high_prob_denom": 45.7,
+        "dmm_url": "https://p-town.dmm.com/machines/5037",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 1.0,
+        "entry_rate_primary": 1.0,
+        "lt_continuation_rate": 0.939,
+        "rush_continuation_rate": 0.697,
+        "continuation_rate": 0.939,
+        "payouts": [
+          170,
+          490,
+          730
+        ],
+        "small_hit_payout": 170,
+        "electric_support_spins": [
+          3000
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 739.61
+      }
+    },
+    {
+      "id": "p_pスーパー海物語in沖縄6",
+      "names": [
+        "Pスーパー海物語IN沖縄6",
+        "スーパー海物語IN沖縄6"
+      ],
+      "type": "mid",
+      "first_hit_denom": 319.6,
+      "ceiling_spins": 895,
+      "lt_critical": true,
+      "small_hit_max": 300,
+      "good_hit_min": 3000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 31.9,
+      "dmm_id": "4857",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4857",
+        "first_hit_denom": 319.6,
+        "high_prob_denom": 31.9,
+        "dmm_url": "https://p-town.dmm.com/machines/4857",
+        "machine_mode": "kakuhen",
+        "kakuhen_entry_rate": 0.6,
+        "entry_rate_primary": 0.6,
+        "payouts": [
+          1500
+        ],
+        "small_hit_payout": 1500,
+        "avg_big_payout": 1500,
+        "electric_support_spins": [
+          200
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 281.6
+      }
+    },
+    {
+      "id": "p_pドラムde_電音部_超ドラ熱4500ver_",
+      "names": [
+        "Pドラムde 電音部 超ドラ熱4500ver.",
+        "ドラムde 電音部 超ドラ熱4500ver."
+      ],
+      "type": "mid",
+      "first_hit_denom": 259.0,
+      "ceiling_spins": 725,
+      "lt_critical": true,
+      "small_hit_max": 300,
+      "good_hit_min": 3000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 2.0,
+      "dmm_id": "5066",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "5066",
+        "first_hit_denom": 259.0,
+        "high_prob_denom": 2.0,
+        "dmm_url": "https://p-town.dmm.com/machines/5066",
+        "machine_mode": "amadeji",
+        "payouts": [
+          300,
+          1500,
+          4500
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 3000,
+        "electric_support_spins": [
+          1,
+          100
+        ],
+        "fetched": "2026-09-02",
+        "lt_entry_rate": 0.5,
+        "entry_rate_primary": 0.5,
+        "theoretical_index": 579.15
+      }
+    },
+    {
+      "id": "p_pフィーバーうたわれるもの_lt_light_ver_",
+      "names": [
+        "Pフィーバーうたわれるもの LT-Light ver.",
+        "フィーバーうたわれるもの LT-Light ver."
+      ],
+      "type": "amadeji",
+      "first_hit_denom": 99.9,
+      "ceiling_spins": 280,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 14.1,
+      "dmm_id": "4917",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4917",
+        "first_hit_denom": 99.9,
+        "high_prob_denom": 14.1,
+        "dmm_url": "https://p-town.dmm.com/machines/4917",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.5,
+        "lt_entry_rate": 0.5,
+        "entry_rate_primary": 0.5,
+        "lt_continuation_rate": 0.75,
+        "rush_continuation_rate": 0.75,
+        "continuation_rate": 0.75,
+        "payouts": [
+          350,
+          700,
+          1400
+        ],
+        "small_hit_payout": 350,
+        "avg_big_payout": 1400,
+        "electric_support_spins": [
+          10000
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 700.7
+      }
+    },
+    {
+      "id": "p_pフィーバーからくりサーカス2_light_ver_",
+      "names": [
+        "Pフィーバーからくりサーカス2 Light ver.",
+        "フィーバーからくりサーカス2 Light ver."
+      ],
+      "type": "amadeji",
+      "first_hit_denom": 99.9,
+      "ceiling_spins": 280,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 66.0,
+      "dmm_id": "4875",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4875",
+        "first_hit_denom": 99.9,
+        "high_prob_denom": 66.0,
+        "dmm_url": "https://p-town.dmm.com/machines/4875",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.29,
+        "entry_rate_primary": 0.29,
+        "rush_continuation_rate": 0.81,
+        "continuation_rate": 0.81,
+        "payouts": [
+          200,
+          600
+        ],
+        "small_hit_payout": 200,
+        "electric_support_spins": [
+          125
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 174.17
+      }
+    },
+    {
+      "id": "p_pフィーバークィーン_",
+      "names": [
+        "PフィーバークィーンⅡ",
+        "フィーバークィーンⅡ"
+      ],
+      "type": "amadeji",
+      "first_hit_denom": 99.9,
+      "ceiling_spins": 280,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown+manual",
+      "high_prob_denom": 12.0,
+      "dmm_id": "4995",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4995",
+        "first_hit_denom": 99.9,
+        "high_prob_denom": 12.0,
+        "dmm_url": "https://p-town.dmm.com/machines/4995",
+        "machine_mode": "unknown",
+        "rush_denom": 12.0,
+        "payouts": [
+          400,
+          1000
+        ],
+        "small_hit_payout": 400,
+        "avg_big_payout": 1000,
+        "electric_support_spins": [
+          10000
+        ],
+        "fetched": "2026-09-02",
+        "lt_entry_rate": 1.0,
+        "entry_rate_primary": 1.0,
+        "theoretical_index": 1001.0
+      }
+    },
+    {
+      "id": "p_pフィーバーダンジョンに出会いを求めるのは間違っているだろうか2_lt_ligh",
+      "names": [
+        "Pフィーバーダンジョンに出会いを求めるのは間違っているだろうか2 LT-Light ve…",
+        "フィーバーダンジョンに出会いを求めるのは間違っているだろうか2 LT-Light ve…"
+      ],
+      "type": "amadeji",
+      "first_hit_denom": 99.9,
+      "ceiling_spins": 280,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 37.0,
+      "dmm_id": "4858",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4858",
+        "first_hit_denom": 99.9,
+        "high_prob_denom": 37.0,
+        "dmm_url": "https://p-town.dmm.com/machines/4858",
+        "machine_mode": "rush_lt",
+        "rush_denom": 37.0,
+        "lt_denom": 37.0,
+        "rush_entry_rate": 0.35,
+        "entry_rate_primary": 0.35,
+        "lt_continuation_rate": 0.95,
+        "rush_continuation_rate": 0.81,
+        "continuation_rate": 0.95,
+        "payouts": [
+          240,
+          800
+        ],
+        "small_hit_payout": 240,
+        "electric_support_spins": [
+          106
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 280.28
+      }
+    },
+    {
+      "id": "p_pフィーバー彼女_お借りします_lt_light_ver_",
+      "names": [
+        "Pフィーバー彼女、お借りします LT-Light ver.",
+        "フィーバー彼女、お借りします LT-Light ver."
+      ],
+      "type": "light_mid",
+      "first_hit_denom": 189.7,
+      "ceiling_spins": 531,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 36.7,
+      "dmm_id": "4916",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4916",
+        "first_hit_denom": 189.7,
+        "high_prob_denom": 36.7,
+        "dmm_url": "https://p-town.dmm.com/machines/4916",
+        "machine_mode": "rush_lt",
+        "rush_denom": 72.5,
+        "lt_denom": 36.7,
+        "rush_entry_rate": 0.5,
+        "lt_entry_rate": 0.5,
+        "entry_rate_primary": 0.5,
+        "lt_continuation_rate": 0.86,
+        "continuation_rate": 0.86,
+        "payouts": [
+          400,
+          800,
+          1000,
+          3200
+        ],
+        "small_hit_payout": 400,
+        "avg_big_payout": 2100,
+        "electric_support_spins": [
+          70
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 553.51
+      }
+    },
+    {
+      "id": "p_pメイドインアビス_奈落の連環蝕",
+      "names": [
+        "Pメイドインアビス 奈落の連環蝕",
+        "メイドインアビス 奈落の連環蝕"
+      ],
+      "type": "light_mid",
+      "first_hit_denom": 129.7,
+      "ceiling_spins": 363,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 29.0,
+      "dmm_id": "4882",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4882",
+        "first_hit_denom": 129.7,
+        "high_prob_denom": 29.0,
+        "dmm_url": "https://p-town.dmm.com/machines/4882",
+        "machine_mode": "rush_lt",
+        "rush_denom": 29.0,
+        "rush_entry_rate": 0.7,
+        "entry_rate_primary": 0.7,
+        "lt_continuation_rate": 0.88,
+        "continuation_rate": 0.88,
+        "payouts": [
+          200,
+          600,
+          1000
+        ],
+        "small_hit_payout": 200,
+        "avg_big_payout": 1000,
+        "electric_support_spins": [],
+        "fetched": "2026-09-02",
+        "theoretical_index": 539.71
+      }
+    },
+    {
+      "id": "p_pルパン三世_one_collection_100ver_",
+      "names": [
+        "Pルパン三世 ONE COLLECTION 100ver.",
+        "ルパン三世 ONE COLLECTION 100ver."
+      ],
+      "type": "amadeji",
+      "first_hit_denom": 100.1,
+      "ceiling_spins": 280,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 66.7,
+      "dmm_id": "4852",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4852",
+        "first_hit_denom": 100.1,
+        "high_prob_denom": 66.7,
+        "dmm_url": "https://p-town.dmm.com/machines/4852",
+        "machine_mode": "lt_st",
+        "rush_entry_rate": 0.5,
+        "lt_entry_rate": 0.5,
+        "entry_rate_primary": 0.5,
+        "lt_continuation_rate": 0.8,
+        "continuation_rate": 0.8,
+        "payouts": [
+          200,
+          400,
+          1000,
+          1800,
+          3100
+        ],
+        "small_hit_payout": 200,
+        "avg_big_payout": 1967,
+        "electric_support_spins": [
+          105
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 982.52
+      }
+    },
+    {
+      "id": "p_p中森明菜・歌姫伝説_forfans_",
+      "names": [
+        "P中森明菜・歌姫伝説～FORFANS～",
+        "中森明菜・歌姫伝説～FORFANS～"
+      ],
+      "type": "mid",
+      "first_hit_denom": 319.7,
+      "ceiling_spins": 895,
+      "lt_critical": true,
+      "small_hit_max": 300,
+      "good_hit_min": 3000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 85.6,
+      "dmm_id": "5084",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "5084",
+        "first_hit_denom": 319.7,
+        "high_prob_denom": 85.6,
+        "dmm_url": "https://p-town.dmm.com/machines/5084",
+        "machine_mode": "lt_st",
+        "payouts": [
+          400,
+          700,
+          1500
+        ],
+        "small_hit_payout": 400,
+        "avg_big_payout": 1500,
+        "electric_support_spins": [
+          100
+        ],
+        "fetched": "2026-09-02",
+        "lt_entry_rate": 1.0,
+        "entry_rate_primary": 1.0,
+        "theoretical_index": 469.19
+      }
+    },
+    {
+      "id": "p_p冴えない彼女の育てかた_99ver_",
+      "names": [
+        "P冴えない彼女の育てかた 99ver.",
+        "冴えない彼女の育てかた 99ver."
+      ],
+      "type": "amadeji",
+      "first_hit_denom": 99.9,
+      "ceiling_spins": 280,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 29.6,
+      "dmm_id": "4953",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4953",
+        "first_hit_denom": 99.9,
+        "high_prob_denom": 29.6,
+        "dmm_url": "https://p-town.dmm.com/machines/4953",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.5,
+        "lt_entry_rate": 0.5,
+        "entry_rate_primary": 0.5,
+        "lt_continuation_rate": 0.9,
+        "rush_continuation_rate": 0.67,
+        "continuation_rate": 0.9,
+        "payouts": [
+          300,
+          600,
+          1200,
+          2400
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 1800,
+        "electric_support_spins": [
+          66
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 900.9
+      }
+    },
+    {
+      "id": "p_p大海物語4スペシャル_black_plus",
+      "names": [
+        "P大海物語4スペシャル BLACK PLUS",
+        "大海物語4スペシャル BLACK PLUS"
+      ],
+      "type": "light_mid",
+      "first_hit_denom": 199.8,
+      "ceiling_spins": 559,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 40.5,
+      "dmm_id": "5099",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "5099",
+        "first_hit_denom": 199.8,
+        "high_prob_denom": 40.5,
+        "dmm_url": "https://p-town.dmm.com/machines/5099",
+        "machine_mode": "unknown",
+        "payouts": [
+          450,
+          750,
+          1500
+        ],
+        "small_hit_payout": 450,
+        "avg_big_payout": 1500,
+        "electric_support_spins": [
+          50
+        ],
+        "fetched": "2026-09-02",
+        "lt_entry_rate": 1.0,
+        "entry_rate_primary": 1.0,
+        "theoretical_index": 750.75
+      }
+    },
+    {
+      "id": "p_p大海物語5スペシャル_赤セルver_",
+      "names": [
+        "P大海物語5スペシャル 赤セルver.",
+        "大海物語5スペシャル 赤セルver."
+      ],
+      "type": "mid",
+      "first_hit_denom": 319.6,
+      "ceiling_spins": 895,
+      "lt_critical": true,
+      "small_hit_max": 300,
+      "good_hit_min": 3000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 31.9,
+      "dmm_id": "5098",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "5098",
+        "first_hit_denom": 319.6,
+        "high_prob_denom": 31.9,
+        "dmm_url": "https://p-town.dmm.com/machines/5098",
+        "machine_mode": "kakuhen",
+        "kakuhen_entry_rate": 0.54,
+        "entry_rate_primary": 0.54,
+        "payouts": [
+          1500
+        ],
+        "small_hit_payout": 1500,
+        "avg_big_payout": 1500,
+        "electric_support_spins": [
+          200
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 253.44
+      }
+    },
+    {
+      "id": "p_p少女_歌劇_レヴュースタァライト_99_lt3000",
+      "names": [
+        "P少女☆歌劇 レヴュースタァライト 99 LT3000",
+        "少女☆歌劇 レヴュースタァライト 99 LT3000"
+      ],
+      "type": "amadeji",
+      "first_hit_denom": 99.9,
+      "ceiling_spins": 280,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 72.1,
+      "dmm_id": "4915",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4915",
+        "first_hit_denom": 99.9,
+        "high_prob_denom": 72.1,
+        "dmm_url": "https://p-town.dmm.com/machines/4915",
+        "machine_mode": "lt_st",
+        "rush_entry_rate": 0.5,
+        "lt_entry_rate": 0.5,
+        "entry_rate_primary": 0.5,
+        "lt_continuation_rate": 0.7,
+        "continuation_rate": 0.7,
+        "payouts": [
+          200,
+          1000,
+          2000,
+          3000
+        ],
+        "small_hit_payout": 200,
+        "avg_big_payout": 2000,
+        "electric_support_spins": [
+          100
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 1001.0
+      }
+    },
+    {
+      "id": "p_p戦国乙女7_終焉の関ヶ原_99ver_",
+      "names": [
+        "P戦国乙女7 終焉の関ヶ原 99ver.",
+        "戦国乙女7 終焉の関ヶ原 99ver."
+      ],
+      "type": "amadeji",
+      "first_hit_denom": 99.9,
+      "ceiling_spins": 280,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 47.3,
+      "dmm_id": "4955",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4955",
+        "first_hit_denom": 99.9,
+        "high_prob_denom": 47.3,
+        "dmm_url": "https://p-town.dmm.com/machines/4955",
+        "machine_mode": "rush_lt",
+        "rush_denom": 47.3,
+        "lt_denom": 52.5,
+        "rush_entry_rate": 0.63,
+        "entry_rate_primary": 0.63,
+        "lt_continuation_rate": 0.94,
+        "rush_continuation_rate": 0.75,
+        "continuation_rate": 0.94,
+        "payouts": [
+          300,
+          1000
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 1000,
+        "electric_support_spins": [
+          10000
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 630.63
+      }
+    },
+    {
+      "id": "p_p戦国乙女7_終焉の関ヶ原_llサイズ_299ver_",
+      "names": [
+        "P戦国乙女7 終焉の関ヶ原 LLサイズ 299ver.",
+        "戦国乙女7 終焉の関ヶ原 LLサイズ 299ver."
+      ],
+      "type": "mid",
+      "first_hit_denom": 299.2,
+      "ceiling_spins": 838,
+      "lt_critical": false,
+      "small_hit_max": 300,
+      "good_hit_min": 3000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 38.2,
+      "dmm_id": "4856",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4856",
+        "first_hit_denom": 299.2,
+        "high_prob_denom": 38.2,
+        "dmm_url": "https://p-town.dmm.com/machines/4856",
+        "machine_mode": "rush_lt",
+        "rush_denom": 38.2,
+        "lt_denom": 44.9,
+        "rush_entry_rate": 0.53,
+        "entry_rate_primary": 0.53,
+        "lt_continuation_rate": 0.91,
+        "continuation_rate": 0.91,
+        "payouts": [
+          300,
+          450,
+          1500
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 1500,
+        "electric_support_spins": [
+          10000
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 265.71
+      }
+    },
+    {
+      "id": "p_p攻殻機動隊sac_2045_lt99ver_",
+      "names": [
+        "P攻殻機動隊SAC_2045 LT99ver.",
+        "攻殻機動隊SAC_2045 LT99ver."
+      ],
+      "type": "amadeji",
+      "first_hit_denom": 99.9,
+      "ceiling_spins": 280,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 69.0,
+      "dmm_id": "4967",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4967",
+        "first_hit_denom": 99.9,
+        "high_prob_denom": 69.0,
+        "dmm_url": "https://p-town.dmm.com/machines/4967",
+        "machine_mode": "rush_lt",
+        "rush_denom": 69.0,
+        "lt_denom": 69.0,
+        "rush_entry_rate": 0.5,
+        "lt_entry_rate": 0.5,
+        "entry_rate_primary": 0.5,
+        "lt_continuation_rate": 0.9,
+        "continuation_rate": 0.9,
+        "payouts": [
+          200,
+          1500
+        ],
+        "small_hit_payout": 200,
+        "avg_big_payout": 1500,
+        "electric_support_spins": [
+          155
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 750.75
+      }
+    },
+    {
+      "id": "p_p沖ドキ_ドキドキ弾丸ツアー",
+      "names": [
+        "P沖ドキ！ドキドキ弾丸ツアー",
+        "沖ドキ！ドキドキ弾丸ツアー"
+      ],
+      "type": "amadeji",
+      "first_hit_denom": 22.2,
+      "ceiling_spins": 62,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 17.0,
+      "dmm_id": "4905",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4905",
+        "first_hit_denom": 22.2,
+        "high_prob_denom": 17.0,
+        "dmm_url": "https://p-town.dmm.com/machines/4905",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.18,
+        "lt_entry_rate": 0.18,
+        "entry_rate_primary": 0.18,
+        "lt_continuation_rate": 0.89,
+        "continuation_rate": 0.89,
+        "payouts": [
+          300,
+          1500
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 1500,
+        "electric_support_spins": [
+          32
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 1216.22
+      }
+    },
+    {
+      "id": "p_p痛いのは嫌なので防御力に極振りしたいと思います_極振り129ver",
+      "names": [
+        "P痛いのは嫌なので防御力に極振りしたいと思います。 極振り129ver",
+        "痛いのは嫌なので防御力に極振りしたいと思います。 極振り129ver"
+      ],
+      "type": "light_mid",
+      "first_hit_denom": 129.0,
+      "ceiling_spins": 361,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 106.0,
+      "dmm_id": "4957",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4957",
+        "first_hit_denom": 129.0,
+        "high_prob_denom": 106.0,
+        "dmm_url": "https://p-town.dmm.com/machines/4957",
+        "machine_mode": "lt_st",
+        "lt_continuation_rate": 0.8,
+        "continuation_rate": 0.8,
+        "payouts": [
+          300,
+          1500,
+          2450,
+          3400,
+          4350
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 2925,
+        "electric_support_spins": [
+          170
+        ],
+        "fetched": "2026-09-02",
+        "rush_entry_rate": 0.25,
+        "lt_entry_rate": 1.0,
+        "entry_rate_primary": 1.0,
+        "theoretical_index": 2267.44
+      }
+    },
+    {
+      "id": "p_p転生したらスライムだった件129ver_",
+      "names": [
+        "P転生したらスライムだった件129ver.",
+        "転生したらスライムだった件129ver."
+      ],
+      "type": "light_mid",
+      "first_hit_denom": 129.7,
+      "ceiling_spins": 363,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 53.1,
+      "dmm_id": "4890",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4890",
+        "first_hit_denom": 129.7,
+        "high_prob_denom": 53.1,
+        "dmm_url": "https://p-town.dmm.com/machines/4890",
+        "machine_mode": "rush_lt",
+        "payouts": [
+          200,
+          300,
+          1000
+        ],
+        "small_hit_payout": 200,
+        "avg_big_payout": 1000,
+        "electric_support_spins": [
+          72
+        ],
+        "fetched": "2026-09-02",
+        "lt_entry_rate": 1.0,
+        "entry_rate_primary": 1.0,
+        "theoretical_index": 771.01
+      }
+    },
+    {
+      "id": "p_p閃乱カグラ189大入りver_",
+      "names": [
+        "P閃乱カグラ189大入りver.",
+        "閃乱カグラ189大入りver."
+      ],
+      "type": "light_mid",
+      "first_hit_denom": 189.4,
+      "ceiling_spins": 530,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 99.9,
+      "dmm_id": "4948",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4948",
+        "first_hit_denom": 189.4,
+        "high_prob_denom": 99.9,
+        "dmm_url": "https://p-town.dmm.com/machines/4948",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.5,
+        "lt_entry_rate": 0.5,
+        "entry_rate_primary": 0.5,
+        "lt_continuation_rate": 0.75,
+        "rush_continuation_rate": 0.6,
+        "continuation_rate": 0.75,
+        "payouts": [
+          300,
+          1050,
+          4200
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 2625,
+        "electric_support_spins": [
+          136
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 692.98
+      }
+    },
+    {
+      "id": "p_p黄門ちゃま寿限無_llサイズ_259ver_",
+      "names": [
+        "P黄門ちゃま寿限無 LLサイズ 259ver.",
+        "黄門ちゃま寿限無 LLサイズ 259ver."
+      ],
+      "type": "mid",
+      "first_hit_denom": 259.0,
+      "ceiling_spins": 725,
+      "lt_critical": true,
+      "small_hit_max": 300,
+      "good_hit_min": 3000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 144.6,
+      "dmm_id": "4944",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4944",
+        "first_hit_denom": 259.0,
+        "high_prob_denom": 144.6,
+        "dmm_url": "https://p-town.dmm.com/machines/4944",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.5,
+        "lt_entry_rate": 0.5,
+        "entry_rate_primary": 0.5,
+        "rush_continuation_rate": 0.5,
+        "continuation_rate": 0.5,
+        "payouts": [
+          1500
+        ],
+        "small_hit_payout": 1500,
+        "avg_big_payout": 1500,
+        "electric_support_spins": [
+          100
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 289.58
+      }
+    },
+    {
+      "id": "p_versus",
+      "names": [
+        "VERSUS",
+        "ヴァーサス"
+      ],
+      "type": "pachislo",
+      "lt_critical": false,
+      "ceiling_spins": 600,
+      "small_hit_max": 0,
+      "good_hit_min": 500,
+      "ceiling_near_ratio": 0.75
+    },
+    {
+      "id": "p_e_aぷらねっとアポロgo",
+      "names": [
+        "e AぷらねっとアポロGO",
+        "AぷらねっとアポロGO"
+      ],
+      "type": "amadeji",
+      "first_hit_denom": 99.0,
+      "high_prob_denom": 12.0,
+      "dmm_id": "4959",
+      "ceiling_spins": 277,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4959",
+        "first_hit_denom": 99.0,
+        "high_prob_denom": 12.0,
+        "dmm_url": "https://p-town.dmm.com/machines/4959",
+        "machine_mode": "amadeji",
+        "payouts": [
+          270,
+          450,
+          900
+        ],
+        "small_hit_payout": 270,
+        "electric_support_spins": [
+          100,
+          10000
+        ],
+        "fetched": "2026-09-02",
+        "lt_entry_rate": 1.0,
+        "entry_rate_primary": 1.0,
+        "theoretical_index": 909.09
+      }
+    },
+    {
+      "id": "p_e_edens_zero_究極lt_",
+      "names": [
+        "e EDENS ZERO ～究極LT～",
+        "EDENS ZERO ～究極LT～"
+      ],
+      "type": "mid",
+      "first_hit_denom": 399.9,
+      "high_prob_denom": 1.3,
+      "dmm_id": "5069",
+      "ceiling_spins": 1120,
+      "lt_critical": true,
+      "small_hit_max": 300,
+      "good_hit_min": 3000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "5069",
+        "first_hit_denom": 399.9,
+        "high_prob_denom": 1.3,
+        "dmm_url": "https://p-town.dmm.com/machines/5069",
+        "machine_mode": "lt_st",
+        "lt_denom": 1.3,
+        "lt_entry_rate": 0.5,
+        "entry_rate_primary": 0.5,
+        "lt_continuation_rate": 0.77,
+        "continuation_rate": 0.77,
+        "payouts": [
+          300,
+          1500,
+          3000,
+          4500,
+          6000,
+          7500
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 4500,
+        "electric_support_spins": [],
+        "fetched": "2026-09-02",
+        "theoretical_index": 562.64
+      }
+    },
+    {
+      "id": "p_e_re_ゼロから始める異世界生活_鬼がかり2",
+      "names": [
+        "e Re:ゼロから始める異世界生活 鬼がかり2",
+        "Re:ゼロから始める異世界生活 鬼がかり2"
+      ],
+      "type": "mid",
+      "first_hit_denom": 349.9,
+      "ceiling_spins": 980,
+      "lt_critical": true,
+      "small_hit_max": 300,
+      "good_hit_min": 3000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 99.9,
+      "dmm_id": "5094",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "5094",
+        "first_hit_denom": 349.9,
+        "high_prob_denom": 99.9,
+        "dmm_url": "https://p-town.dmm.com/machines/5094",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.55,
+        "lt_entry_rate": 0.55,
+        "entry_rate_primary": 0.55,
+        "lt_continuation_rate": 0.77,
+        "continuation_rate": 0.77,
+        "payouts": [
+          300,
+          1500,
+          3000,
+          6000
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 3500,
+        "electric_support_spins": [
+          144
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 550.16
+      }
+    },
+    {
+      "id": "p_e_ultraman_4500_超ライト",
+      "names": [
+        "e ULTRAMAN 4500 超ライト",
+        "ULTRAMAN 4500 超ライト"
+      ],
+      "type": "amadeji",
+      "first_hit_denom": 111.9,
+      "ceiling_spins": 313,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 15.1,
+      "dmm_id": "4949",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4949",
+        "first_hit_denom": 111.9,
+        "high_prob_denom": 15.1,
+        "dmm_url": "https://p-town.dmm.com/machines/4949",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.33,
+        "lt_entry_rate": 0.33,
+        "entry_rate_primary": 0.33,
+        "lt_continuation_rate": 0.5,
+        "rush_continuation_rate": 0.5,
+        "continuation_rate": 0.5,
+        "payouts": [
+          300,
+          4500,
+          9000
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 6750,
+        "electric_support_spins": [
+          10
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 1990.62
+      }
+    },
+    {
+      "id": "p_e_アズールレーン2_the_animation_超次元",
+      "names": [
+        "e アズールレーン2 THE ANIMATION 超次元",
+        "アズールレーン2 THE ANIMATION 超次元"
+      ],
+      "type": "light_mid",
+      "first_hit_denom": 169.9,
+      "ceiling_spins": 476,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 21.9,
+      "dmm_id": "4918",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4918",
+        "first_hit_denom": 169.9,
+        "high_prob_denom": 21.9,
+        "dmm_url": "https://p-town.dmm.com/machines/4918",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.5,
+        "lt_entry_rate_total": 0.3,
+        "entry_rate_primary": 0.5,
+        "rush_continuation_rate": 0.81,
+        "continuation_rate": 0.81,
+        "payouts": [
+          320,
+          790,
+          1500,
+          3000
+        ],
+        "small_hit_payout": 320,
+        "avg_big_payout": 2250,
+        "electric_support_spins": [],
+        "fetched": "2026-09-02",
+        "theoretical_index": 662.15,
+        "lt_entry_rate": 0.3
+      }
+    },
+    {
+      "id": "p_e_ゴジラ対エヴァンゲリオン2_超デカゴールド",
+      "names": [
+        "e ゴジラ対エヴァンゲリオン2 超デカゴールド",
+        "ゴジラ対エヴァンゲリオン2 超デカゴールド"
+      ],
+      "type": "mid",
+      "first_hit_denom": 299.9,
+      "high_prob_denom": 32.3,
+      "dmm_id": "4939",
+      "ceiling_spins": 840,
+      "lt_critical": true,
+      "small_hit_max": 300,
+      "good_hit_min": 3000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4939",
+        "first_hit_denom": 299.9,
+        "high_prob_denom": 32.3,
+        "dmm_url": "https://p-town.dmm.com/machines/4939",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.3,
+        "lt_entry_rate": 0.3,
+        "entry_rate_primary": 0.3,
+        "lt_continuation_rate": 0.8,
+        "continuation_rate": 0.8,
+        "payouts": [
+          300,
+          1500,
+          3000
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 2250,
+        "electric_support_spins": [
+          10000
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 225.08
+      }
+    },
+    {
+      "id": "p_e_ソードアート・オンライン_アリシゼーション_夜空",
+      "names": [
+        "e ソードアート・オンライン アリシゼーション 夜空",
+        "ソードアート・オンライン アリシゼーション 夜空"
+      ],
+      "type": "light_mid",
+      "first_hit_denom": 199.9,
+      "ceiling_spins": 560,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 51.6,
+      "dmm_id": "5034",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "5034",
+        "first_hit_denom": 199.9,
+        "high_prob_denom": 51.6,
+        "dmm_url": "https://p-town.dmm.com/machines/5034",
+        "machine_mode": "lt_st",
+        "payouts": [
+          300,
+          1500,
+          3000,
+          7500,
+          9000
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 5250,
+        "electric_support_spins": [
+          70
+        ],
+        "fetched": "2026-09-02",
+        "lt_entry_rate": 0.5,
+        "entry_rate_primary": 0.5,
+        "theoretical_index": 1313.16
+      }
+    },
+    {
+      "id": "p_e_ソードアート・オンライン_閃光の軌跡_99ver_",
+      "names": [
+        "e ソードアート・オンライン 閃光の軌跡 99Ver.",
+        "ソードアート・オンライン 閃光の軌跡 99Ver."
+      ],
+      "type": "amadeji",
+      "first_hit_denom": 99.9,
+      "ceiling_spins": 280,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 35.2,
+      "dmm_id": "4940",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4940",
+        "first_hit_denom": 99.9,
+        "high_prob_denom": 35.2,
+        "dmm_url": "https://p-town.dmm.com/machines/4940",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.55,
+        "lt_entry_rate": 0.55,
+        "entry_rate_primary": 0.55,
+        "lt_continuation_rate": 0.94,
+        "rush_continuation_rate": 0.65,
+        "continuation_rate": 0.94,
+        "payouts": [
+          240,
+          800
+        ],
+        "small_hit_payout": 240,
+        "electric_support_spins": [
+          10000
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 440.44
+      }
+    },
+    {
+      "id": "p_e_バイオハザード6",
+      "names": [
+        "e バイオハザード6",
+        "バイオハザード6"
+      ],
+      "type": "light_mid",
+      "first_hit_denom": 159.0,
+      "high_prob_denom": 97.0,
+      "dmm_id": "5003",
+      "ceiling_spins": 445,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "5003",
+        "first_hit_denom": 159.0,
+        "high_prob_denom": 97.0,
+        "dmm_url": "https://p-town.dmm.com/machines/5003",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.27,
+        "lt_entry_rate": 0.27,
+        "lt_entry_rate_total": 0.8,
+        "entry_rate_primary": 0.27,
+        "lt_continuation_rate": 0.8,
+        "rush_continuation_rate": 0.77,
+        "continuation_rate": 0.8,
+        "payouts": [
+          200,
+          7500
+        ],
+        "small_hit_payout": 200,
+        "avg_big_payout": 7500,
+        "electric_support_spins": [
+          140
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 1273.58
+      }
+    },
+    {
+      "id": "p_e_ベルセルク無双_第2章",
+      "names": [
+        "e ベルセルク無双 第2章",
+        "ベルセルク無双 第2章"
+      ],
+      "type": "mid",
+      "first_hit_denom": 399.9,
+      "high_prob_denom": 97.8,
+      "dmm_id": "4881",
+      "ceiling_spins": 1120,
+      "lt_critical": true,
+      "small_hit_max": 300,
+      "good_hit_min": 3000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4881",
+        "first_hit_denom": 399.9,
+        "high_prob_denom": 97.8,
+        "dmm_url": "https://p-town.dmm.com/machines/4881",
+        "machine_mode": "rush_lt",
+        "rush_denom": 195.1,
+        "lt_denom": 97.8,
+        "rush_entry_rate": 0.75,
+        "entry_rate_primary": 0.75,
+        "lt_continuation_rate": 0.75,
+        "continuation_rate": 0.75,
+        "payouts": [
+          300,
+          1500,
+          3000,
+          4500
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 3000,
+        "electric_support_spins": [
+          133
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 562.64
+      }
+    },
+    {
+      "id": "p_e_ライザのアトリエ_常闇の女王と秘密の隠れ家_",
+      "names": [
+        "e ライザのアトリエ 〜常闇の女王と秘密の隠れ家〜",
+        "ライザのアトリエ 〜常闇の女王と秘密の隠れ家〜"
+      ],
+      "type": "light_mid",
+      "first_hit_denom": 239.7,
+      "ceiling_spins": 671,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 69.5,
+      "dmm_id": "5008",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "5008",
+        "first_hit_denom": 239.7,
+        "high_prob_denom": 69.5,
+        "dmm_url": "https://p-town.dmm.com/machines/5008",
+        "machine_mode": "lt_st",
+        "rush_denom": 69.5,
+        "rush_entry_rate": 0.51,
+        "lt_entry_rate": 0.26,
+        "lt_entry_rate_total": 0.51,
+        "entry_rate_primary": 0.51,
+        "lt_continuation_rate": 0.77,
+        "continuation_rate": 0.77,
+        "payouts": [
+          300,
+          1500,
+          1800,
+          3000,
+          4500
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 2700,
+        "electric_support_spins": [
+          100
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 574.47
+      }
+    },
+    {
+      "id": "p_e_七つの大罪3",
+      "names": [
+        "e 七つの大罪3",
+        "七つの大罪3"
+      ],
+      "type": "mid",
+      "first_hit_denom": 319.6,
+      "ceiling_spins": 895,
+      "lt_critical": true,
+      "small_hit_max": 300,
+      "good_hit_min": 3000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 1.0,
+      "dmm_id": "5056",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "5056",
+        "first_hit_denom": 319.6,
+        "high_prob_denom": 1.0,
+        "dmm_url": "https://p-town.dmm.com/machines/5056",
+        "machine_mode": "rush_lt",
+        "rush_denom": 1.0,
+        "rush_entry_rate": 0.4,
+        "entry_rate_primary": 0.4,
+        "rush_continuation_rate": 0.75,
+        "continuation_rate": 0.75,
+        "payouts": [
+          450,
+          1500,
+          2700,
+          3100,
+          5100,
+          6300,
+          7500
+        ],
+        "small_hit_payout": 450,
+        "avg_big_payout": 4367,
+        "electric_support_spins": [
+          100
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 546.56,
+        "lt_entry_rate": 1.0
+      }
+    },
+    {
+      "id": "p_e_仮面ライダー電王_デカヘソ239",
+      "names": [
+        "e 仮面ライダー電王 デカヘソ239",
+        "仮面ライダー電王 デカヘソ239"
+      ],
+      "type": "light_mid",
+      "first_hit_denom": 239.9,
+      "ceiling_spins": 672,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 22.5,
+      "dmm_id": "4889",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4889",
+        "first_hit_denom": 239.9,
+        "high_prob_denom": 22.5,
+        "dmm_url": "https://p-town.dmm.com/machines/4889",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.55,
+        "lt_entry_rate": 0.55,
+        "lt_entry_rate_total": 0.165,
+        "entry_rate_primary": 0.55,
+        "lt_continuation_rate": 0.8,
+        "rush_continuation_rate": 0.6,
+        "continuation_rate": 0.8,
+        "payouts": [
+          300,
+          1500,
+          3000
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 2250,
+        "electric_support_spins": [
+          31
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 515.84
+      }
+    },
+    {
+      "id": "p_e_化物語_鬼99ver_",
+      "names": [
+        "e 化物語 鬼99ver.",
+        "化物語 鬼99ver."
+      ],
+      "type": "amadeji",
+      "first_hit_denom": 99.9,
+      "ceiling_spins": 280,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 17.3,
+      "dmm_id": "4987",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4987",
+        "first_hit_denom": 99.9,
+        "high_prob_denom": 17.3,
+        "dmm_url": "https://p-town.dmm.com/machines/4987",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.501,
+        "lt_entry_rate": 0.501,
+        "entry_rate_primary": 0.501,
+        "payouts": [
+          300,
+          1500
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 1500,
+        "electric_support_spins": [
+          22
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 752.25
+      }
+    },
+    {
+      "id": "p_e_北斗の拳11_暴凶星",
+      "names": [
+        "e 北斗の拳11 暴凶星",
+        "北斗の拳11 暴凶星"
+      ],
+      "type": "mid",
+      "first_hit_denom": 399.8,
+      "ceiling_spins": 1119,
+      "lt_critical": true,
+      "small_hit_max": 300,
+      "good_hit_min": 3000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 10.7,
+      "dmm_id": "4897",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4897",
+        "first_hit_denom": 399.8,
+        "high_prob_denom": 10.7,
+        "dmm_url": "https://p-town.dmm.com/machines/4897",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.61,
+        "lt_entry_rate": 0.61,
+        "entry_rate_primary": 0.61,
+        "lt_continuation_rate": 0.75,
+        "rush_continuation_rate": 0.75,
+        "continuation_rate": 0.75,
+        "payouts": [
+          300,
+          1500,
+          1800,
+          4500,
+          6000
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 3450,
+        "electric_support_spins": [
+          10
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 526.39
+      }
+    },
+    {
+      "id": "p_e_学園黙示録ハイスクール・オブ・ザ・デッド3",
+      "names": [
+        "e 学園黙示録ハイスクール・オブ・ザ・デッド3",
+        "学園黙示録ハイスクール・オブ・ザ・デッド3"
+      ],
+      "type": "mid",
+      "first_hit_denom": 299.2,
+      "ceiling_spins": 838,
+      "lt_critical": true,
+      "small_hit_max": 300,
+      "good_hit_min": 3000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 32.4,
+      "dmm_id": "4998",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4998",
+        "first_hit_denom": 299.2,
+        "high_prob_denom": 32.4,
+        "dmm_url": "https://p-town.dmm.com/machines/4998",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.5,
+        "entry_rate_primary": 0.5,
+        "lt_continuation_rate": 0.93,
+        "continuation_rate": 0.93,
+        "payouts": [
+          360,
+          660,
+          720,
+          840,
+          960,
+          1200
+        ],
+        "small_hit_payout": 360,
+        "avg_big_payout": 1200,
+        "electric_support_spins": [
+          80
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 200.53,
+        "lt_entry_rate": 0.5
+      }
+    },
+    {
+      "id": "p_e_新世紀エヴァンゲリオン_はじまりの記憶_",
+      "names": [
+        "e 新世紀エヴァンゲリオン 〜はじまりの記憶〜",
+        "新世紀エヴァンゲリオン 〜はじまりの記憶〜"
+      ],
+      "type": "mid",
+      "first_hit_denom": 399.9,
+      "high_prob_denom": 99.6,
+      "dmm_id": "4894",
+      "ceiling_spins": 1120,
+      "lt_critical": true,
+      "small_hit_max": 300,
+      "good_hit_min": 3000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4894",
+        "first_hit_denom": 399.9,
+        "high_prob_denom": 99.6,
+        "dmm_url": "https://p-town.dmm.com/machines/4894",
+        "machine_mode": "lt_st",
+        "rush_denom": 99.6,
+        "rush_entry_rate": 0.505,
+        "lt_entry_rate": 0.614,
+        "entry_rate_primary": 0.614,
+        "lt_continuation_rate": 0.8,
+        "continuation_rate": 0.8,
+        "payouts": [
+          300,
+          1500,
+          2400,
+          4800
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 2900,
+        "electric_support_spins": [
+          157
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 445.26
+      }
+    },
+    {
+      "id": "p_e_東京リベンジャーズ_聖夜決戦編",
+      "names": [
+        "e 東京リベンジャーズ 聖夜決戦編",
+        "東京リベンジャーズ 聖夜決戦編"
+      ],
+      "type": "light_mid",
+      "first_hit_denom": 199.8,
+      "ceiling_spins": 559,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown+manual",
+      "high_prob_denom": 10.27,
+      "dmm_id": "5026",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "5026",
+        "first_hit_denom": 199.8,
+        "high_prob_denom": 10.27,
+        "dmm_url": "https://p-town.dmm.com/machines/5026",
+        "machine_mode": "lt_st",
+        "rush_entry_rate": 0.5,
+        "entry_rate_primary": 0.5,
+        "lt_continuation_rate": 0.79,
+        "continuation_rate": 0.79,
+        "payouts": [
+          300,
+          1500,
+          3000
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 2250,
+        "electric_support_spins": [
+          11
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 563.06,
+        "lt_entry_rate": 0.5
+      }
+    },
+    {
+      "id": "p_e_東京喰種_超デカ超一撃ver_",
+      "names": [
+        "e 東京喰種 超デカ超一撃ver.",
+        "東京喰種 超デカ超一撃ver."
+      ],
+      "type": "heavy",
+      "first_hit_denom": 999.0,
+      "high_prob_denom": 7.7,
+      "dmm_id": "5024",
+      "ceiling_spins": 2797,
+      "lt_critical": true,
+      "small_hit_max": 300,
+      "good_hit_min": 3000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "5024",
+        "first_hit_denom": 999.0,
+        "high_prob_denom": 7.7,
+        "dmm_url": "https://p-town.dmm.com/machines/5024",
+        "machine_mode": "rush_lt",
+        "rush_denom": 7.7,
+        "rush_entry_rate": 0.5,
+        "lt_entry_rate": 0.5,
+        "entry_rate_primary": 0.5,
+        "lt_continuation_rate": 0.5,
+        "rush_continuation_rate": 0.5,
+        "continuation_rate": 0.5,
+        "payouts": [
+          300,
+          3000,
+          6000,
+          7500,
+          9000
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 6375,
+        "electric_support_spins": [
+          5
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 319.07
+      }
+    },
+    {
+      "id": "p_e_無職転生_異世界行ったら本気だす_",
+      "names": [
+        "e 無職転生 ～異世界行ったら本気だす～",
+        "無職転生 ～異世界行ったら本気だす～"
+      ],
+      "type": "mid",
+      "first_hit_denom": 399.6,
+      "high_prob_denom": 90.4,
+      "dmm_id": "5046",
+      "ceiling_spins": 1119,
+      "lt_critical": true,
+      "small_hit_max": 300,
+      "good_hit_min": 3000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "5046",
+        "first_hit_denom": 399.6,
+        "high_prob_denom": 90.4,
+        "dmm_url": "https://p-town.dmm.com/machines/5046",
+        "machine_mode": "rush_lt",
+        "lt_entry_rate": 0.54,
+        "entry_rate_primary": 0.54,
+        "lt_continuation_rate": 0.765,
+        "continuation_rate": 0.765,
+        "payouts": [
+          300,
+          1200,
+          1500,
+          3000,
+          6000
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 2925,
+        "electric_support_spins": [
+          130
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 395.27
+      }
+    },
+    {
+      "id": "p_e_獣王_獅子の一撃",
+      "names": [
+        "e 獣王 獅子の一撃",
+        "獣王 獅子の一撃"
+      ],
+      "type": "mid",
+      "first_hit_denom": 319.7,
+      "ceiling_spins": 895,
+      "lt_critical": true,
+      "small_hit_max": 300,
+      "good_hit_min": 3000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 144.7,
+      "dmm_id": "5087",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "5087",
+        "first_hit_denom": 319.7,
+        "high_prob_denom": 144.7,
+        "dmm_url": "https://p-town.dmm.com/machines/5087",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.5,
+        "lt_entry_rate": 0.5,
+        "entry_rate_primary": 0.5,
+        "rush_continuation_rate": 0.5,
+        "continuation_rate": 0.5,
+        "payouts": [
+          300,
+          1500,
+          3000
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 2250,
+        "electric_support_spins": [
+          100
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 351.89
+      }
+    },
+    {
+      "id": "p_e_甲鉄城のカバネリ2_咲かせや燦然",
+      "names": [
+        "e 甲鉄城のカバネリ2 咲かせや燦然",
+        "甲鉄城のカバネリ2 咲かせや燦然"
+      ],
+      "type": "mid",
+      "first_hit_denom": 319.7,
+      "ceiling_spins": 895,
+      "lt_critical": true,
+      "small_hit_max": 300,
+      "good_hit_min": 3000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 98.3,
+      "dmm_id": "4935",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4935",
+        "first_hit_denom": 319.7,
+        "high_prob_denom": 98.3,
+        "dmm_url": "https://p-town.dmm.com/machines/4935",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.5,
+        "lt_entry_rate": 0.5,
+        "entry_rate_primary": 0.5,
+        "lt_continuation_rate": 0.75,
+        "continuation_rate": 0.75,
+        "payouts": [
+          750,
+          1500,
+          3000,
+          6000
+        ],
+        "small_hit_payout": 750,
+        "avg_big_payout": 3500,
+        "electric_support_spins": [
+          134
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 547.39
+      }
+    },
+    {
+      "id": "p_e_甲鉄城のカバネリ2_輪廻の果報119ver_",
+      "names": [
+        "e 甲鉄城のカバネリ2 輪廻の果報119ver.",
+        "甲鉄城のカバネリ2 輪廻の果報119ver."
+      ],
+      "type": "amadeji",
+      "first_hit_denom": 119.8,
+      "ceiling_spins": 335,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 89.7,
+      "dmm_id": "5043",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "5043",
+        "first_hit_denom": 119.8,
+        "high_prob_denom": 89.7,
+        "dmm_url": "https://p-town.dmm.com/machines/5043",
+        "machine_mode": "unknown",
+        "payouts": [
+          300,
+          1500
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 1500,
+        "electric_support_spins": [
+          134
+        ],
+        "fetched": "2026-09-02",
+        "lt_entry_rate": 0.255,
+        "entry_rate_primary": 0.255,
+        "theoretical_index": 319.28
+      }
+    },
+    {
+      "id": "p_e_終末のワルキューレ",
+      "names": [
+        "e 終末のワルキューレ",
+        "終末のワルキューレ"
+      ],
+      "type": "light_mid",
+      "first_hit_denom": 219.9,
+      "ceiling_spins": 616,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 39.9,
+      "dmm_id": "4963",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4963",
+        "first_hit_denom": 219.9,
+        "high_prob_denom": 39.9,
+        "dmm_url": "https://p-town.dmm.com/machines/4963",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.26,
+        "entry_rate_primary": 0.26,
+        "payouts": [
+          300,
+          1500
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 1500,
+        "electric_support_spins": [],
+        "fetched": "2026-09-02",
+        "theoretical_index": 177.35
+      }
+    },
+    {
+      "id": "p_e_聖戦士ダンバイン_3_zerosonic",
+      "names": [
+        "e 聖戦士ダンバイン 3 ZEROSONIC",
+        "聖戦士ダンバイン 3 ZEROSONIC"
+      ],
+      "type": "light_mid",
+      "first_hit_denom": 199.8,
+      "ceiling_spins": 559,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 29.1,
+      "dmm_id": "4859",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4859",
+        "first_hit_denom": 199.8,
+        "high_prob_denom": 29.1,
+        "dmm_url": "https://p-town.dmm.com/machines/4859",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.501,
+        "entry_rate_primary": 0.501,
+        "lt_continuation_rate": 0.92,
+        "continuation_rate": 0.92,
+        "payouts": [
+          300,
+          360,
+          600,
+          1200
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 1200,
+        "electric_support_spins": [
+          10000
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 300.9,
+        "lt_entry_rate": 0.501
+      }
+    },
+    {
+      "id": "p_e_魔法少女まどか_マギカ3_時間遡行_始まりの願い_",
+      "names": [
+        "e 魔法少女まどか☆マギカ3 時間遡行〜始まりの願い〜",
+        "魔法少女まどか☆マギカ3 時間遡行〜始まりの願い〜"
+      ],
+      "type": "mid",
+      "first_hit_denom": 319.9,
+      "ceiling_spins": 896,
+      "lt_critical": true,
+      "small_hit_max": 300,
+      "good_hit_min": 3000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 82.4,
+      "dmm_id": "4966",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4966",
+        "first_hit_denom": 319.9,
+        "high_prob_denom": 82.4,
+        "dmm_url": "https://p-town.dmm.com/machines/4966",
+        "machine_mode": "lt_st",
+        "rush_denom": 146.8,
+        "lt_denom": 82.4,
+        "rush_entry_rate": 0.7,
+        "lt_entry_rate": 0.7,
+        "entry_rate_primary": 0.7,
+        "lt_continuation_rate": 0.8,
+        "continuation_rate": 0.8,
+        "payouts": [
+          450,
+          750,
+          1500,
+          3000
+        ],
+        "small_hit_payout": 450,
+        "avg_big_payout": 2250,
+        "electric_support_spins": [
+          130
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 492.34
+      }
+    },
+    {
+      "id": "p_e86_エイティシックス_",
+      "names": [
+        "e86-エイティシックス-",
+        "86-エイティシックス-"
+      ],
+      "type": "light_mid",
+      "first_hit_denom": 239.1,
+      "ceiling_spins": 669,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "dmm_id": "4985",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4985",
+        "first_hit_denom": 239.1,
+        "high_prob_denom": null,
+        "dmm_url": "https://p-town.dmm.com/machines/4985",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.545,
+        "entry_rate_primary": 0.545,
+        "lt_continuation_rate": 0.79,
+        "continuation_rate": 0.79,
+        "payouts": [
+          300,
+          1500
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 1500,
+        "electric_support_spins": [
+          1
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 341.91,
+        "lt_entry_rate": 0.545
+      }
+    },
+    {
+      "id": "p_eacわんわんパラダイスcelebration",
+      "names": [
+        "eACわんわんパラダイスCELEBRATION",
+        "CわんわんパラダイスCELEBRATION"
+      ],
+      "type": "amadeji",
+      "first_hit_denom": 49.9,
+      "ceiling_spins": 218,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "dmm_id": "5072",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "5072",
+        "first_hit_denom": 49.9,
+        "high_prob_denom": null,
+        "dmm_url": "https://p-town.dmm.com/machines/5072",
+        "machine_mode": "rush_lt",
+        "payouts": [
+          210,
+          280,
+          700
+        ],
+        "small_hit_payout": 210,
+        "electric_support_spins": [
+          120,
+          10000
+        ],
+        "fetched": "2026-09-02",
+        "rush_entry_rate": 0.52,
+        "entry_rate_primary": 0.52,
+        "theoretical_index": 729.46
+      }
+    },
+    {
+      "id": "p_eうしおととら_神のせspec_150ver_",
+      "names": [
+        "eうしおととら〜神のせSPEC〜150ver.",
+        "うしおととら〜神のせSPEC〜150ver."
+      ],
+      "type": "light_mid",
+      "first_hit_denom": 150.31,
+      "ceiling_spins": 421,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 150.31,
+      "dmm_id": "4907",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4907",
+        "first_hit_denom": 150.31,
+        "high_prob_denom": 150.31,
+        "dmm_url": "https://p-town.dmm.com/machines/4907",
+        "machine_mode": "rush_lt",
+        "lt_denom": 150.31,
+        "rush_entry_rate": 0.3,
+        "lt_entry_rate": 0.3,
+        "entry_rate_primary": 0.3,
+        "lt_continuation_rate": 0.75,
+        "continuation_rate": 0.75,
+        "payouts": [
+          240,
+          1500,
+          3000,
+          4500,
+          6000,
+          7500
+        ],
+        "small_hit_payout": 240,
+        "avg_big_payout": 4500,
+        "electric_support_spins": [
+          205
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 898.14
+      }
+    },
+    {
+      "id": "p_eうしおととら_神のせspec_399ver_",
+      "names": [
+        "eうしおととら〜神のせSPEC〜399ver.",
+        "うしおととら〜神のせSPEC〜399ver."
+      ],
+      "type": "mid",
+      "first_hit_denom": 399.9,
+      "ceiling_spins": 1120,
+      "lt_critical": true,
+      "small_hit_max": 300,
+      "good_hit_min": 3000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 150.31,
+      "dmm_id": "4908",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4908",
+        "first_hit_denom": 399.9,
+        "high_prob_denom": 150.31,
+        "dmm_url": "https://p-town.dmm.com/machines/4908",
+        "machine_mode": "rush_lt",
+        "lt_denom": 150.31,
+        "rush_entry_rate": 0.61,
+        "lt_entry_rate": 0.61,
+        "entry_rate_primary": 0.61,
+        "lt_continuation_rate": 0.75,
+        "continuation_rate": 0.75,
+        "payouts": [
+          1500,
+          3000,
+          4500,
+          6000,
+          7500
+        ],
+        "small_hit_payout": 1500,
+        "avg_big_payout": 4500,
+        "electric_support_spins": [
+          205
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 686.42
+      }
+    },
+    {
+      "id": "p_eとある科学の超電磁砲_phase_next",
+      "names": [
+        "eとある科学の超電磁砲 PHASE NEXT",
+        "とある科学の超電磁砲 PHASE NEXT"
+      ],
+      "type": "light_mid",
+      "first_hit_denom": 169.7,
+      "ceiling_spins": 475,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 86.8,
+      "dmm_id": "4874",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4874",
+        "first_hit_denom": 169.7,
+        "high_prob_denom": 86.8,
+        "dmm_url": "https://p-town.dmm.com/machines/4874",
+        "machine_mode": "rush_lt",
+        "rush_denom": 86.8,
+        "rush_entry_rate": 0.25,
+        "lt_entry_rate": 0.25,
+        "entry_rate_primary": 0.25,
+        "lt_continuation_rate": 0.77,
+        "continuation_rate": 0.77,
+        "payouts": [],
+        "small_hit_payout": 300,
+        "electric_support_spins": [
+          125
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 220.98
+      }
+    },
+    {
+      "id": "p_eぱちんこ押忍_番長_漢の頂_99ver_",
+      "names": [
+        "eぱちんこ押忍！番長 漢の頂 99ver.",
+        "ぱちんこ押忍！番長 漢の頂 99ver."
+      ],
+      "type": "amadeji",
+      "first_hit_denom": 99.9,
+      "ceiling_spins": 280,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 99.9,
+      "dmm_id": "5062",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "5062",
+        "first_hit_denom": 99.9,
+        "high_prob_denom": 99.9,
+        "dmm_url": "https://p-town.dmm.com/machines/5062",
+        "machine_mode": "rush_lt",
+        "rush_denom": 99.9,
+        "rush_entry_rate": 0.33,
+        "lt_entry_rate": 0.33,
+        "entry_rate_primary": 0.33,
+        "rush_continuation_rate": 0.77,
+        "continuation_rate": 0.77,
+        "payouts": [
+          300,
+          2100
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 2100,
+        "electric_support_spins": [
+          144
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 693.69
+      }
+    },
+    {
+      "id": "p_eひきこまり吸血姫の悶_",
+      "names": [
+        "eひきこまり吸血姫の悶々",
+        "ひきこまり吸血姫の悶々"
+      ],
+      "type": "light_mid",
+      "first_hit_denom": 129.0,
+      "ceiling_spins": 361,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 99.0,
+      "dmm_id": "5006",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "5006",
+        "first_hit_denom": 129.0,
+        "high_prob_denom": 99.0,
+        "dmm_url": "https://p-town.dmm.com/machines/5006",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.77,
+        "lt_entry_rate": 0.51,
+        "entry_rate_primary": 0.77,
+        "lt_continuation_rate": 0.77,
+        "rush_continuation_rate": 0.77,
+        "continuation_rate": 0.77,
+        "payouts": [
+          300,
+          1500,
+          1800,
+          3000,
+          4500,
+          6000
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 3360,
+        "electric_support_spins": [
+          144
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 2005.58
+      }
+    },
+    {
+      "id": "p_eまわるん超ワープ_ギンギラパラダイス_viva_festa",
+      "names": [
+        "eまわるん超ワープ ギンギラパラダイス VIVA FESTA",
+        "まわるん超ワープ ギンギラパラダイス VIVA FESTA"
+      ],
+      "type": "mid",
+      "first_hit_denom": 319.6,
+      "ceiling_spins": 895,
+      "lt_critical": true,
+      "small_hit_max": 300,
+      "good_hit_min": 3000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 49.7,
+      "dmm_id": "4993",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4993",
+        "first_hit_denom": 319.6,
+        "high_prob_denom": 49.7,
+        "dmm_url": "https://p-town.dmm.com/machines/4993",
+        "machine_mode": "lt_st",
+        "rush_entry_rate": 0.45,
+        "lt_entry_rate": 0.45,
+        "entry_rate_primary": 0.45,
+        "lt_continuation_rate": 0.81,
+        "continuation_rate": 0.81,
+        "payouts": [
+          450,
+          1500
+        ],
+        "small_hit_payout": 450,
+        "avg_big_payout": 1500,
+        "electric_support_spins": [
+          10000
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 211.2
+      }
+    },
+    {
+      "id": "p_eようこそ実力至上主義の教室へ",
+      "names": [
+        "eようこそ実力至上主義の教室へ",
+        "ようこそ実力至上主義の教室へ"
+      ],
+      "type": "mid",
+      "first_hit_denom": 349.9,
+      "ceiling_spins": 980,
+      "lt_critical": true,
+      "small_hit_max": 300,
+      "good_hit_min": 3000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 94.1,
+      "dmm_id": "4936",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4936",
+        "first_hit_denom": 349.9,
+        "high_prob_denom": 94.1,
+        "dmm_url": "https://p-town.dmm.com/machines/4936",
+        "machine_mode": "lt_st",
+        "rush_entry_rate": 0.5,
+        "lt_entry_rate": 0.5,
+        "entry_rate_primary": 0.5,
+        "lt_continuation_rate": 0.87,
+        "continuation_rate": 0.87,
+        "payouts": [
+          450,
+          3000
+        ],
+        "small_hit_payout": 450,
+        "avg_big_payout": 3000,
+        "electric_support_spins": [
+          145
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 428.69
+      }
+    },
+    {
+      "id": "p_eアクセル・ワールド",
+      "names": [
+        "eアクセル・ワールド",
+        "アクセル・ワールド"
+      ],
+      "type": "light_mid",
+      "first_hit_denom": 184.6,
+      "ceiling_spins": 517,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 36.7,
+      "dmm_id": "5051",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "5051",
+        "first_hit_denom": 184.6,
+        "high_prob_denom": 36.7,
+        "dmm_url": "https://p-town.dmm.com/machines/5051",
+        "machine_mode": "lt_st",
+        "lt_entry_rate_total": 0.78,
+        "entry_rate_primary": 0.78,
+        "lt_continuation_rate": 0.78,
+        "continuation_rate": 0.78,
+        "payouts": [
+          300,
+          1500,
+          6000
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 3750,
+        "electric_support_spins": [],
+        "fetched": "2026-09-02",
+        "theoretical_index": 1584.51,
+        "lt_entry_rate": 0.7
+      }
+    },
+    {
+      "id": "p_eアクダマドライブ",
+      "names": [
+        "eアクダマドライブ",
+        "アクダマドライブ"
+      ],
+      "type": "mid",
+      "first_hit_denom": 319.6,
+      "ceiling_spins": 895,
+      "lt_critical": true,
+      "small_hit_max": 300,
+      "good_hit_min": 3000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 85.9,
+      "dmm_id": "4954",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4954",
+        "first_hit_denom": 319.6,
+        "high_prob_denom": 85.9,
+        "dmm_url": "https://p-town.dmm.com/machines/4954",
+        "machine_mode": "lt_st",
+        "rush_entry_rate": 0.62,
+        "lt_entry_rate": 0.62,
+        "entry_rate_primary": 0.62,
+        "lt_continuation_rate": 0.77,
+        "continuation_rate": 0.77,
+        "payouts": [
+          600,
+          1500,
+          3000
+        ],
+        "small_hit_payout": 600,
+        "avg_big_payout": 2250,
+        "electric_support_spins": [
+          120
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 436.48
+      }
+    },
+    {
+      "id": "p_eカケグルイ_219ver",
+      "names": [
+        "eカケグルイ 219ver",
+        "カケグルイ 219ver"
+      ],
+      "type": "light_mid",
+      "first_hit_denom": 219.0,
+      "ceiling_spins": 613,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 99.0,
+      "dmm_id": "5005",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "5005",
+        "first_hit_denom": 219.0,
+        "high_prob_denom": 99.0,
+        "dmm_url": "https://p-town.dmm.com/machines/5005",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.25,
+        "lt_entry_rate": 0.25,
+        "entry_rate_primary": 0.25,
+        "lt_continuation_rate": 0.8,
+        "rush_continuation_rate": 0.8,
+        "continuation_rate": 0.8,
+        "payouts": [
+          300,
+          1500
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 1500,
+        "electric_support_spins": [
+          148
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 171.23
+      }
+    },
+    {
+      "id": "p_eカケグルイ_7500ver",
+      "names": [
+        "eカケグルイ 7500ver",
+        "カケグルイ 7500ver"
+      ],
+      "type": "light_mid",
+      "first_hit_denom": 204.0,
+      "ceiling_spins": 571,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 99.0,
+      "dmm_id": "5004",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "5004",
+        "first_hit_denom": 204.0,
+        "high_prob_denom": 99.0,
+        "dmm_url": "https://p-town.dmm.com/machines/5004",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.25,
+        "lt_entry_rate": 0.5,
+        "entry_rate_primary": 0.25,
+        "lt_continuation_rate": 0.75,
+        "rush_continuation_rate": 0.75,
+        "continuation_rate": 0.75,
+        "payouts": [
+          300,
+          1500
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 1500,
+        "electric_support_spins": [
+          135
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 183.82
+      }
+    },
+    {
+      "id": "p_eガールズ_パンツァー_最終章",
+      "names": [
+        "eガールズ＆パンツァー 最終章",
+        "ガールズ＆パンツァー 最終章"
+      ],
+      "type": "light_mid",
+      "first_hit_denom": 199.8,
+      "ceiling_spins": 559,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 15.3,
+      "dmm_id": "4869",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4869",
+        "first_hit_denom": 199.8,
+        "high_prob_denom": 15.3,
+        "dmm_url": "https://p-town.dmm.com/machines/4869",
+        "machine_mode": "lt_st",
+        "rush_denom": 15.3,
+        "rush_entry_rate": 0.599,
+        "lt_entry_rate": 0.51,
+        "entry_rate_primary": 0.51,
+        "lt_continuation_rate": 0.8,
+        "continuation_rate": 0.8,
+        "payouts": [
+          300,
+          1500,
+          3000
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 2250,
+        "electric_support_spins": [
+          255
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 574.32
+      }
+    },
+    {
+      "id": "p_eガールズ_パンツァー_最終章_159ver_",
+      "names": [
+        "eガールズ＆パンツァー 最終章 159ver.",
+        "ガールズ＆パンツァー 最終章 159ver."
+      ],
+      "type": "light_mid",
+      "first_hit_denom": 159.8,
+      "ceiling_spins": 447,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 3.4,
+      "dmm_id": "5032",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "5032",
+        "first_hit_denom": 159.8,
+        "high_prob_denom": 3.4,
+        "dmm_url": "https://p-town.dmm.com/machines/5032",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.25,
+        "lt_entry_rate": 0.25,
+        "entry_rate_primary": 0.25,
+        "lt_continuation_rate": 0.75,
+        "continuation_rate": 0.75,
+        "payouts": [
+          300,
+          1500,
+          3000,
+          4500
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 3000,
+        "electric_support_spins": [
+          3
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 469.34
+      }
+    },
+    {
+      "id": "p_eシン・ウルトラマン_79ver_",
+      "names": [
+        "eシン・ウルトラマン 79ver.",
+        "シン・ウルトラマン 79ver."
+      ],
+      "type": "amadeji",
+      "first_hit_denom": 79.9,
+      "high_prob_denom": 3.1,
+      "dmm_id": "5076",
+      "ceiling_spins": 224,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "5076",
+        "first_hit_denom": 79.9,
+        "high_prob_denom": 3.1,
+        "dmm_url": "https://p-town.dmm.com/machines/5076",
+        "machine_mode": "rush_lt",
+        "payouts": [
+          300,
+          500,
+          1000
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 1000,
+        "electric_support_spins": [
+          1
+        ],
+        "fetched": "2026-09-02",
+        "rush_entry_rate": 0.33,
+        "lt_entry_rate": 1.0,
+        "entry_rate_primary": 0.33,
+        "theoretical_index": 413.02
+      }
+    },
+    {
+      "id": "p_eソードアート・オンライン_オルタナティブ_ガンゲイル・オンライン",
+      "names": [
+        "eソードアート・オンライン オルタナティブ ガンゲイル・オンライン",
+        "ソードアート・オンライン オルタナティブ ガンゲイル・オンライン"
+      ],
+      "type": "mid",
+      "first_hit_denom": 319.9,
+      "ceiling_spins": 896,
+      "lt_critical": true,
+      "small_hit_max": 300,
+      "good_hit_min": 3000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 99.9,
+      "dmm_id": "5021",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "5021",
+        "first_hit_denom": 319.9,
+        "high_prob_denom": 99.9,
+        "dmm_url": "https://p-town.dmm.com/machines/5021",
+        "machine_mode": "lt_st",
+        "rush_entry_rate": 0.03,
+        "lt_entry_rate": 0.03,
+        "entry_rate_primary": 0.03,
+        "lt_continuation_rate": 0.8,
+        "continuation_rate": 0.8,
+        "payouts": [
+          300,
+          600,
+          900,
+          1500,
+          2100,
+          3600,
+          4500
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 2925,
+        "electric_support_spins": [
+          160
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 27.43
+      }
+    },
+    {
+      "id": "p_eゾン100_ゾンビになるまでにしたい100のこと_",
+      "names": [
+        "eゾン100〜ゾンビになるまでにしたい100のこと〜",
+        "ゾン100〜ゾンビになるまでにしたい100のこと〜"
+      ],
+      "type": "light_mid",
+      "first_hit_denom": 199.5,
+      "high_prob_denom": 34.0,
+      "dmm_id": "5060",
+      "ceiling_spins": 559,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "5060",
+        "first_hit_denom": 199.5,
+        "high_prob_denom": 34.0,
+        "dmm_url": "https://p-town.dmm.com/machines/5060",
+        "machine_mode": "rush_lt",
+        "rush_denom": 146.6,
+        "lt_denom": 34.0,
+        "rush_entry_rate": 0.25,
+        "lt_entry_rate": 0.5,
+        "entry_rate_primary": 0.25,
+        "lt_continuation_rate": 0.75,
+        "rush_continuation_rate": 0.5,
+        "continuation_rate": 0.75,
+        "payouts": [
+          300,
+          1500,
+          1800,
+          3000,
+          3300,
+          6000
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 3120,
+        "electric_support_spins": [
+          100
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 390.98
+      }
+    },
+    {
+      "id": "p_eタクトオーパス_デスティニー",
+      "names": [
+        "eタクトオーパス デスティニー",
+        "タクトオーパス デスティニー"
+      ],
+      "type": "heavy",
+      "first_hit_denom": 1394.38,
+      "ceiling_spins": 3904,
+      "lt_critical": true,
+      "small_hit_max": 300,
+      "good_hit_min": 3000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 99.9,
+      "dmm_id": "5080",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "5080",
+        "first_hit_denom": 1394.38,
+        "high_prob_denom": 99.9,
+        "dmm_url": "https://p-town.dmm.com/machines/5080",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.77,
+        "lt_entry_rate": 0.5,
+        "entry_rate_primary": 0.77,
+        "lt_continuation_rate": 0.77,
+        "rush_continuation_rate": 0.77,
+        "continuation_rate": 0.77,
+        "payouts": [
+          300,
+          1500,
+          2700,
+          3900,
+          5100,
+          6300,
+          7500
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 4500,
+        "electric_support_spins": [
+          10000
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 248.5
+      }
+    },
+    {
+      "id": "p_eノーゲーム・ノーライフ_119ver_",
+      "names": [
+        "eノーゲーム・ノーライフ 119Ver.",
+        "ノーゲーム・ノーライフ 119Ver."
+      ],
+      "type": "amadeji",
+      "first_hit_denom": 119.8,
+      "ceiling_spins": 335,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 23.1,
+      "dmm_id": "5078",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "5078",
+        "first_hit_denom": 119.8,
+        "high_prob_denom": 23.1,
+        "dmm_url": "https://p-town.dmm.com/machines/5078",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.5,
+        "entry_rate_primary": 0.5,
+        "rush_continuation_rate": 0.8,
+        "continuation_rate": 0.8,
+        "payouts": [
+          300,
+          1000
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 1000,
+        "electric_support_spins": [
+          32
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 417.36
+      }
+    },
+    {
+      "id": "p_eノーゲーム・ノーライフ_199ver_",
+      "names": [
+        "eノーゲーム・ノーライフ 199Ver.",
+        "ノーゲーム・ノーライフ 199Ver."
+      ],
+      "type": "light_mid",
+      "first_hit_denom": 199.8,
+      "ceiling_spins": 559,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 17.7,
+      "dmm_id": "4863",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4863",
+        "first_hit_denom": 199.8,
+        "high_prob_denom": 17.7,
+        "dmm_url": "https://p-town.dmm.com/machines/4863",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.5,
+        "entry_rate_primary": 0.5,
+        "lt_continuation_rate": 0.88,
+        "continuation_rate": 0.88,
+        "payouts": [
+          300,
+          1500
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 1500,
+        "electric_support_spins": [
+          32
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 375.38
+      }
+    },
+    {
+      "id": "p_eノーゲーム・ノーライフ_319ver_",
+      "names": [
+        "eノーゲーム・ノーライフ 319Ver.",
+        "ノーゲーム・ノーライフ 319Ver."
+      ],
+      "type": "mid",
+      "first_hit_denom": 319.6,
+      "ceiling_spins": 895,
+      "lt_critical": true,
+      "small_hit_max": 300,
+      "good_hit_min": 3000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 17.7,
+      "dmm_id": "4862",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4862",
+        "first_hit_denom": 319.6,
+        "high_prob_denom": 17.7,
+        "dmm_url": "https://p-town.dmm.com/machines/4862",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.6,
+        "entry_rate_primary": 0.6,
+        "lt_continuation_rate": 0.88,
+        "continuation_rate": 0.88,
+        "payouts": [
+          1500
+        ],
+        "small_hit_payout": 1500,
+        "avg_big_payout": 1500,
+        "electric_support_spins": [
+          32
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 281.6
+      }
+    },
+    {
+      "id": "p_eフィーバー_デッドマウント・デスプレイ_魂神9000",
+      "names": [
+        "eフィーバー デッドマウント・デスプレイ 魂神9000",
+        "フィーバー デッドマウント・デスプレイ 魂神9000"
+      ],
+      "type": "mid",
+      "first_hit_denom": 349.9,
+      "ceiling_spins": 980,
+      "lt_critical": true,
+      "small_hit_max": 300,
+      "good_hit_min": 3000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 43.0,
+      "dmm_id": "5013",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "5013",
+        "first_hit_denom": 349.9,
+        "high_prob_denom": 43.0,
+        "dmm_url": "https://p-town.dmm.com/machines/5013",
+        "machine_mode": "rush_lt",
+        "rush_denom": 43.0,
+        "rush_entry_rate": 0.51,
+        "entry_rate_primary": 0.51,
+        "payouts": [
+          1500,
+          3000,
+          9000
+        ],
+        "small_hit_payout": 1500,
+        "avg_big_payout": 4500,
+        "electric_support_spins": [],
+        "fetched": "2026-09-02",
+        "theoretical_index": 655.9
+      }
+    },
+    {
+      "id": "p_eフィーバーbastard_暗黒の破壊神_",
+      "names": [
+        "eフィーバーBASTARD!! -暗黒の破壊神-",
+        "フィーバーBASTARD!! -暗黒の破壊神-"
+      ],
+      "type": "mid",
+      "first_hit_denom": 399.9,
+      "ceiling_spins": 1120,
+      "lt_critical": true,
+      "small_hit_max": 300,
+      "good_hit_min": 3000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 10.8,
+      "dmm_id": "4923",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4923",
+        "first_hit_denom": 399.9,
+        "high_prob_denom": 10.8,
+        "dmm_url": "https://p-town.dmm.com/machines/4923",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.5,
+        "entry_rate_primary": 0.5,
+        "rush_continuation_rate": 0.75,
+        "continuation_rate": 0.75,
+        "payouts": [
+          300,
+          1500,
+          3000,
+          4500
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 3000,
+        "electric_support_spins": [
+          10
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 375.09
+      }
+    },
+    {
+      "id": "p_eフィーバーもののがたり",
+      "names": [
+        "eフィーバーもののがたり",
+        "フィーバーもののがたり"
+      ],
+      "type": "light_mid",
+      "first_hit_denom": 149.9,
+      "ceiling_spins": 420,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 41.1,
+      "dmm_id": "4876",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4876",
+        "first_hit_denom": 149.9,
+        "high_prob_denom": 41.1,
+        "dmm_url": "https://p-town.dmm.com/machines/4876",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.255,
+        "lt_entry_rate": 0.255,
+        "entry_rate_primary": 0.255,
+        "lt_continuation_rate": 0.73,
+        "continuation_rate": 0.73,
+        "payouts": [
+          300,
+          1500,
+          3000,
+          6000
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 3500,
+        "electric_support_spins": [
+          10000
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 595.4
+      }
+    },
+    {
+      "id": "p_eフィーバーキン肉マン",
+      "names": [
+        "eフィーバーキン肉マン",
+        "フィーバーキン肉マン"
+      ],
+      "type": "mid",
+      "first_hit_denom": 399.9,
+      "ceiling_spins": 1120,
+      "lt_critical": true,
+      "small_hit_max": 300,
+      "good_hit_min": 3000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 92.3,
+      "dmm_id": "4958",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4958",
+        "first_hit_denom": 399.9,
+        "high_prob_denom": 92.3,
+        "dmm_url": "https://p-town.dmm.com/machines/4958",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.51,
+        "lt_entry_rate": 0.51,
+        "entry_rate_primary": 0.51,
+        "lt_continuation_rate": 0.77,
+        "rush_continuation_rate": 0.77,
+        "continuation_rate": 0.77,
+        "payouts": [
+          300,
+          1500,
+          3000,
+          4500,
+          6000,
+          7500
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 4500,
+        "electric_support_spins": [
+          145
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 573.89
+      }
+    },
+    {
+      "id": "p_eフィーバーダンベル何キロ持てる_2",
+      "names": [
+        "eフィーバーダンベル何キロ持てる？2",
+        "フィーバーダンベル何キロ持てる？2"
+      ],
+      "type": "light_mid",
+      "first_hit_denom": 149.9,
+      "ceiling_spins": 420,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 97.7,
+      "dmm_id": "4946",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4946",
+        "first_hit_denom": 149.9,
+        "high_prob_denom": 97.7,
+        "dmm_url": "https://p-town.dmm.com/machines/4946",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.25,
+        "lt_entry_rate": 0.25,
+        "entry_rate_primary": 0.25,
+        "lt_continuation_rate": 0.73,
+        "rush_continuation_rate": 0.73,
+        "continuation_rate": 0.73,
+        "payouts": [
+          300,
+          900,
+          2100,
+          3300,
+          4500
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 3300,
+        "electric_support_spins": [
+          127
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 550.37
+      }
+    },
+    {
+      "id": "p_eフィーバーブルーロック",
+      "names": [
+        "eフィーバーブルーロック",
+        "フィーバーブルーロック"
+      ],
+      "type": "mid",
+      "first_hit_denom": 399.9,
+      "ceiling_spins": 1120,
+      "lt_critical": true,
+      "small_hit_max": 300,
+      "good_hit_min": 3000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 33.2,
+      "dmm_id": "4837",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4837",
+        "first_hit_denom": 399.9,
+        "high_prob_denom": 33.2,
+        "dmm_url": "https://p-town.dmm.com/machines/4837",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.55,
+        "lt_entry_rate": 0.55,
+        "entry_rate_primary": 0.55,
+        "lt_continuation_rate": 0.77,
+        "continuation_rate": 0.77,
+        "payouts": [
+          300,
+          1050,
+          1500,
+          9000
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 3850,
+        "electric_support_spins": [],
+        "fetched": "2026-09-02",
+        "theoretical_index": 529.51
+      }
+    },
+    {
+      "id": "p_eフィーバーブルーロック_light_ver_",
+      "names": [
+        "eフィーバーブルーロック Light ver.",
+        "フィーバーブルーロック Light ver."
+      ],
+      "type": "light_mid",
+      "first_hit_denom": 120.1,
+      "ceiling_spins": 336,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown+manual",
+      "high_prob_denom": 39.1,
+      "dmm_id": "5035",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "5035",
+        "first_hit_denom": 120.1,
+        "high_prob_denom": 39.1,
+        "dmm_url": "https://p-town.dmm.com/machines/5035",
+        "machine_mode": "rush_lt",
+        "payouts": [
+          140,
+          210,
+          560,
+          700,
+          2800
+        ],
+        "small_hit_payout": 140,
+        "avg_big_payout": 2800,
+        "electric_support_spins": [],
+        "fetched": "2026-09-02",
+        "lt_entry_rate": 1.0,
+        "entry_rate_primary": 1.0,
+        "theoretical_index": 2331.39
+      }
+    },
+    {
+      "id": "p_eフィーバー妖怪ウォッチ",
+      "names": [
+        "eフィーバー妖怪ウォッチ",
+        "フィーバー妖怪ウォッチ"
+      ],
+      "type": "mid",
+      "first_hit_denom": 319.7,
+      "ceiling_spins": 895,
+      "lt_critical": true,
+      "small_hit_max": 300,
+      "good_hit_min": 3000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 41.9,
+      "dmm_id": "5081",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "5081",
+        "first_hit_denom": 319.7,
+        "high_prob_denom": 41.9,
+        "dmm_url": "https://p-town.dmm.com/machines/5081",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.61,
+        "lt_entry_rate_total": 0.8,
+        "entry_rate_primary": 0.61,
+        "payouts": [
+          300,
+          1500,
+          3000
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 2250,
+        "electric_support_spins": [
+          100
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 429.31
+      }
+    },
+    {
+      "id": "p_eフィーバー機動戦士ガンダムseed_クライマックス",
+      "names": [
+        "eフィーバー機動戦士ガンダムSEED クライマックス",
+        "フィーバー機動戦士ガンダムSEED クライマックス"
+      ],
+      "type": "mid",
+      "first_hit_denom": 399.9,
+      "ceiling_spins": 1120,
+      "lt_critical": true,
+      "small_hit_max": 300,
+      "good_hit_min": 3000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 95.6,
+      "dmm_id": "5045",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "5045",
+        "first_hit_denom": 399.9,
+        "high_prob_denom": 95.6,
+        "dmm_url": "https://p-town.dmm.com/machines/5045",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.75,
+        "lt_entry_rate": 0.517,
+        "entry_rate_primary": 0.75,
+        "lt_continuation_rate": 0.75,
+        "rush_continuation_rate": 0.75,
+        "continuation_rate": 0.75,
+        "payouts": [
+          300,
+          1500,
+          3000,
+          4500
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 3000,
+        "electric_support_spins": [
+          130
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 562.64
+      }
+    },
+    {
+      "id": "p_eフィーバー炎炎ノ消防隊2_99ver_",
+      "names": [
+        "eフィーバー炎炎ノ消防隊2 99ver.",
+        "フィーバー炎炎ノ消防隊2 99ver."
+      ],
+      "type": "amadeji",
+      "first_hit_denom": 99.9,
+      "ceiling_spins": 280,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 23.8,
+      "dmm_id": "5067",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "5067",
+        "first_hit_denom": 99.9,
+        "high_prob_denom": 23.8,
+        "dmm_url": "https://p-town.dmm.com/machines/5067",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.19,
+        "lt_entry_rate_total": 0.6,
+        "entry_rate_primary": 0.19,
+        "lt_continuation_rate": 0.95,
+        "rush_continuation_rate": 0.77,
+        "continuation_rate": 0.95,
+        "payouts": [
+          400,
+          900
+        ],
+        "small_hit_payout": 400,
+        "electric_support_spins": [
+          64
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 171.17,
+        "lt_entry_rate": 1.0
+      }
+    },
+    {
+      "id": "p_eラグナドール_妖しき皇帝と終焉の夜叉姫",
+      "names": [
+        "eラグナドール 妖しき皇帝と終焉の夜叉姫",
+        "ラグナドール 妖しき皇帝と終焉の夜叉姫"
+      ],
+      "type": "light_mid",
+      "first_hit_denom": 239.5,
+      "ceiling_spins": 671,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 79.2,
+      "dmm_id": "4962",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4962",
+        "first_hit_denom": 239.5,
+        "high_prob_denom": 79.2,
+        "dmm_url": "https://p-town.dmm.com/machines/4962",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.8,
+        "entry_rate_primary": 0.8,
+        "lt_continuation_rate": 0.8,
+        "rush_continuation_rate": 0.8,
+        "continuation_rate": 0.8,
+        "payouts": [
+          900,
+          1500,
+          3000
+        ],
+        "small_hit_payout": 900,
+        "avg_big_payout": 2250,
+        "electric_support_spins": [
+          125
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 751.57
+      }
+    },
+    {
+      "id": "p_eリコリス・リコイル",
+      "names": [
+        "eリコリス・リコイル",
+        "リコリス・リコイル"
+      ],
+      "type": "mid",
+      "first_hit_denom": 259.7,
+      "ceiling_spins": 727,
+      "lt_critical": true,
+      "small_hit_max": 300,
+      "good_hit_min": 3000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 97.1,
+      "dmm_id": "4982",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4982",
+        "first_hit_denom": 259.7,
+        "high_prob_denom": 97.1,
+        "dmm_url": "https://p-town.dmm.com/machines/4982",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.5,
+        "lt_entry_rate": 0.5,
+        "entry_rate_primary": 0.5,
+        "lt_continuation_rate": 0.75,
+        "rush_continuation_rate": 0.75,
+        "continuation_rate": 0.75,
+        "payouts": [
+          310,
+          600,
+          750,
+          1500,
+          3000,
+          6000
+        ],
+        "small_hit_payout": 310,
+        "avg_big_payout": 3500,
+        "electric_support_spins": [
+          132
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 673.85
+      }
+    },
+    {
+      "id": "p_eリング_最恐領域",
+      "names": [
+        "eリング 最恐領域",
+        "リング 最恐領域"
+      ],
+      "type": "mid",
+      "first_hit_denom": 399.0,
+      "ceiling_spins": 1117,
+      "lt_critical": true,
+      "small_hit_max": 300,
+      "good_hit_min": 3000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 8.0,
+      "dmm_id": "4994",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4994",
+        "first_hit_denom": 399.0,
+        "high_prob_denom": 8.0,
+        "dmm_url": "https://p-town.dmm.com/machines/4994",
+        "machine_mode": "lt_st",
+        "lt_entry_rate": 0.57,
+        "entry_rate_primary": 0.57,
+        "lt_continuation_rate": 0.7,
+        "continuation_rate": 0.7,
+        "payouts": [
+          300,
+          1500,
+          3000,
+          6000
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 3500,
+        "electric_support_spins": [
+          75
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 500.0
+      }
+    },
+    {
+      "id": "p_eルパン三世vsキャッツ・アイ",
+      "names": [
+        "eルパン三世VSキャッツ・アイ",
+        "ルパン三世VSキャッツ・アイ"
+      ],
+      "type": "mid",
+      "first_hit_denom": 257.9,
+      "ceiling_spins": 722,
+      "lt_critical": true,
+      "small_hit_max": 300,
+      "good_hit_min": 3000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 99.9,
+      "dmm_id": "4887",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4887",
+        "first_hit_denom": 257.9,
+        "high_prob_denom": 99.9,
+        "dmm_url": "https://p-town.dmm.com/machines/4887",
+        "machine_mode": "rush_lt",
+        "lt_entry_rate": 0.5,
+        "entry_rate_primary": 0.79,
+        "lt_continuation_rate": 0.79,
+        "continuation_rate": 0.79,
+        "payouts": [
+          300,
+          1500,
+          3000
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 2250,
+        "electric_support_spins": [
+          153
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 689.22,
+        "rush_entry_rate": 0.79
+      }
+    },
+    {
+      "id": "p_eルパン三世vsキャッツ・アイ_157ver_極限突破ブッた斬り_7500",
+      "names": [
+        "eルパン三世VSキャッツ・アイ 157ver. 極限突破ブッた斬り 7500",
+        "ルパン三世VSキャッツ・アイ 157ver. 極限突破ブッた斬り 7500"
+      ],
+      "type": "light_mid",
+      "first_hit_denom": 157.9,
+      "ceiling_spins": 442,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 97.3,
+      "dmm_id": "4999",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4999",
+        "first_hit_denom": 157.9,
+        "high_prob_denom": 97.3,
+        "dmm_url": "https://p-town.dmm.com/machines/4999",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.79,
+        "lt_entry_rate": 0.5,
+        "entry_rate_primary": 0.79,
+        "lt_continuation_rate": 0.79,
+        "rush_continuation_rate": 0.79,
+        "continuation_rate": 0.79,
+        "payouts": [
+          300,
+          1500
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 1500,
+        "electric_support_spins": [
+          149
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 750.47
+      }
+    },
+    {
+      "id": "p_eワンパンマン2_正義執行",
+      "names": [
+        "eワンパンマン2～正義執行",
+        "ワンパンマン2～正義執行"
+      ],
+      "type": "light_mid",
+      "first_hit_denom": 179.55,
+      "ceiling_spins": 503,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 98.55,
+      "dmm_id": "4969",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4969",
+        "first_hit_denom": 179.55,
+        "high_prob_denom": 98.55,
+        "dmm_url": "https://p-town.dmm.com/machines/4969",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.25,
+        "lt_entry_rate": 0.25,
+        "entry_rate_primary": 0.25,
+        "lt_continuation_rate": 0.75,
+        "continuation_rate": 0.75,
+        "payouts": [
+          710,
+          1270,
+          2540,
+          5080
+        ],
+        "small_hit_payout": 710,
+        "avg_big_payout": 2963,
+        "electric_support_spins": [
+          134
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 412.56
+      }
+    },
+    {
+      "id": "p_eワールドダイスター",
+      "names": [
+        "eワールドダイスター",
+        "ワールドダイスター"
+      ],
+      "type": "light_mid",
+      "first_hit_denom": 159.9,
+      "ceiling_spins": 448,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 3.5,
+      "dmm_id": "5041",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "5041",
+        "first_hit_denom": 159.9,
+        "high_prob_denom": 3.5,
+        "dmm_url": "https://p-town.dmm.com/machines/5041",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.91,
+        "lt_entry_rate": 0.25,
+        "entry_rate_primary": 0.91,
+        "lt_continuation_rate": 0.91,
+        "rush_continuation_rate": 0.91,
+        "continuation_rate": 0.91,
+        "payouts": [
+          300,
+          710,
+          5050
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 5050,
+        "electric_support_spins": [
+          7
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 2873.98
+      }
+    },
+    {
+      "id": "p_e中森明菜・歌姫伝説_forfans_",
+      "names": [
+        "e中森明菜・歌姫伝説～FORFANS～",
+        "中森明菜・歌姫伝説～FORFANS～"
+      ],
+      "type": "mid",
+      "first_hit_denom": 319.7,
+      "ceiling_spins": 895,
+      "lt_critical": true,
+      "small_hit_max": 300,
+      "good_hit_min": 3000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 85.6,
+      "dmm_id": "5085",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "5085",
+        "first_hit_denom": 319.7,
+        "high_prob_denom": 85.6,
+        "dmm_url": "https://p-town.dmm.com/machines/5085",
+        "machine_mode": "lt_st",
+        "payouts": [
+          400,
+          700,
+          1500
+        ],
+        "small_hit_payout": 400,
+        "avg_big_payout": 1500,
+        "electric_support_spins": [
+          100
+        ],
+        "fetched": "2026-09-02",
+        "lt_entry_rate": 1.0,
+        "entry_rate_primary": 1.0,
+        "theoretical_index": 469.19
+      }
+    },
+    {
+      "id": "p_e冥妃転生",
+      "names": [
+        "e冥妃転生",
+        "冥妃転生"
+      ],
+      "type": "light_mid",
+      "first_hit_denom": 199.8,
+      "ceiling_spins": 559,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 95.5,
+      "dmm_id": "4997",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4997",
+        "first_hit_denom": 199.8,
+        "high_prob_denom": 95.5,
+        "dmm_url": "https://p-town.dmm.com/machines/4997",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.75,
+        "lt_entry_rate": 0.416,
+        "entry_rate_primary": 0.75,
+        "lt_continuation_rate": 0.75,
+        "rush_continuation_rate": 0.75,
+        "continuation_rate": 0.75,
+        "payouts": [
+          300,
+          1500,
+          3000
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 2250,
+        "electric_support_spins": [
+          130
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 844.59
+      }
+    },
+    {
+      "id": "p_e吉宗_極乗3000ver_",
+      "names": [
+        "e吉宗 極乗3000ver.",
+        "吉宗 極乗3000ver."
+      ],
+      "type": "light_mid",
+      "first_hit_denom": 199.9,
+      "ceiling_spins": 560,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 99.5,
+      "dmm_id": "4932",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4932",
+        "first_hit_denom": 199.9,
+        "high_prob_denom": 99.5,
+        "dmm_url": "https://p-town.dmm.com/machines/4932",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.3,
+        "lt_entry_rate": 0.3,
+        "entry_rate_primary": 0.3,
+        "lt_continuation_rate": 0.8,
+        "rush_continuation_rate": 0.8,
+        "continuation_rate": 0.8,
+        "payouts": [
+          300,
+          750,
+          3000
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 3000,
+        "electric_support_spins": [
+          157
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 450.23
+      }
+    },
+    {
+      "id": "p_e地獄少女7500ver_",
+      "names": [
+        "e地獄少女7500Ver.",
+        "地獄少女7500Ver."
+      ],
+      "type": "amadeji",
+      "first_hit_denom": 49.0,
+      "high_prob_denom": 2.0,
+      "dmm_id": "4920",
+      "ceiling_spins": 137,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4920",
+        "first_hit_denom": 49.0,
+        "high_prob_denom": 2.0,
+        "dmm_url": "https://p-town.dmm.com/machines/4920",
+        "machine_mode": "unknown",
+        "rush_entry_rate": 0.52,
+        "entry_rate_primary": 0.52,
+        "payouts": [
+          1500,
+          7500
+        ],
+        "small_hit_payout": 1500,
+        "avg_big_payout": 4500,
+        "electric_support_spins": [],
+        "fetched": "2026-09-02",
+        "theoretical_index": 4775.51,
+        "lt_entry_rate": 0.52
+      }
+    },
+    {
+      "id": "p_e大海物語5スペシャル_319遊タイムver_",
+      "names": [
+        "e大海物語5スペシャル 319遊タイムver.",
+        "大海物語5スペシャル 319遊タイムver."
+      ],
+      "type": "mid",
+      "first_hit_denom": 319.6,
+      "ceiling_spins": 895,
+      "lt_critical": false,
+      "small_hit_max": 300,
+      "good_hit_min": 3000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 31.9,
+      "dmm_id": "5097",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "5097",
+        "first_hit_denom": 319.6,
+        "high_prob_denom": 31.9,
+        "dmm_url": "https://p-town.dmm.com/machines/5097",
+        "machine_mode": "kakuhen",
+        "kakuhen_entry_rate": 0.54,
+        "entry_rate_primary": 0.54,
+        "payouts": [
+          1500
+        ],
+        "small_hit_payout": 1500,
+        "avg_big_payout": 1500,
+        "electric_support_spins": [
+          200
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 253.44
+      }
+    },
+    {
+      "id": "p_e源外伝_episode_of_大龍_",
+      "names": [
+        "e源外伝 EPISODE OF -大龍-",
+        "源外伝 EPISODE OF -大龍-"
+      ],
+      "type": "light_mid",
+      "first_hit_denom": 199.8,
+      "ceiling_spins": 559,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 53.2,
+      "dmm_id": "4879",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4879",
+        "first_hit_denom": 199.8,
+        "high_prob_denom": 53.2,
+        "dmm_url": "https://p-town.dmm.com/machines/4879",
+        "machine_mode": "lt_st",
+        "rush_entry_rate": 0.25,
+        "entry_rate_primary": 0.25,
+        "lt_continuation_rate": 0.865,
+        "continuation_rate": 0.865,
+        "payouts": [
+          300,
+          1500
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 1500,
+        "electric_support_spins": [],
+        "fetched": "2026-09-02",
+        "theoretical_index": 187.69,
+        "lt_entry_rate": 0.25
+      }
+    },
+    {
+      "id": "p_e牙狼11_冴島大河_魔戒burst_ver_",
+      "names": [
+        "e牙狼11〜冴島大河〜魔戒BURST Ver.",
+        "牙狼11〜冴島大河〜魔戒BURST Ver."
+      ],
+      "type": "mid",
+      "first_hit_denom": 349.9,
+      "ceiling_spins": 980,
+      "lt_critical": true,
+      "small_hit_max": 300,
+      "good_hit_min": 3000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "dmm_id": "4968",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4968",
+        "first_hit_denom": 349.9,
+        "high_prob_denom": null,
+        "dmm_url": "https://p-town.dmm.com/machines/4968",
+        "machine_mode": "lt_st",
+        "rush_entry_rate": 0.25,
+        "lt_entry_rate": 0.25,
+        "entry_rate_primary": 0.25,
+        "payouts": [
+          750,
+          1500
+        ],
+        "small_hit_payout": 750,
+        "avg_big_payout": 1500,
+        "electric_support_spins": [],
+        "fetched": "2026-09-02",
+        "theoretical_index": 107.17
+      }
+    },
+    {
+      "id": "p_e異世界でチート能力を手にした俺は現実世界をも無双する_レベルアップは人生を変え",
+      "names": [
+        "e異世界でチート能力を手にした俺は現実世界をも無双する 〜レベルアップは人生を変えた〜",
+        "異世界でチート能力を手にした俺は現実世界をも無双する 〜レベルアップは人生を変えた〜"
+      ],
+      "type": "light_mid",
+      "first_hit_denom": 179.0,
+      "high_prob_denom": 77.0,
+      "dmm_id": "4947",
+      "ceiling_spins": 501,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4947",
+        "first_hit_denom": 179.0,
+        "high_prob_denom": 77.0,
+        "dmm_url": "https://p-town.dmm.com/machines/4947",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.2,
+        "lt_entry_rate": 0.2,
+        "entry_rate_primary": 0.2,
+        "lt_continuation_rate": 0.83,
+        "continuation_rate": 0.83,
+        "payouts": [],
+        "small_hit_payout": 300,
+        "electric_support_spins": [
+          70
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 167.6
+      }
+    },
+    {
+      "id": "p_e盾の勇者の成り上がり_アルティメット199ver_",
+      "names": [
+        "e盾の勇者の成り上がり アルティメット199ver.",
+        "盾の勇者の成り上がり アルティメット199ver."
+      ],
+      "type": "light_mid",
+      "first_hit_denom": 199.0,
+      "ceiling_spins": 557,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 45.2,
+      "dmm_id": "4910",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4910",
+        "first_hit_denom": 199.0,
+        "high_prob_denom": 45.2,
+        "dmm_url": "https://p-town.dmm.com/machines/4910",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.52,
+        "entry_rate_primary": 0.52,
+        "lt_continuation_rate": 0.85,
+        "continuation_rate": 0.85,
+        "payouts": [
+          300,
+          1500
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 1500,
+        "electric_support_spins": [
+          10000
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 391.96
+      }
+    },
+    {
+      "id": "p_e範馬刃牙_129ver_",
+      "names": [
+        "e範馬刃牙 129ver.",
+        "範馬刃牙 129ver."
+      ],
+      "type": "light_mid",
+      "first_hit_denom": 129.7,
+      "ceiling_spins": 363,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 1.54,
+      "dmm_id": "5083",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "5083",
+        "first_hit_denom": 129.7,
+        "high_prob_denom": 1.54,
+        "dmm_url": "https://p-town.dmm.com/machines/5083",
+        "machine_mode": "lt_st",
+        "rush_entry_rate": 0.53,
+        "lt_entry_rate": 0.53,
+        "entry_rate_primary": 0.53,
+        "lt_continuation_rate": 0.9,
+        "continuation_rate": 0.9,
+        "payouts": [
+          500,
+          1000
+        ],
+        "small_hit_payout": 500,
+        "avg_big_payout": 1000,
+        "electric_support_spins": [
+          10000
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 408.64
+      }
+    },
+    {
+      "id": "p_e範馬刃牙_199ver_",
+      "names": [
+        "e範馬刃牙 199ver.",
+        "範馬刃牙 199ver."
+      ],
+      "type": "light_mid",
+      "first_hit_denom": 199.8,
+      "ceiling_spins": 559,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 1.34,
+      "dmm_id": "4933",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4933",
+        "first_hit_denom": 199.8,
+        "high_prob_denom": 1.34,
+        "dmm_url": "https://p-town.dmm.com/machines/4933",
+        "machine_mode": "lt_st",
+        "rush_entry_rate": 0.5,
+        "lt_entry_rate": 0.5,
+        "entry_rate_primary": 0.5,
+        "lt_continuation_rate": 0.86,
+        "continuation_rate": 0.86,
+        "payouts": [
+          300,
+          1500
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 1500,
+        "electric_support_spins": [
+          10000
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 375.38
+      }
+    },
+    {
+      "id": "p_e結城友奈は勇者である_極限7500_",
+      "names": [
+        "e結城友奈は勇者である〜極限7500〜",
+        "結城友奈は勇者である〜極限7500〜"
+      ],
+      "type": "mid",
+      "first_hit_denom": 349.0,
+      "high_prob_denom": 96.3,
+      "dmm_id": "5040",
+      "ceiling_spins": 977,
+      "lt_critical": true,
+      "small_hit_max": 300,
+      "good_hit_min": 3000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "5040",
+        "first_hit_denom": 349.0,
+        "high_prob_denom": 96.3,
+        "dmm_url": "https://p-town.dmm.com/machines/5040",
+        "machine_mode": "rush_lt",
+        "rush_denom": 96.3,
+        "rush_entry_rate": 0.515,
+        "entry_rate_primary": 0.515,
+        "rush_continuation_rate": 0.7,
+        "continuation_rate": 0.7,
+        "payouts": [
+          1500,
+          7500
+        ],
+        "small_hit_payout": 1500,
+        "avg_big_payout": 4500,
+        "electric_support_spins": [
+          135
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 664.04
+      }
+    },
+    {
+      "id": "p_e花の慶次_黄金の一撃",
+      "names": [
+        "e花の慶次〜黄金の一撃",
+        "花の慶次〜黄金の一撃"
+      ],
+      "type": "mid",
+      "first_hit_denom": 399.76,
+      "ceiling_spins": 1119,
+      "lt_critical": true,
+      "small_hit_max": 300,
+      "good_hit_min": 3000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 99.14,
+      "dmm_id": "4900",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4900",
+        "first_hit_denom": 399.76,
+        "high_prob_denom": 99.14,
+        "dmm_url": "https://p-town.dmm.com/machines/4900",
+        "machine_mode": "rush_lt",
+        "rush_denom": 99.14,
+        "rush_entry_rate": 0.59,
+        "entry_rate_primary": 0.59,
+        "rush_continuation_rate": 0.77,
+        "continuation_rate": 0.77,
+        "payouts": [
+          200,
+          1500,
+          3000,
+          6000
+        ],
+        "small_hit_payout": 200,
+        "avg_big_payout": 3500,
+        "electric_support_spins": [
+          143
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 516.56
+      }
+    },
+    {
+      "id": "p_e虚構推理",
+      "names": [
+        "e虚構推理",
+        "虚構推理"
+      ],
+      "type": "mid",
+      "first_hit_denom": 319.0,
+      "high_prob_denom": 44.0,
+      "dmm_id": "5039",
+      "ceiling_spins": 893,
+      "lt_critical": true,
+      "small_hit_max": 300,
+      "good_hit_min": 3000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "5039",
+        "first_hit_denom": 319.0,
+        "high_prob_denom": 44.0,
+        "dmm_url": "https://p-town.dmm.com/machines/5039",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.6,
+        "entry_rate_primary": 0.6,
+        "rush_continuation_rate": 0.6,
+        "continuation_rate": 0.6,
+        "payouts": [
+          300,
+          1500,
+          3000,
+          4500
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 3000,
+        "electric_support_spins": [],
+        "fetched": "2026-09-02",
+        "theoretical_index": 564.26,
+        "lt_entry_rate": 0.505
+      }
+    },
+    {
+      "id": "p_e転生したらスライムだった件2",
+      "names": [
+        "e転生したらスライムだった件2",
+        "転生したらスライムだった件2"
+      ],
+      "type": "mid",
+      "first_hit_denom": 399.9,
+      "high_prob_denom": 99.1,
+      "dmm_id": "4990",
+      "ceiling_spins": 1120,
+      "lt_critical": true,
+      "small_hit_max": 300,
+      "good_hit_min": 3000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4990",
+        "first_hit_denom": 399.9,
+        "high_prob_denom": 99.1,
+        "dmm_url": "https://p-town.dmm.com/machines/4990",
+        "machine_mode": "lt_st",
+        "lt_denom": 99.1,
+        "lt_entry_rate": 0.613,
+        "entry_rate_primary": 0.613,
+        "lt_continuation_rate": 0.75,
+        "continuation_rate": 0.75,
+        "payouts": [
+          300,
+          1500,
+          3000
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 2250,
+        "electric_support_spins": [
+          160
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 344.9
+      }
+    },
+    {
+      "id": "p_e魔女と野獣",
+      "names": [
+        "e魔女と野獣",
+        "魔女と野獣"
+      ],
+      "type": "mid",
+      "first_hit_denom": 399.0,
+      "ceiling_spins": 1117,
+      "lt_critical": true,
+      "small_hit_max": 300,
+      "good_hit_min": 3000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown+manual",
+      "high_prob_denom": 95.0,
+      "dmm_id": "5077",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "5077",
+        "first_hit_denom": 399.0,
+        "high_prob_denom": 95.0,
+        "dmm_url": "https://p-town.dmm.com/machines/5077",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.55,
+        "lt_entry_rate": 0.51,
+        "entry_rate_primary": 0.55,
+        "lt_continuation_rate": 0.55,
+        "rush_continuation_rate": 0.55,
+        "continuation_rate": 0.55,
+        "payouts": [
+          300,
+          400,
+          1500,
+          3000,
+          6000,
+          9000
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 4875,
+        "electric_support_spins": [
+          75
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 671.99
+      }
+    },
+    {
+      "id": "p__廻るヘソワイド_pホワイトシャカrush",
+      "names": [
+        "〜廻るヘソワイド〜PホワイトシャカRUSH"
+      ],
+      "type": "light_mid",
+      "first_hit_denom": 199.8,
+      "ceiling_spins": 559,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 59.5,
+      "dmm_id": "4870",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4870",
+        "first_hit_denom": 199.8,
+        "high_prob_denom": 59.5,
+        "dmm_url": "https://p-town.dmm.com/machines/4870",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.5,
+        "entry_rate_primary": 0.5,
+        "lt_continuation_rate": 0.8,
+        "continuation_rate": 0.8,
+        "payouts": [
+          220,
+          2200
+        ],
+        "small_hit_payout": 220,
+        "avg_big_payout": 2200,
+        "electric_support_spins": [
+          3000
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 550.55
+      }
+    },
+    {
+      "id": "p_ぱちんこ_必殺仕事人_",
+      "names": [
+        "ぱちんこ 必殺仕事人Ⅵ"
+      ],
+      "type": "mid",
+      "first_hit_denom": 319.9,
+      "high_prob_denom": 88.3,
+      "dmm_id": "5011",
+      "ceiling_spins": 896,
+      "lt_critical": true,
+      "small_hit_max": 300,
+      "good_hit_min": 3000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "5011",
+        "first_hit_denom": 319.9,
+        "high_prob_denom": 88.3,
+        "dmm_url": "https://p-town.dmm.com/machines/5011",
+        "machine_mode": "rush_lt",
+        "rush_denom": 88.3,
+        "rush_entry_rate": 0.22,
+        "lt_entry_rate": 0.642,
+        "entry_rate_primary": 0.22,
+        "lt_continuation_rate": 0.75,
+        "rush_continuation_rate": 0.75,
+        "continuation_rate": 0.75,
+        "payouts": [
+          450,
+          1500,
+          3000,
+          6000
+        ],
+        "small_hit_payout": 450,
+        "avg_big_payout": 3500,
+        "electric_support_spins": [
+          120
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 240.7
+      }
+    },
+    {
+      "id": "p_スマパチ_ssss_gridman_メガstart_159ver_",
+      "names": [
+        "スマパチ SSSS.GRIDMAN メガSTART 159ver."
+      ],
+      "type": "light_mid",
+      "first_hit_denom": 159.8,
+      "ceiling_spins": 447,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 77.4,
+      "dmm_id": "4978",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4978",
+        "first_hit_denom": 159.8,
+        "high_prob_denom": 77.4,
+        "dmm_url": "https://p-town.dmm.com/machines/4978",
+        "machine_mode": "lt_st",
+        "rush_denom": 77.4,
+        "rush_entry_rate": 0.5,
+        "lt_entry_rate_total": 0.8,
+        "entry_rate_primary": 0.8,
+        "payouts": [
+          300,
+          1500
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 1500,
+        "electric_support_spins": [
+          120
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 750.94,
+        "lt_entry_rate": 0.5
+      }
+    },
+    {
+      "id": "p_デカスタpシュタインズ・ゲート_ゼロ_まゆしぃば_じょん",
+      "names": [
+        "デカスタPシュタインズ・ゲート ゼロ まゆしぃば〜じょん"
+      ],
+      "type": "amadeji",
+      "first_hit_denom": 99.9,
+      "ceiling_spins": 280,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 59.4,
+      "dmm_id": "4886",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4886",
+        "first_hit_denom": 99.9,
+        "high_prob_denom": 59.4,
+        "dmm_url": "https://p-town.dmm.com/machines/4886",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.5,
+        "lt_entry_rate": 0.5,
+        "entry_rate_primary": 0.5,
+        "lt_continuation_rate": 0.93,
+        "rush_continuation_rate": 0.6,
+        "continuation_rate": 0.93,
+        "payouts": [
+          300,
+          400,
+          1000
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 1000,
+        "electric_support_spins": [
+          10000
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 500.5
+      }
+    },
+    {
+      "id": "p_デカスタp戦国無双100ver_",
+      "names": [
+        "デカスタP戦国無双100ver."
+      ],
+      "type": "amadeji",
+      "first_hit_denom": 100.98,
+      "ceiling_spins": 283,
+      "lt_critical": false,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 40.23,
+      "dmm_id": "5007",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "5007",
+        "first_hit_denom": 100.98,
+        "high_prob_denom": 40.23,
+        "dmm_url": "https://p-town.dmm.com/machines/5007",
+        "machine_mode": "rush_lt",
+        "rush_entry_rate": 0.25,
+        "lt_entry_rate": 0.25,
+        "lt_entry_rate_total": 0.94,
+        "entry_rate_primary": 0.25,
+        "lt_continuation_rate": 0.94,
+        "rush_continuation_rate": 0.8,
+        "continuation_rate": 0.94,
+        "payouts": [
+          250,
+          300,
+          1000
+        ],
+        "small_hit_payout": 250,
+        "avg_big_payout": 1000,
+        "electric_support_spins": [
+          105
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 247.57
+      }
+    },
+    {
+      "id": "p_デカスタeベルセルク無双第2章_10連撃ver_",
+      "names": [
+        "デカスタeベルセルク無双第2章 10連撃Ver."
+      ],
+      "type": "mid",
+      "first_hit_denom": 299.25,
+      "ceiling_spins": 838,
+      "lt_critical": true,
+      "small_hit_max": 300,
+      "good_hit_min": 3000,
+      "ceiling_near_ratio": 0.75,
+      "source": "dmm_ptown",
+      "high_prob_denom": 69.55,
+      "dmm_id": "5052",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "5052",
+        "first_hit_denom": 299.25,
+        "high_prob_denom": 69.55,
+        "dmm_url": "https://p-town.dmm.com/machines/5052",
+        "machine_mode": "rush_lt",
+        "rush_denom": 69.55,
+        "rush_entry_rate": 0.5,
+        "entry_rate_primary": 0.5,
+        "rush_continuation_rate": 0.77,
+        "continuation_rate": 0.77,
+        "payouts": [
+          300,
+          410,
+          1500
+        ],
+        "small_hit_payout": 300,
+        "avg_big_payout": 1500,
+        "electric_support_spins": [
+          100
+        ],
+        "fetched": "2026-09-02",
+        "theoretical_index": 250.63
+      }
+    },
+    {
+      "id": "p_biohazard",
+      "names": [
+        "バイオ",
+        "BIOHAZARD",
+        "バイオハザード",
+        "HAZARD"
+      ],
+      "type": "mid",
+      "first_hit_denom": 319,
       "lt_critical": true,
       "ceiling_spins": 840,
       "small_hit_r": 2,
@@ -58,82 +6002,137 @@
     },
     {
       "id": "p_onea_monogatari",
-      "names": ["ワンエー", "ワンエー物語", "oneA"],
+      "names": [
+        "ワンエー",
+        "ワンエー物語",
+        "oneA"
+      ],
       "type": "mid",
       "lt_critical": false,
       "ceiling_spins": 1000,
       "small_hit_max": 400,
       "good_hit_min": 3500,
       "ceiling_near_ratio": 0.7
-    },
-    {
-      "id": "p_cr777",
-      "names": ["CRパチンコ777", "パチンコ777", "777"],
-      "type": "mid",
-      "lt_critical": false,
-      "ceiling_spins": 900,
-      "small_hit_max": 350,
-      "good_hit_min": 3000,
-      "ceiling_near_ratio": 0.75
-    },
-    {
-      "id": "p_versus",
-      "names": ["VERSUS", "ヴァーサス"],
-      "type": "pachislo",
-      "lt_critical": false,
-      "ceiling_spins": 600,
-      "small_hit_max": 0,
-      "good_hit_min": 500,
-      "ceiling_near_ratio": 0.75
     }
   ],
   "counter_types": [
     {
       "id": "dmm_lcd",
       "label": "DMM系タッチ液晶（バイオハザード等）",
-      "keywords": ["振分割合", "獲得数", "スタート回数", "Lucky Trigger", "LT"],
+      "keywords": [
+        "振分割合",
+        "獲得数",
+        "スタート回数",
+        "Lucky Trigger",
+        "LT"
+      ],
       "machine_name_on_screen": true,
-      "fields": ["machine_name", "today_big_hits", "today_first_hits", "probability", "lt", "max_payout", "timeline_spins", "recent_r"],
+      "fields": [
+        "machine_name",
+        "today_big_hits",
+        "today_first_hits",
+        "probability",
+        "lt",
+        "max_payout",
+        "timeline_spins",
+        "recent_r"
+      ],
       "tips": "全体を枠に。下の履歴数字列まで入れる"
     },
     {
       "id": "onea_lcd",
       "label": "oneA・ビラッキクス系液晶",
-      "keywords": ["現在スタート", "総スタート", "スランプ", "番台"],
+      "keywords": [
+        "現在スタート",
+        "総スタート",
+        "スランプ",
+        "番台"
+      ],
       "machine_name_on_screen": true,
-      "fields": ["machine_name", "today_big_hits", "current_spins", "total_spins", "probability", "history_payout"],
+      "fields": [
+        "machine_name",
+        "today_big_hits",
+        "current_spins",
+        "total_spins",
+        "probability",
+        "history_payout"
+      ],
       "tips": "機種名バー＋現在スタートが見える角度"
     },
     {
       "id": "birakkusu_lcd",
       "label": "ビラッキクス・CR系液晶",
-      "keywords": ["スペック", "過去最高玉数", "累計", "大当たり"],
+      "keywords": [
+        "スペック",
+        "過去最高玉数",
+        "累計",
+        "大当たり"
+      ],
       "machine_name_on_screen": true,
-      "fields": ["machine_name", "spec", "today_big_hits", "current_spins", "total_spins", "max_payout"],
+      "fields": [
+        "machine_name",
+        "spec",
+        "today_big_hits",
+        "current_spins",
+        "total_spins",
+        "max_payout"
+      ],
       "tips": "スペック1/319とスタート回数が重要"
     },
     {
       "id": "pachislo_lcd",
       "label": "パチスロ液晶（VERSUS等）",
-      "keywords": ["ボーナス合計", "ゲーム", "BB", "RB", "枚"],
+      "keywords": [
+        "ボーナス合計",
+        "ゲーム",
+        "BB",
+        "RB",
+        "枚"
+      ],
       "machine_name_on_screen": true,
-      "fields": ["machine_name", "game_count", "bb", "rb", "max_medals"],
+      "fields": [
+        "machine_name",
+        "game_count",
+        "bb",
+        "rb",
+        "max_medals"
+      ],
       "tips": "ゲーム数（現在回転）とBB/RB本日数"
     },
     {
       "id": "led_segment",
       "label": "7セグLEDデータランプ",
-      "keywords": ["スタート", "大当", "確変", "平均", "持玉"],
+      "keywords": [
+        "スタート",
+        "大当",
+        "確変",
+        "平均",
+        "持玉"
+      ],
       "machine_name_on_screen": false,
-      "fields": ["current_spins", "today_big_hits", "kakuhen", "avg_probability", "max_held"],
+      "fields": [
+        "current_spins",
+        "today_big_hits",
+        "kakuhen",
+        "avg_probability",
+        "max_held"
+      ],
       "tips": "機種名は出ない。回転・大当・平均確率のみ信頼"
     },
     {
       "id": "led_compact",
       "label": "コンパクトLED（スタート・履歴棒グラフ）",
-      "keywords": ["履歴", "継続", "累計"],
+      "keywords": [
+        "履歴",
+        "継続",
+        "累計"
+      ],
       "machine_name_on_screen": false,
-      "fields": ["current_spins", "today_big_hits", "history_spins"],
+      "fields": [
+        "current_spins",
+        "today_big_hits",
+        "history_spins"
+      ],
       "tips": "機種名なし。左のスタート数字が現回転"
     },
     {
@@ -141,19 +6140,71 @@
       "label": "不明",
       "keywords": [],
       "machine_name_on_screen": null,
-      "fields": ["probability", "current_spins"],
+      "fields": [
+        "probability",
+        "current_spins"
+      ],
       "tips": "数字が多い領域を枠に入れて長押し"
     }
   ],
   "common_fields": {
     "description": "スカウター種別に関わらず取れる共通概念",
     "items": [
-      { "key": "current_spins", "labels": ["現在スタート", "スタート", "スタート回数", "ゲーム", "現在"] },
-      { "key": "today_big_hits", "labels": ["本日大当", "大当り", "大当たり", "ボーナス合計"] },
-      { "key": "today_first_hits", "labels": ["初当り", "初当"] },
-      { "key": "probability", "labels": ["確率", "スペック", "平均", "1/"] },
-      { "key": "max_payout", "labels": ["最高出玉", "最高持玉", "過去最高", "最高玉数", "最高枚数"] },
-      { "key": "machine_name", "labels": ["画面上部のタイトル"], "note": "液晶のみ。LEDランプには通常なし" }
+      {
+        "key": "current_spins",
+        "labels": [
+          "現在スタート",
+          "スタート",
+          "スタート回数",
+          "ゲーム",
+          "現在"
+        ]
+      },
+      {
+        "key": "today_big_hits",
+        "labels": [
+          "本日大当",
+          "大当り",
+          "大当たり",
+          "ボーナス合計"
+        ]
+      },
+      {
+        "key": "today_first_hits",
+        "labels": [
+          "初当り",
+          "初当"
+        ]
+      },
+      {
+        "key": "probability",
+        "labels": [
+          "確率",
+          "スペック",
+          "平均",
+          "1/"
+        ]
+      },
+      {
+        "key": "max_payout",
+        "labels": [
+          "最高出玉",
+          "最高持玉",
+          "過去最高",
+          "最高玉数",
+          "最高枚数"
+        ]
+      },
+      {
+        "key": "machine_name",
+        "labels": [
+          "画面上部のタイトル"
+        ],
+        "note": "液晶のみ。LEDランプには通常なし"
+      }
     ]
-  }
+  },
+  "fetch_source": "dmm_ptown+detail",
+  "machine_count": 146,
+  "detail_spec_count": 142
 }

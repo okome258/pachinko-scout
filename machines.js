@@ -104,3 +104,53 @@ export function detectCounterType(ocrText, db) {
   }
   return best || (db.counter_types || []).find((c) => c.id === "unknown");
 }
+
+/** カメラスキャン時の機種名フィードバック */
+export function getMachineNameFeedback(ocrName, db, machineSpec, selectedId) {
+  if (selectedId && selectedId !== "auto") {
+    return {
+      display: machineSpec?.names?.[0] || "手動選択",
+      ocr: ocrName || null,
+      status: "manual",
+      statusLabel: "手動選択（個別スペック適用）",
+      inDb: true,
+    };
+  }
+
+  if (!ocrName || !String(ocrName).trim()) {
+    const fallback = machineSpec?.match_source === "spec_on_screen" || machineSpec?.match_source === "spec_inferred";
+    return {
+      display: "機種名なし",
+      ocr: null,
+      status: fallback ? "no_name_spec_only" : "no_name",
+      statusLabel: fallback
+        ? "機種名なし — 画面の1/○○からタイプ推定"
+        : "機種名なし — 汎用ルール",
+      inDb: false,
+    };
+  }
+
+  const upper = ocrName.toUpperCase();
+  for (const m of db?.machines || []) {
+    for (const name of m.names || []) {
+      if (upper.includes(name.toUpperCase()) || ocrName.includes(name)) {
+        return {
+          display: ocrName,
+          ocr: ocrName,
+          status: "db_hit",
+          statusLabel: `DB一致: ${m.names[0]}（個別スペックで期待値）`,
+          inDb: true,
+          dbName: m.names[0],
+        };
+      }
+    }
+  }
+
+  return {
+    display: ocrName,
+    ocr: ocrName,
+    status: "ocr_only",
+    statusLabel: "OCRのみ — DB未登録・タイプ推定で期待値",
+    inDb: false,
+  };
+}
