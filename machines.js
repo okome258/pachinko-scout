@@ -2,23 +2,42 @@
 
 const CACHE_KEY = "pachinko_machines_cache";
 
+/** live.html と同じディレクトリの machines.json を読む（GitHub Pages の /repo/ 配下でも動く） */
+export function getMachinesBaseUrl() {
+  return new URL(".", window.location.href).href.replace(/\/$/, "");
+}
+
 export async function loadMachines(baseUrl = "") {
-  const url = `${baseUrl.replace(/\/$/, "")}/machines.json`;
+  const url = baseUrl
+    ? `${baseUrl.replace(/\/$/, "")}/machines.json`
+    : new URL("machines.json", window.location.href).href;
   try {
     const res = await fetch(url, { cache: "no-cache" });
-    if (!res.ok) throw new Error("fetch failed");
+    if (!res.ok) throw new Error(`fetch failed: ${res.status}`);
     const db = await res.json();
     localStorage.setItem(CACHE_KEY, JSON.stringify(db));
     return db;
-  } catch {
+  } catch (err) {
+    console.warn("machines.json load failed:", err);
     const cached = localStorage.getItem(CACHE_KEY);
     if (cached) return JSON.parse(cached);
-    return { version: "offline", machines: [], type_profiles: {}, counter_types: [] };
+    return { version: "offline", machines: [], type_profiles: {}, counter_types: [], series_groups: [] };
   }
 }
 
 const KEYWORD_MACHINE_IDS = [
-  { re: /バイオハザード\s*6|e\s*バイオ|BIOHAZARD|HAZARD/i, ids: ["p_e_バイオハザード6", "p_biohazard"] },
+  {
+    re: /RE\s*:?\s*2|RE2|バイオハザード\s*RE/i,
+    ids: ["p_p_バイオハザードre_2"],
+  },
+  {
+    re: /バイオハザード\s*6|e\s*バイオ\s*6|eバイオ6/i,
+    ids: ["p_e_バイオハザード6"],
+  },
+  {
+    re: /バイオ|BIOHAZARD|HAZARD/i,
+    ids: ["p_p_バイオハザードre_2", "p_e_バイオハザード6"],
+  },
 ];
 
 function matchByKeyword(blob, db) {

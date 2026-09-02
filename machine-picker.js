@@ -42,9 +42,15 @@ export function setSelectedMachineId(id) {
 }
 
 export function getAllMachineOptions(db) {
-  const builtins = (db?.machines || []).filter((m) => !String(m.id).includes("generic"));
+  const builtins = (db?.machines || []).filter(
+    (m) => !String(m.id).includes("generic") && !m.picker_hidden,
+  );
   const custom = loadCustomMachines();
   return [...builtins, ...custom];
+}
+
+export function getSeriesGroups(db) {
+  return db?.series_groups || [];
 }
 
 function parseDenomFromData(data) {

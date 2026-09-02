@@ -285,6 +285,24 @@
     .picker-gyo-tab.active {
       background: #38bdf8; color: #0f172a; border-color: #38bdf8;
     }
+    #pickerSeriesChips {
+      display: flex; flex-wrap: wrap; gap: 6px;
+      margin-bottom: 8px;
+    }
+    .picker-series-chip {
+      flex: 0 0 auto; padding: 6px 12px;
+      font-size: 12px; font-weight: 700; border-radius: 999px;
+      background: rgba(168,85,247,0.15); color: #d8b4fe;
+      border: 1px solid rgba(168,85,247,0.35);
+    }
+    .picker-series-chip.active {
+      background: #a855f7; color: #fff; border-color: #a855f7;
+    }
+    .picker-item-tag {
+      grid-column: 1 / -1;
+      font-size: 10px; font-weight: 800; letter-spacing: 0.04em;
+      color: #fbbf24; text-transform: uppercase;
+    }
     #pickerList {
       flex: 1; overflow-y: auto; min-height: 120px;
       display: flex; flex-direction: column; gap: 6px;
@@ -517,7 +535,8 @@
         <button type="button" id="pickerCloseBtn">閉じる</button>
       </div>
       <div id="pickerCurrent">未選択</div>
-      <input id="pickerSearch" type="search" placeholder="通称で検索（例: バイオ、東リベ）" />
+      <input id="pickerSearch" type="search" placeholder="通称で検索（例: バイオ、RE2、東リベ）" />
+      <div id="pickerSeriesChips"></div>
       <div id="pickerGyoTabs"></div>
       <div id="pickerList"></div>
       <details id="pickerCustom">
@@ -620,10 +639,7 @@
 
     function openMachinePicker(gyo) {
       if (!machinePicker) return;
-      const g = gyo || (hasMachineSelected()
-        ? getMachineGyo(getAllMachineOptions(machineDb).find((x) => x.id === getSelectedMachineId()) || {})
-        : "は");
-      machinePicker.open(g);
+      machinePicker.open(gyo || "all");
     }
 
     function getEffectiveMachineId() {
@@ -723,7 +739,11 @@
     document.getElementById("startBtn").onclick = async () => {
       document.getElementById("startScreen").classList.add("hide");
       statusBar.textContent = "機種データ取得中…";
-      machineDb = await loadMachines(window.location.origin);
+      machineDb = await loadMachines();
+      const machineCount = getAllMachineOptions(machineDb).length;
+      if (machineCount === 0) {
+        statusBar.textContent = "機種DB読込失敗 — 再読込してください";
+      }
       machinePicker = mountMachinePicker(
         document.getElementById("machinePickerModal"),
         machineDb,
@@ -738,7 +758,7 @@
       );
       await startCamera();
       if (!hasMachineSelected()) {
-        openMachinePicker("は");
+        openMachinePicker("all");
       } else {
         const m = getAllMachineOptions(machineDb).find((x) => x.id === getSelectedMachineId());
         statusBar.textContent = `機種: ${pickDisplayName(m)} — カウンターにかざして読取`;
@@ -921,7 +941,7 @@
           return;
         }
 
-        if (!machineDb) machineDb = await loadMachines(window.location.origin);
+        if (!machineDb) machineDb = await loadMachines();
 
         scanSession = {
           rawOcr: text,

@@ -56,6 +56,17 @@
       "notes": "パチスロ（BB/RB・ゲーム数で判断）"
     }
   },
+  "series_groups": [
+    {
+      "id": "biohazard",
+      "label": "バイオハザード",
+      "keywords": ["バイオ", "biohazard", "hazard", "re2", "re:2"],
+      "machine_ids": [
+        "p_p_バイオハザードre_2",
+        "p_e_バイオハザード6"
+      ]
+    }
+  ],
   "machines": [
     {
       "id": "p_cr777",
@@ -2665,8 +2676,50 @@
       }
     },
     {
+      "id": "p_p_バイオハザードre_2",
+      "picker_label": "バイオ RE:2",
+      "display_name": "バイオ RE:2",
+      "series": ["直近"],
+      "names": [
+        "P バイオハザード RE:2",
+        "P バイオハザードRE:2",
+        "バイオハザード RE:2",
+        "バイオハザードRE:2",
+        "バイオ RE2",
+        "バイオRE2",
+        "RE:2",
+        "RE2",
+        "BIOHAZARD RE:2"
+      ],
+      "type": "mid",
+      "first_hit_denom": 319.6,
+      "dmm_id": "4334",
+      "ceiling_spins": 896,
+      "lt_critical": true,
+      "small_hit_max": 300,
+      "good_hit_min": 3000,
+      "ceiling_near_ratio": 0.75,
+      "source": "manual",
+      "ev_spec": {
+        "spec_level": "detail",
+        "dmm_id": "4334",
+        "first_hit_denom": 319.6,
+        "dmm_url": "https://p-town.dmm.com/machines/4334",
+        "machine_mode": "rush",
+        "rush_entry_rate": 0.55,
+        "rush_continuation_rate": 0.77,
+        "entry_rate_primary": 0.55,
+        "continuation_rate": 0.77,
+        "avg_big_payout": 4500,
+        "small_hit_payout": 1500,
+        "theoretical_index": 18.5
+      }
+    },
+    {
       "id": "p_e_バイオハザード6",
-      "display_name": "バイオハザード",
+      "picker_label": "eバイオ6",
+      "display_name": "eバイオ6",
+      "series": ["直近"],
       "names": [
         "e バイオハザード6",
         "バイオハザード6",
@@ -5990,6 +6043,7 @@
     },
     {
       "id": "p_biohazard",
+      "picker_hidden": true,
       "names": [
         "バイオ",
         "BIOHAZARD",
