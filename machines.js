@@ -17,7 +17,25 @@ export async function loadMachines(baseUrl = "") {
   }
 }
 
+const KEYWORD_MACHINE_IDS = [
+  { re: /バイオ|BIOHAZARD|HAZARD|RE\s*:?\s*2/i, ids: ["p_e_バイオハザード6", "p_biohazard"] },
+];
+
+function matchByKeyword(blob, db) {
+  if (!blob || !db?.machines?.length) return null;
+  for (const rule of KEYWORD_MACHINE_IDS) {
+    if (!rule.re.test(blob)) continue;
+    for (const id of rule.ids) {
+      const m = db.machines.find((x) => x.id === id);
+      if (m) return { ...m, match_source: "keyword" };
+    }
+  }
+  return null;
+}
+
 export function matchMachine(ocrName, db, parsedData = {}) {
+  const blob = `${ocrName || ""} ${parsedData.ocr_raw || ""}`;
+
   if (ocrName && db?.machines?.length) {
     const upper = ocrName.toUpperCase();
     for (const m of db.machines) {
@@ -28,6 +46,9 @@ export function matchMachine(ocrName, db, parsedData = {}) {
       }
     }
   }
+
+  const byKeyword = matchByKeyword(blob, db);
+  if (byKeyword) return byKeyword;
 
   const profile = inferTypeProfile(parsedData, db);
   if (profile) {
@@ -144,6 +165,17 @@ export function getMachineNameFeedback(ocrName, db, machineSpec, selectedId) {
         };
       }
     }
+  }
+
+  if (machineSpec?.match_source === "keyword" && machineSpec?.names?.[0]) {
+    return {
+      display: machineSpec.names[0],
+      ocr: ocrName || null,
+      status: "db_hit",
+      statusLabel: `キーワード一致: ${machineSpec.names[0]}`,
+      inDb: true,
+      dbName: machineSpec.names[0],
+    };
   }
 
   return {

@@ -27,7 +27,7 @@
 
     .frame {
       position: absolute;
-      inset: 12% 4% 18%;
+      inset: 5% 4% 18%;
       border: 3px solid var(--frame-color, #38bdf8);
       border-radius: 8px;
       box-shadow: inset 0 0 60px rgba(0,0,0,0.2);
@@ -44,21 +44,45 @@
     }
 
     #verdictPanel {
-      position: absolute;
-      top: max(12px, env(safe-area-inset-top));
+      position: fixed;
+      bottom: max(148px, calc(128px + env(safe-area-inset-bottom)));
+      top: auto;
       left: 12px; right: 12px;
-      padding: 14px 16px;
-      background: rgba(0, 0, 0, 0.55);
+      padding: 10px 14px 12px;
+      background: rgba(0, 0, 0, 0.72);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
       border-radius: 14px;
       border: 1px solid rgba(255,255,255,0.15);
       color: #fff;
       opacity: 0;
-      transform: translateY(-8px);
-      transition: opacity 0.25s, transform 0.25s;
+      transform: translateY(12px);
+      transition: opacity 0.2s, transform 0.2s;
+      pointer-events: auto;
+      max-height: 38vh;
+      overflow-y: auto;
+      z-index: 8;
     }
     #verdictPanel.show { opacity: 1; transform: translateY(0); }
+    #verdictPanel.compact #evBox,
+    #verdictPanel.compact #retreatBox,
+    #verdictPanel.compact #verdictReasons { display: none; }
+    #panelActions {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+    }
+    #panelActions button {
+      flex: 1;
+      padding: 8px 6px;
+      font-size: 12px;
+      border-radius: 8px;
+      border: 0;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    #panelDetailBtn { background: rgba(56,189,248,0.85); color: #0f172a; }
+    #panelCloseBtn { background: rgba(71,85,105,0.9); color: #e2e8f0; }
 
     #machineNameBadge {
       font-size: clamp(16px, 4.5vw, 20px);
@@ -114,6 +138,7 @@
       display: none;
       gap: 8px;
       z-index: 9;
+      pointer-events: auto;
     }
     #feedbackRow.show { display: flex; }
     #feedbackRow button {
@@ -223,11 +248,12 @@
         font-size: 10px;
       }
       #verdictPanel {
-        top: max(8px, env(safe-area-inset-top));
+        top: auto;
+        bottom: max(64px, calc(52px + env(safe-area-inset-bottom)));
         left: auto;
         right: max(8px, env(safe-area-inset-right));
         width: min(36vw, 340px);
-        max-height: calc(100vh - 80px);
+        max-height: 55vh;
         overflow-y: auto;
         padding: 10px 12px;
       }
@@ -319,6 +345,10 @@
         <div class="retreat-title" id="retreatSummary"></div>
         <div id="retreatLines"></div>
       </div>
+      <div id="panelActions">
+        <button type="button" id="panelDetailBtn">詳細</button>
+        <button type="button" id="panelCloseBtn">閉じる</button>
+      </div>
     </div>
   </div>
 
@@ -385,8 +415,13 @@
     let lastScanAt = 0;
 
     let lastEntry = null;
+    let panelHideTimer = null;
+    let panelExpanded = false;
+    const PANEL_AUTO_HIDE_MS = 6000;
 
     const feedbackRow = document.getElementById("feedbackRow");
+    const panelDetailBtn = document.getElementById("panelDetailBtn");
+    const panelCloseBtn = document.getElementById("panelCloseBtn");
     const SCAN_COOLDOWN_MS = 2500;
 
     const machineSelect = document.getElementById("machineSelect");
@@ -460,7 +495,7 @@
       return ocrWorker;
     }
 
-    function getCropCanvas() {
+    function getCropCanvas(inset = { top: 0, height: 1 }) {
       const vw = video.videoWidth;
       const vh = video.videoHeight;
       if (!vw || !vh) return null;
@@ -470,12 +505,17 @@
       const scaleX = vw / vr.width;
       const scaleY = vh / vr.height;
 
-      const sx = (rect.left - vr.left) * scaleX;
-      const sy = (rect.top - vr.top) * scaleY;
-      const sw = rect.width * scaleX;
-      const sh = rect.height * scaleY;
+      let sx = (rect.left - vr.left) * scaleX;
+      let sy = (rect.top - vr.top) * scaleY;
+      let sw = rect.width * scaleX;
+      let sh = rect.height * scaleY;
 
-      const maxW = 480;
+      if (inset.height < 1) {
+        sh = sh * inset.height;
+        sy = sy + (rect.height * scaleY) * inset.top;
+      }
+
+      const maxW = inset.height < 1 ? 360 : 480;
       const scale = Math.min(1, maxW / sw);
       canvas.width = Math.round(sw * scale);
       canvas.height = Math.round(sh * scale);
@@ -484,6 +524,28 @@
       ctx.drawImage(video, sx, sy, sw, sh, 0, 0, canvas.width, canvas.height);
       return canvas;
     }
+
+    function hideResultPanel() {
+      clearTimeout(panelHideTimer);
+      panel.classList.remove("show");
+      panel.classList.add("compact");
+      panelExpanded = false;
+      panelDetailBtn.textContent = "詳細";
+      feedbackRow.classList.remove("show");
+    }
+
+    function schedulePanelHide() {
+      clearTimeout(panelHideTimer);
+      panelHideTimer = setTimeout(hideResultPanel, PANEL_AUTO_HIDE_MS);
+    }
+
+    panelDetailBtn.onclick = () => {
+      panelExpanded = !panelExpanded;
+      panel.classList.toggle("compact", !panelExpanded);
+      panelDetailBtn.textContent = panelExpanded ? "簡易" : "詳細";
+      schedulePanelHide();
+    };
+    panelCloseBtn.onclick = () => hideResultPanel();
 
     function showResult(result, confidence, machineSpec, counterType, data, retreat, ev, nameFeedback) {
       const color = verdictColor(result.verdict);
@@ -534,8 +596,11 @@
         rb.hidden = true;
       }
 
-      panel.classList.add("show");
+      panel.classList.add("show", "compact");
+      panelExpanded = false;
+      panelDetailBtn.textContent = "詳細";
       feedbackRow.classList.add("show");
+      schedulePanelHide();
     }
 
     async function scanOnce() {
@@ -550,8 +615,15 @@
         if (!crop) throw new Error("カメラ未準備");
 
         const worker = await ensureOcr();
-        const { data: { text } } = await worker.recognize(crop);
+        const topCrop = getCropCanvas({ top: 0, height: 0.22 });
+        const mainResult = await worker.recognize(crop);
+        let text = mainResult.data.text;
+        if (topCrop) {
+          const topResult = await worker.recognize(topCrop);
+          text = `${topResult.data.text}\n${text}`;
+        }
         const { data, confidence } = parseOcrText(text);
+        data.ocr_raw = text;
 
         if (confidence === "none") {
           statusBar.textContent = "数字が読めません — 下の履歴バーまで枠に入れて";
@@ -621,7 +693,7 @@
     function onFeedback(outcome) {
       if (!lastEntry) return;
       recordFeedback(lastEntry, outcome);
-      feedbackRow.classList.remove("show");
+      hideResultPanel();
       statusBar.textContent =
         outcome === "win"
           ? "記録: 当たった → 次回から補正"
