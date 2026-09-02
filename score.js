@@ -133,10 +133,10 @@ function applyMachineRules(data, spec) {
     const near = spec.ceiling_near_ratio ?? 0.75;
     if (ratio >= near) {
       scoreDelta += 15;
-      reasons.push(`天井まであと${spec.ceiling_spins - spins}回転`);
+      reasons.push(`深度目安まであと${spec.ceiling_spins - spins}回転`);
     } else if (ratio < 0.15 && todayFirst >= 2) {
       scoreDelta -= 6;
-      reasons.push(`天井まで余裕（${spins}/${spec.ceiling_spins}）`);
+      reasons.push(`深度目安まで余裕（${spins}/${spec.ceiling_spins}）`);
     }
   }
 

@@ -39,10 +39,10 @@ export function calcRetreatPlan(data, spec = {}) {
   if (!Number.isNaN(spins) && ceiling) {
     const toCeiling = ceiling - spins;
     if (toCeiling > 0 && toCeiling <= 200) {
-      lines.push(`天井まで ${toCeiling}回転 — 期待値上がりやすい帯`);
+      lines.push(`深度目安まで ${toCeiling}回転 — 期待値上がりやすい帯`);
       hardStop = hardStop ? Math.min(hardStop, spins + toCeiling + 30) : spins + toCeiling + 30;
     } else if (toCeiling > 200) {
-      lines.push(`天井まで ${toCeiling}回転`);
+      lines.push(`深度目安まで ${toCeiling}回転`);
     }
   }
 

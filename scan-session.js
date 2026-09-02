@@ -20,7 +20,7 @@ export function formatMachineSummary(spec, ocrName, machineId) {
   const name = pickDisplayName(spec);
   const official = spec.names?.[0] && spec.names[0] !== name ? spec.names[0] : "";
   const denom = spec.first_hit_denom ? `1/${Math.round(spec.first_hit_denom)}` : "";
-  const ceiling = spec.ceiling_spins ? `天井${spec.ceiling_spins}` : "";
+  const ceiling = spec.ceiling_spins ? `深度目安${spec.ceiling_spins}` : "";
   const src =
     machineId && machineId !== "auto" && machineId !== "ocr"
       ? "手動"
