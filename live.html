@@ -122,16 +122,55 @@
     .scan-block-editor select,
     .scan-block-editor input {
       width: 100%;
-      padding: 8px 10px;
+      padding: 10px 12px;
       border-radius: 8px;
       border: 1px solid #334155;
       background: #1e293b;
       color: #fff;
-      font-size: 13px;
+      font-size: 16px;
     }
     .scan-block-editor label {
       font-size: 11px;
       color: #94a3b8;
+    }
+    .edit-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .edit-field { display: flex; flex-direction: column; gap: 4px; }
+    .nudge-row, .lt-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .nudge-btn, .lt-chip {
+      flex: 0 0 auto;
+      min-width: 48px;
+      min-height: 40px;
+      padding: 8px 10px;
+      border-radius: 8px;
+      border: 1px solid #334155;
+      background: #0f172a;
+      color: #e2e8f0;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .lt-chip.active {
+      background: #38bdf8;
+      color: #0f172a;
+      border-color: #38bdf8;
+    }
+    #dataApplyBtn {
+      margin-top: 4px;
+      width: 100%;
+      padding: 12px;
+      background: #22c55e !important;
+      color: #052e16 !important;
+      border: 0;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 800;
     }
     #machineBlock.hit .scan-block-value { color: #4ade80; }
     #machineBlock.warn .scan-block-value { color: #fbbf24; }
@@ -521,19 +560,49 @@
         <div class="scan-block-value" id="dataBlockValue">—</div>
         <div class="scan-block-meta" id="dataBlockMeta">カウンター読み取り</div>
         <div class="scan-block-editor" id="dataEditForm">
-          <label>現在回転</label>
-          <input id="editSpins" type="number" inputmode="numeric" placeholder="例: 182" />
-          <label>本日初当り</label>
-          <input id="editFirstHits" type="number" inputmode="numeric" placeholder="例: 3" />
-          <label>本日大当り</label>
-          <input id="editBigHits" type="number" inputmode="numeric" placeholder="例: 3" />
-          <label>LT（例: 0/3）</label>
-          <input id="editLt" type="text" placeholder="0/3" />
-          <label>最高出玉</label>
-          <input id="editMaxPay" type="number" inputmode="numeric" placeholder="例: 180" />
-          <label>実績初当り（例: 1/182）</label>
-          <input id="editProb" type="text" placeholder="1/182" />
-          <button type="button" class="scan-block-edit" id="dataApplyBtn" style="margin-top:4px">反映</button>
+          <div class="edit-field">
+            <label>現在回転（よくズレる）</label>
+            <input id="editSpins" type="number" inputmode="numeric" placeholder="例: 182" />
+            <div class="nudge-row" id="spinNudges">
+              <button type="button" class="nudge-btn" data-delta="-50">-50</button>
+              <button type="button" class="nudge-btn" data-delta="-10">-10</button>
+              <button type="button" class="nudge-btn" data-delta="+10">+10</button>
+              <button type="button" class="nudge-btn" data-delta="+50">+50</button>
+            </div>
+          </div>
+          <div class="edit-row">
+            <div class="edit-field">
+              <label>本日初当り</label>
+              <input id="editFirstHits" type="number" inputmode="numeric" placeholder="3" />
+            </div>
+            <div class="edit-field">
+              <label>本日大当り</label>
+              <input id="editBigHits" type="number" inputmode="numeric" placeholder="3" />
+            </div>
+          </div>
+          <div class="edit-field">
+            <label>LT</label>
+            <input id="editLt" type="text" inputmode="numeric" placeholder="0/3" />
+            <div class="lt-row" id="ltChips">
+              <button type="button" class="lt-chip" data-lt="0/1">0/1</button>
+              <button type="button" class="lt-chip" data-lt="0/2">0/2</button>
+              <button type="button" class="lt-chip" data-lt="1/2">1/2</button>
+              <button type="button" class="lt-chip" data-lt="0/3">0/3</button>
+              <button type="button" class="lt-chip" data-lt="1/3">1/3</button>
+              <button type="button" class="lt-chip" data-lt="2/3">2/3</button>
+            </div>
+          </div>
+          <div class="edit-row">
+            <div class="edit-field">
+              <label>最高出玉</label>
+              <input id="editMaxPay" type="number" inputmode="numeric" placeholder="180" />
+            </div>
+            <div class="edit-field">
+              <label>実績 1/</label>
+              <input id="editProb" type="text" inputmode="numeric" placeholder="182" />
+            </div>
+          </div>
+          <button type="button" id="dataApplyBtn">反映して再判定</button>
         </div>
       </div>
 
@@ -721,7 +790,48 @@
       document.getElementById("editMaxPay").value = data.today_max_payout ?? "";
       document.getElementById("editProb").value =
         data.first_hit_probability?.replace(/^1\s*\/\s*/, "") ?? "";
+      syncLtChips(data.lt_success || "");
     }
+
+    function syncLtChips(lt) {
+      for (const btn of document.querySelectorAll("#ltChips .lt-chip")) {
+        btn.classList.toggle("active", btn.dataset.lt === lt);
+      }
+    }
+
+    function nudgeSpins(delta) {
+      const el = document.getElementById("editSpins");
+      const cur = parseInt(el.value, 10);
+      const base = Number.isNaN(cur) ? 0 : cur;
+      el.value = String(Math.max(0, base + delta));
+    }
+
+    function applyDataEditForm() {
+      scanSession.dataOverrides = applyDataOverrides(scanSession.ocrData, {
+        current_spins: document.getElementById("editSpins").value,
+        today_first_hits: document.getElementById("editFirstHits").value,
+        today_big_hits: document.getElementById("editBigHits").value,
+        lt_success: document.getElementById("editLt").value,
+        today_max_payout: document.getElementById("editMaxPay").value,
+        first_hit_probability: document.getElementById("editProb").value,
+      });
+      dataEditForm.classList.remove("show");
+      recalculateFromSession();
+      statusBar.textContent = "手動修正を反映";
+    }
+
+    document.getElementById("spinNudges").onclick = (e) => {
+      const btn = e.target.closest(".nudge-btn");
+      if (!btn) return;
+      nudgeSpins(parseInt(btn.dataset.delta, 10));
+    };
+
+    document.getElementById("ltChips").onclick = (e) => {
+      const btn = e.target.closest(".lt-chip");
+      if (!btn) return;
+      document.getElementById("editLt").value = btn.dataset.lt;
+      syncLtChips(btn.dataset.lt);
+    };
 
     function recalculateFromSession() {
       if (!scanSession.ocrData || !machineDb) return;
@@ -796,21 +906,15 @@
     document.getElementById("dataBlockEdit").onclick = () => {
       fillDataEditForm(getEffectiveCounterData());
       dataEditForm.classList.toggle("show");
+      if (dataEditForm.classList.contains("show")) {
+        panel.classList.remove("compact");
+        panelExpanded = true;
+        panelDetailBtn.textContent = "簡易";
+      }
       schedulePanelHide();
     };
 
-    document.getElementById("dataApplyBtn").onclick = () => {
-      scanSession.dataOverrides = applyDataOverrides(scanSession.ocrData, {
-        current_spins: document.getElementById("editSpins").value,
-        today_first_hits: document.getElementById("editFirstHits").value,
-        today_big_hits: document.getElementById("editBigHits").value,
-        lt_success: document.getElementById("editLt").value,
-        today_max_payout: document.getElementById("editMaxPay").value,
-        first_hit_probability: document.getElementById("editProb").value,
-      });
-      dataEditForm.classList.remove("show");
-      recalculateFromSession();
-    };
+    document.getElementById("dataApplyBtn").onclick = () => applyDataEditForm();
 
     async function startCamera() {
       stream = await navigator.mediaDevices.getUserMedia({
@@ -1045,7 +1149,16 @@
 
         dataEditForm.classList.remove("show");
         recalculateFromSession();
-        statusBar.textContent = "台データを確認（編集可）";
+        if (confidence === "low") {
+          fillDataEditForm(getEffectiveCounterData());
+          dataEditForm.classList.add("show");
+          panel.classList.remove("compact");
+          panelExpanded = true;
+          panelDetailBtn.textContent = "簡易";
+          statusBar.textContent = "読み取り弱い — 回転・LTを指で直して反映";
+        } else {
+          statusBar.textContent = "台データを確認（編集可）";
+        }
       } catch (e) {
         statusBar.textContent = "エラー: " + e.message;
       } finally {
