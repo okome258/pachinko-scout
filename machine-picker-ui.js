@@ -91,21 +91,22 @@ export function getPickerLabel(machine) {
   const scored = pool
     .map((n) => {
       let s = 0;
-      if (/RE\s*:?\s*2|RE2/i.test(n)) s += 30;
-      if (/バイオハザード\s*6|e\s*バイオ|バイオ\s*6/i.test(n)) s += 28;
-      if (/エヴァンゲリオン|エヴァ/i.test(n)) s += 26;
-      if (/東リベ/.test(n)) s += 40;
-      if (/東京リベンジャー/.test(n)) s += 20;
-      if (/\d|RE|:/i.test(n)) s += 10;
+      // 短い通称・識別子付きを優先（特定シリーズ固定ではない）
       if (n.length <= 16) s += 6;
+      if (n.length <= 10) s += 4;
+      if (/\d|RE|:|Light/i.test(n)) s += 8;
       if (/フィーバー/i.test(n)) s -= 20;
+      if (/^[A-Z0-9\s]+$/i.test(n)) s -= 10;
       return { n, s };
     })
     .sort((a, b) => b.s - a.s || a.n.localeCompare(b.n, "ja"));
 
   let best = scored[0].n;
-  if (/東京リベンジャー/.test(best) && !/東リベ/.test(best)) {
+  if (/東京リベンジャーズ?/.test(best)) {
     best = best.replace(/東京リベンジャーズ?/, "東リベ");
+  }
+  if (/新世紀エヴァンゲリオン|エヴァンゲリオン/.test(best)) {
+    best = best.replace(/新世紀エヴァンゲリオン|エヴァンゲリオン/g, "エヴァ");
   }
   return best;
 }
@@ -126,16 +127,20 @@ export function pickDisplayName(machine) {
   const score = (n) => {
     let s = Math.min(n.length, 30);
     if (n.length < 4) s -= 8;
+    if (n.length <= 10) s += 8;
     if (/^[A-Z0-9]+$/i.test(n)) s -= 15;
-    if (/物語|リベンジャーズ|ハザード|無双|ガンダム|エヴァ|戦記/.test(n)) s += 12;
-    if (/^エヴァ/.test(n)) s += 20;
     if (/フィーバー/i.test(n)) s -= 20;
     return s;
   };
 
   pool.sort((a, b) => score(b) - score(a) || a.localeCompare(b, "ja"));
   const best = pool[0];
-  if (/エヴァンゲリオン/.test(best)) return "エヴァ";
+  if (/東京リベンジャーズ?/.test(best)) {
+    return stripVersionSuffix(best.replace(/東京リベンジャーズ?/, "東リベ"));
+  }
+  if (/新世紀エヴァンゲリオン|エヴァンゲリオン/.test(best)) {
+    return "エヴァ";
+  }
   return stripVersionSuffix(best);
 }
 
@@ -306,14 +311,7 @@ const KANJI_TAB_HINTS = {
   語: "こ",
 };
 
-/** 通称ヒント（表示名・タブ両用） */
-const SERIES_NICK_HINTS = [
-  { re: /東京リベンジャー|東リベ/i, nick: "東リベ", tab: "と" },
-  { re: /バイオハザード\s*RE|バイオ\s*RE|RE\s*:?\s*2/i, nick: null, tab: "は" },
-  { re: /バイオハザード\s*6|eバイオ|バイオ\s*6/i, nick: null, tab: "は" },
-  { re: /エヴァンゲリオン|エヴァ|ゴジエヴァ/i, nick: null, tab: "え" },
-  { re: /CR\s*パチンコ\s*777|パチンコ\s*777|\b777\b/i, nick: null, tab: "な" },
-];
+/** 通称ヒントは使わない（特定シリーズの固定チップ・固定検索を避ける） */
 
 function fullWidthToHalf(str) {
   return String(str || "").replace(/[０-９]/g, (ch) =>
@@ -383,20 +381,6 @@ function firstReadingTab(label) {
 
 export function getMachineKanaTab(machine) {
   if (machine?.picker_index) return machine.picker_index;
-
-  const blob = [
-    machine?.picker_label,
-    machine?.display_name,
-    ...(machine?.names || []),
-    machine?.id,
-  ]
-    .filter(Boolean)
-    .join(" ");
-
-  for (const hint of SERIES_NICK_HINTS) {
-    if (hint.tab && hint.re.test(blob)) return hint.tab;
-  }
-
   return firstReadingTab(getPickerLabel(machine));
 }
 
