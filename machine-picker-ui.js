@@ -139,14 +139,105 @@ export function pickDisplayName(machine) {
   return stripVersionSuffix(best);
 }
 
-/** 漢字タイトル先頭 → 五十音タブ（通称読み） */
+/** 数字 → かな読み（検索・タブ用） */
+const DIGIT_READINGS = {
+  "0": ["ぜろ", "れい", "ゼロ"],
+  "1": ["いち", "わん", "ワン"],
+  "2": ["に", "ツー", "つー"],
+  "3": ["さん", "スリー", "すりー"],
+  "4": ["よん", "し", "フォー"],
+  "5": ["ご", "ファイブ"],
+  "6": ["ろく", "シックス"],
+  "7": ["なな", "しち", "セブン"],
+  "8": ["はち", "エイト"],
+  "9": ["きゅう", "く", "ナイン"],
+};
+
+/** よく出る漢字・複合語の読み（検索ヒット用） */
+const WORD_READINGS = [
+  ["東京リベンジャーズ", ["とうきょうりべんじゃーず", "とうりべ", "ひがしりべ"]],
+  ["東京", ["とうきょう", "とう"]],
+  ["東リベ", ["とうりべ", "とうきょうりべ"]],
+  ["新世紀", ["しんせいき"]],
+  ["新", ["しん"]],
+  ["機動戦士", ["きどうせんし"]],
+  ["機動", ["きどう"]],
+  ["戦国", ["せんごく"]],
+  ["戦", ["せん"]],
+  ["大海", ["おおうみ"]],
+  ["大", ["だい", "おお"]],
+  ["物語", ["ものがたり"]],
+  ["化物語", ["ばけものがたり"]],
+  ["化", ["ばけ", "か"]],
+  ["呪術", ["じゅじゅつ"]],
+  ["鬼滅", ["きめつ"]],
+  ["鬼", ["おに", "き"]],
+  ["進撃", ["しんげき"]],
+  ["進", ["しん"]],
+  ["銀魂", ["ぎんたま"]],
+  ["銀", ["ぎん"]],
+  ["金", ["きん"]],
+  ["黒", ["くろ"]],
+  ["白", ["しろ", "はく"]],
+  ["青", ["あお"]],
+  ["赤", ["あか"]],
+  ["黄", ["き"]],
+  ["海", ["うみ"]],
+  ["火", ["ひ", "か"]],
+  ["花", ["はな"]],
+  ["神", ["かみ", "しん"]],
+  ["魔", ["ま"]],
+  ["龍", ["りゅう"]],
+  ["竜", ["りゅう"]],
+  ["獣", ["けもの", "じゅう"]],
+  ["侍", ["さむらい"]],
+  ["忍", ["にん", "しのび"]],
+  ["押忍", ["おす"]],
+  ["番長", ["ばんちょう"]],
+  ["無双", ["むそう"]],
+  ["超", ["ちょう"]],
+  ["聖", ["せい"]],
+  ["百", ["ひゃく"]],
+  ["千", ["せん"]],
+  ["万", ["まん"]],
+  ["一", ["いち"]],
+  ["二", ["に"]],
+  ["三", ["さん"]],
+  ["四", ["よん", "し"]],
+  ["五", ["ご"]],
+  ["六", ["ろく"]],
+  ["七", ["なな"]],
+  ["八", ["はち"]],
+  ["九", ["きゅう"]],
+  ["零", ["れい"]],
+  ["喰種", ["ぐーる", "ぐール"]],
+  ["炎炎", ["えんえん"]],
+  ["消防", ["しょうぼう"]],
+  ["彼女", ["かのじょ"]],
+  ["異世界", ["いせかい"]],
+  ["魔法", ["まほう"]],
+  ["少女", ["しょうじょ"]],
+  ["愛", ["あい"]],
+  ["清流", ["せいりゅう"]],
+  ["義風", ["ぎふう"]],
+  ["慶次", ["けいじ"]],
+  ["リング", ["りんぐ"]],
+  ["からくり", ["からくり"]],
+  ["うたわれるもの", ["うたわれるもの"]],
+  ["バイオハザード", ["ばいおはざーど", "ばいお"]],
+  ["エヴァンゲリオン", ["えゔぁんげりおん", "えばんげりおん", "エヴァ"]],
+  ["ゴジラ", ["ごじら"]],
+  ["ガンダム", ["がんだむ"]],
+];
+
+/** 漢字タイトル先頭 → 五十音タブ */
 const KANJI_TAB_HINTS = {
-  東: "と", // 東京リベンジャーズ / 東リベ
-  新: "し", // 新世紀エヴァ
-  機: "き", // 機動戦士ガンダム
-  戦: "せ", // 戦国乙女 など
-  化: "け", // 化物語
-  大: "た", // 大海物語（だ→た）
+  東: "と",
+  新: "し",
+  機: "き",
+  戦: "せ",
+  化: "は", // 化物語＝ばけもの → は行
+  大: "お", // 大海＝おおうみ → お（だいより通称優先）
   海: "う",
   火: "ひ",
   花: "は",
@@ -157,12 +248,18 @@ const KANJI_TAB_HINTS = {
   青: "あ",
   赤: "あ",
   黄: "き",
-  呪: "じ", // 呪術 → じ
-  鬼: "お", // 鬼滅 → お
-  進: "し", // 進撃
+  呪: "し", // じゅ → し
+  鬼: "お",
+  進: "し",
   一: "い",
   二: "に",
   三: "さ",
+  四: "よ",
+  五: "こ",
+  六: "ろ",
+  七: "な",
+  八: "は",
+  九: "き",
   百: "ひ",
   千: "せ",
   万: "ま",
@@ -175,9 +272,38 @@ const KANJI_TAB_HINTS = {
   竜: "り",
   獣: "け",
   侍: "さ",
-  忍: "お",
+  忍: "に",
   押: "お",
-  ぱ: "は", // ぱちんこ… already stripped
+  喰: "く",
+  炎: "え",
+  消: "し",
+  彼: "か",
+  異: "い",
+  魔: "ま",
+  愛: "あ",
+  清: "せ",
+  義: "き",
+  慶: "け",
+  環: "か",
+  美: "み",
+  夜: "よ",
+  夢: "ゆ",
+  星: "ほ",
+  月: "つ",
+  風: "ふ",
+  水: "み",
+  山: "や",
+  川: "か",
+  空: "そ",
+  天: "て",
+  地: "ち",
+  王: "お",
+  帝: "て",
+  軍: "く",
+  隊: "た",
+  者: "も",
+  物: "も",
+  語: "こ",
 };
 
 /** 通称ヒント（表示名・タブ両用） */
@@ -185,8 +311,75 @@ const SERIES_NICK_HINTS = [
   { re: /東京リベンジャー|東リベ/i, nick: "東リベ", tab: "と" },
   { re: /バイオハザード\s*RE|バイオ\s*RE|RE\s*:?\s*2/i, nick: null, tab: "は" },
   { re: /バイオハザード\s*6|eバイオ|バイオ\s*6/i, nick: null, tab: "は" },
-  { re: /エヴァンゲリオン|^エヴァ|ゴジエヴァ/i, nick: null, tab: "え" },
+  { re: /エヴァンゲリオン|エヴァ|ゴジエヴァ/i, nick: null, tab: "え" },
+  { re: /CR\s*パチンコ\s*777|パチンコ\s*777|\b777\b/i, nick: null, tab: "な" },
 ];
+
+function fullWidthToHalf(str) {
+  return String(str || "").replace(/[０-９]/g, (ch) =>
+    String.fromCharCode(ch.charCodeAt(0) - 0xff10 + 0x30),
+  );
+}
+
+/** テキスト中の数字・漢字をかな読みに展開（検索用） */
+export function expandReadings(text) {
+  let s = fullWidthToHalf(text);
+  const out = new Set([s, s.toLowerCase()]);
+
+  // 複合語・漢字読み
+  for (const [word, readings] of WORD_READINGS) {
+    if (s.includes(word)) {
+      for (const r of readings) out.add(r.toLowerCase());
+    }
+  }
+
+  // 数字列（777 → なな… / いち…）
+  const digitRuns = s.match(/\d+/g) || [];
+  for (const run of digitRuns) {
+    const byDigit = [...run]
+      .map((d) => (DIGIT_READINGS[d] ? DIGIT_READINGS[d][0] : ""))
+      .join("");
+    if (byDigit) out.add(byDigit);
+    // 先頭桁だけでもタブ・短い検索用
+    if (DIGIT_READINGS[run[0]]) {
+      for (const r of DIGIT_READINGS[run[0]]) out.add(r);
+    }
+    if (run === "777") {
+      out.add("なな");
+      out.add("すりーせぶん");
+      out.add("スリーセブン".toLowerCase());
+    }
+  }
+
+  // 先頭1文字の読み
+  const first = cleanHallLabel(s).charAt(0);
+  if (DIGIT_READINGS[first]) {
+    for (const r of DIGIT_READINGS[first]) out.add(r);
+  }
+  if (KANJI_TAB_HINTS[first]) out.add(KANJI_TAB_HINTS[first]);
+
+  return [...out].filter(Boolean);
+}
+
+function firstReadingTab(label) {
+  const cleaned = cleanHallLabel(label);
+  if (!cleaned) return OTHER_TAB;
+  const first = fullWidthToHalf(cleaned).charAt(0);
+
+  const kana = normalizeToKanaTab(first);
+  if (kana !== OTHER_TAB) return kana;
+
+  if (DIGIT_READINGS[first]) {
+    return normalizeToKanaTab(DIGIT_READINGS[first][0].charAt(0));
+  }
+
+  if (KANJI_TAB_HINTS[first]) {
+    return normalizeToKanaTab(KANJI_TAB_HINTS[first]);
+  }
+
+  // 英字先頭 → だいたいカタカナ読みの近似は難しいので「他」
+  return OTHER_TAB;
+}
 
 export function getMachineKanaTab(machine) {
   if (machine?.picker_index) return machine.picker_index;
@@ -204,18 +397,7 @@ export function getMachineKanaTab(machine) {
     if (hint.tab && hint.re.test(blob)) return hint.tab;
   }
 
-  const label = getPickerLabel(machine);
-  const first = label.charAt(0);
-  if (!first) return OTHER_TAB;
-
-  const kana = normalizeToKanaTab(first);
-  if (kana !== OTHER_TAB) return kana;
-
-  if (KANJI_TAB_HINTS[first]) {
-    return normalizeToKanaTab(KANJI_TAB_HINTS[first]);
-  }
-
-  return OTHER_TAB;
+  return firstReadingTab(getPickerLabel(machine));
 }
 
 /** @deprecated use getMachineKanaTab */
@@ -224,14 +406,22 @@ export function getMachineGyo(machine) {
 }
 
 export function machineSearchText(machine) {
-  const parts = [
+  const base = [
     getPickerLabel(machine),
     pickDisplayName(machine),
     ...(machine?.names || []),
     machine?.id,
     ...(machine?.series || []),
-  ];
-  return parts.join(" ").toLowerCase();
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  const readings = expandReadings(base);
+  // names 個別にも展開
+  for (const n of machine?.names || []) {
+    for (const r of expandReadings(n)) readings.push(r);
+  }
+  return [...new Set([base.toLowerCase(), ...readings.map((r) => r.toLowerCase())])].join(" ");
 }
 
 function resolveSeriesMachines(db, seriesId) {
