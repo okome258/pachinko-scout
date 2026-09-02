@@ -49,11 +49,26 @@ export function normalizeToKanaTab(char) {
   return OTHER_TAB;
 }
 
-/** e/P/CR などの型式プレフィックスを除去 */
+/** e/P/CR・メーカー冠・世代表記を落としてホール通称寄りにする */
 export function normalizeMachineLabel(name) {
-  return String(name || "")
-    .replace(/^(P|PA|e|CR|Ｐ|ＣＲ)\s*/i, "")
-    .trim();
+  let s = String(name || "");
+  s = s.replace(/^(P|PA|e|CR|Ｐ|ＣＲ)\s*/i, "");
+  s = s.replace(/^(フィーバー|FEVER)\s*/i, "");
+  s = s.replace(/\s*(フィーバー|FEVER)\s*/gi, " ");
+  s = s.replace(/第\s*\d+\s*世代/g, "");
+  s = s.replace(/(スマパチ|ぱちんこ|パチンコ)\s*/g, "");
+  s = s.replace(/\s+/g, " ").trim();
+  return s;
+}
+
+/** 表示用にさらに軽くする（検索用 names は別途残す） */
+export function cleanHallLabel(name) {
+  let s = normalizeMachineLabel(name);
+  // Light / LT は残しつつ冗長な ver 文言だけ落とす
+  s = s.replace(/\s*LT[- ]?Light\s*ver\.?/gi, " Light");
+  s = s.replace(/\s*Light\s*ver\.?/gi, " Light");
+  s = s.replace(/\s+/g, " ").trim();
+  return s;
 }
 
 /** 末尾の機種番号・ver表記を除去（バイオハザード6 → バイオハザード） */
@@ -65,10 +80,10 @@ export function stripVersionSuffix(name) {
 
 /** リスト用の表示名（シリーズ識別子 RE / 6 などを残す） */
 export function getPickerLabel(machine) {
-  if (machine?.picker_label) return machine.picker_label;
-  if (machine?.display_name) return machine.display_name;
+  if (machine?.picker_label) return cleanHallLabel(machine.picker_label);
+  if (machine?.display_name) return cleanHallLabel(machine.display_name);
 
-  const names = (machine?.names || []).map(normalizeMachineLabel).filter((n) => n.length >= 2);
+  const names = (machine?.names || []).map(cleanHallLabel).filter((n) => n.length >= 2);
   const jp = names.filter((n) => /[\u3040-\u9fff]/.test(n));
   const pool = jp.length ? jp : names;
   if (!pool.length) return "—";
@@ -77,10 +92,11 @@ export function getPickerLabel(machine) {
     .map((n) => {
       let s = 0;
       if (/RE\s*:?\s*2|RE2/i.test(n)) s += 30;
-      if (/バイオハザード\s*6|e\s*バイオ/i.test(n)) s += 28;
+      if (/バイオハザード\s*6|e\s*バイオ|バイオ\s*6/i.test(n)) s += 28;
       if (/エヴァンゲリオン|エヴァ/i.test(n)) s += 26;
       if (/\d|RE|:/i.test(n)) s += 10;
       if (n.length <= 16) s += 6;
+      if (/フィーバー/i.test(n)) s -= 20;
       return { n, s };
     })
     .sort((a, b) => b.s - a.s || a.n.localeCompare(b.n, "ja"));
@@ -90,11 +106,11 @@ export function getPickerLabel(machine) {
 
 /** ホールで通称として使う表示名を選ぶ */
 export function pickDisplayName(machine) {
-  if (machine?.display_name) return machine.display_name;
+  if (machine?.display_name) return cleanHallLabel(machine.display_name);
 
   const raw = machine?.names || [];
   const candidates = raw
-    .map(normalizeMachineLabel)
+    .map(cleanHallLabel)
     .filter((n) => n && n.length >= 2);
 
   const jp = candidates.filter((n) => /[\u3040-\u9fff]/.test(n));
@@ -107,6 +123,7 @@ export function pickDisplayName(machine) {
     if (/^[A-Z0-9]+$/i.test(n)) s -= 15;
     if (/物語|リベンジャーズ|ハザード|無双|ガンダム|エヴァ|戦記/.test(n)) s += 12;
     if (/^エヴァ/.test(n)) s += 20;
+    if (/フィーバー/i.test(n)) s -= 20;
     return s;
   };
 

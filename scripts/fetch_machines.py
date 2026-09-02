@@ -34,6 +34,19 @@ def slugify(name: str) -> str:
     return ("p_" + s[:40]).lower()
 
 
+def hall_display_name(name: str) -> str:
+    """メーカー冠・型式プレフィックスを落としたホール通称。"""
+    s = str(name or "")
+    s = re.sub(r"^(P|PA|e|CR|Ｐ|ＣＲ)\s*", "", s, flags=re.I)
+    s = re.sub(r"^(フィーバー|FEVER)\s*", "", s, flags=re.I)
+    s = re.sub(r"\s*(フィーバー|FEVER)\s*", " ", s, flags=re.I)
+    s = re.sub(r"第\s*\d+\s*世代", "", s)
+    s = re.sub(r"(スマパチ|ぱちんこ|パチンコ)\s*", "", s)
+    s = re.sub(r"\s*LT[- ]?Light\s*ver\.?", " Light", s, flags=re.I)
+    s = re.sub(r"\s*Light\s*ver\.?", " Light", s, flags=re.I)
+    return re.sub(r"\s+", " ", s).strip()
+
+
 def infer_type(denom: float) -> str:
     if denom <= 120:
         return "amadeji"
@@ -325,6 +338,7 @@ def parse_machines_from_html(html: str) -> list[dict]:
         machines.append(
             {
                 "id": mid,
+                "display_name": hall_display_name(name),
                 "names": [name, re.sub(r"^[PePAe]+", "", name).strip()],
                 "type": mtype,
                 "first_hit_denom": round(denom, 1),
@@ -387,6 +401,11 @@ def merge_machines(existing: list[dict], fetched: list[dict]) -> list[dict]:
             if fm.get("dmm_id"):
                 old["dmm_id"] = fm["dmm_id"]
             old["names"] = list(dict.fromkeys(old.get("names", []) + fm.get("names", [])))[:5]
+            # picker_label がある機種は手動通称を優先。それ以外はメーカー冠を落とす
+            if not old.get("picker_label") and fm.get("display_name"):
+                old["display_name"] = fm["display_name"]
+            elif not old.get("picker_label") and old.get("names"):
+                old["display_name"] = hall_display_name(old["names"][0])
             old["ev_spec"] = merge_ev_spec(old.get("ev_spec"), fm.get("ev_spec"))
             if old.get("source", "").endswith("+manual"):
                 pass
@@ -397,6 +416,15 @@ def merge_machines(existing: list[dict], fetched: list[dict]) -> list[dict]:
         else:
             by_id[fm["id"]] = fm
     return sorted(by_id.values(), key=lambda x: x.get("names", [""])[0])
+
+
+def refresh_display_names(machines: list[dict]) -> None:
+    for m in machines:
+        if m.get("picker_label"):
+            continue
+        official = (m.get("names") or [None])[0]
+        if official:
+            m["display_name"] = hall_display_name(official)
 
 
 def enrich_with_details(machines: list[dict], sleep_sec: float, limit: int | None, force: bool = False) -> int:
@@ -492,6 +520,7 @@ def main() -> int:
         print(f"  detail updated this run: {n} (total with detail spec: {detail_count})")
 
     data["machines"] = machines
+    refresh_display_names(machines)
     data["version"] = date.today().isoformat()
     data["updated"] = date.today().isoformat()
     data["fetch_source"] = "dmm_ptown+detail"
