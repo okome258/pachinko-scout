@@ -230,36 +230,99 @@
       color: #bae6fd;
     }
     #evBox .ev-title { font-weight: 800; font-size: 15px; color: #7dd3fc; }
-    #machinePanel {
-      position: fixed;
-      bottom: max(150px, calc(130px + env(safe-area-inset-bottom)));
-      left: 12px; right: 12px;
-      z-index: 11;
-      background: rgba(15, 23, 42, 0.92);
-      border: 1px solid #334155;
-      border-radius: 12px;
-      padding: 12px;
-      display: none;
-      flex-direction: column;
-      gap: 8px;
-      max-height: 45vh;
-      overflow-y: auto;
-    }
-    #machinePanel.show { display: flex; }
-    #machinePanel label { font-size: 12px; color: #94a3b8; }
-    #machinePanel select, #machinePanel input {
-      width: 100%; padding: 10px; border-radius: 8px;
-      border: 1px solid #334155; background: #1e293b; color: #fff; font-size: 14px;
-    }
-    #machinePanel .row { display: flex; gap: 8px; }
-    #machinePanel .row label { display: flex; align-items: center; gap: 6px; color: #e2e8f0; }
-    #machinePanel button.save-custom {
-      background: #38bdf8; color: #0f172a; font-weight: 700; padding: 10px;
-    }
     #pickMachineBtn {
       background: rgba(56, 189, 248, 0.85) !important;
       color: #0f172a !important;
-      flex: 0.8 !important;
+    }
+    #holdBtn { flex: 2; }
+
+    #machinePickerModal {
+      position: fixed; inset: 0; z-index: 30;
+      display: none;
+    }
+    #machinePickerModal.show { display: block; }
+    #pickerBackdrop {
+      position: absolute; inset: 0;
+      background: rgba(0,0,0,0.65);
+    }
+    #pickerSheet {
+      position: absolute; left: 0; right: 0; bottom: 0;
+      max-height: 88vh;
+      background: #0f172a;
+      border-radius: 16px 16px 0 0;
+      border: 1px solid #334155;
+      display: flex; flex-direction: column;
+      padding: 12px 12px max(16px, env(safe-area-inset-bottom));
+    }
+    #pickerHeader {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    #pickerHeader h2 { font-size: 17px; color: #f1f5f9; }
+    #pickerCloseBtn {
+      flex: 0 0 auto; width: auto; padding: 8px 12px;
+      background: #334155; color: #e2e8f0; font-size: 13px;
+    }
+    #pickerCurrent {
+      font-size: 13px; color: #7dd3fc; margin-bottom: 8px;
+      padding: 8px 10px; background: rgba(56,189,248,0.1);
+      border-radius: 8px;
+    }
+    #pickerSearch {
+      width: 100%; padding: 10px 12px; margin-bottom: 8px;
+      border-radius: 10px; border: 1px solid #334155;
+      background: #1e293b; color: #fff; font-size: 15px;
+    }
+    #pickerGyoTabs {
+      display: flex; flex-wrap: wrap; gap: 6px;
+      margin-bottom: 8px; max-height: 72px; overflow-y: auto;
+    }
+    .picker-gyo-tab {
+      flex: 0 0 auto; width: auto; padding: 6px 10px;
+      font-size: 12px; border-radius: 8px;
+      background: #1e293b; color: #94a3b8; border: 1px solid #334155;
+    }
+    .picker-gyo-tab.active {
+      background: #38bdf8; color: #0f172a; border-color: #38bdf8;
+    }
+    #pickerList {
+      flex: 1; overflow-y: auto; min-height: 120px;
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    .picker-item {
+      width: 100%; text-align: left; padding: 12px;
+      border-radius: 10px; background: #1e293b;
+      border: 1px solid #334155; color: #f1f5f9;
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 2px 8px; align-items: center;
+    }
+    .picker-item-sub {
+      grid-column: 1 / -1;
+      font-size: 11px; color: #64748b;
+    }
+    .picker-item.selected { border-color: #38bdf8; background: rgba(56,189,248,0.15); }
+    .picker-item-name { font-size: 14px; font-weight: 700; }
+    .picker-item-meta { font-size: 12px; color: #94a3b8; flex-shrink: 0; }
+    .picker-empty { color: #94a3b8; font-size: 13px; padding: 16px; text-align: center; }
+    #pickerCustom {
+      margin-top: 10px; padding-top: 10px; border-top: 1px solid #334155;
+    }
+    #pickerCustom summary { color: #94a3b8; font-size: 13px; cursor: pointer; }
+    #pickerCustom .custom-fields {
+      margin-top: 8px; display: flex; flex-direction: column; gap: 8px;
+    }
+    #pickerCustom input {
+      width: 100%; padding: 10px; border-radius: 8px;
+      border: 1px solid #334155; background: #1e293b; color: #fff;
+    }
+    #pickerSaveCustomBtn {
+      background: #38bdf8; color: #0f172a; font-weight: 700;
+    }
+    .open-picker-btn {
+      width: 100%; margin-top: 6px; padding: 10px;
+      background: rgba(56,189,248,0.2); color: #7dd3fc;
+      border: 1px solid rgba(56,189,248,0.4); border-radius: 8px;
+      font-size: 13px; font-weight: 700;
     }
 
     #statusBar {
@@ -299,11 +362,6 @@
       touch-action: none;
     }
     #holdBtn.active { background: #16a34a; transform: scale(0.98); }
-    #autoBtn {
-      background: rgba(30, 41, 59, 0.9);
-      color: #e2e8f0;
-    }
-    #autoBtn.on { background: rgba(56, 189, 248, 0.9); color: #0f172a; }
 
     /* 横持ち：データ画面が横長なので枠を広げ、結果は右サイドに */
     @media (orientation: landscape) {
@@ -339,12 +397,8 @@
         text-align: left;
         bottom: max(64px, calc(52px + env(safe-area-inset-bottom)));
       }
-      #machinePanel {
-        left: auto;
-        right: max(8px, env(safe-area-inset-right));
-        width: min(36vw, 340px);
-        bottom: max(64px, calc(52px + env(safe-area-inset-bottom)));
-        max-height: 70vh;
+      #machinePickerModal #pickerSheet {
+        left: auto; right: 0; width: min(420px, 100%);
       }
     }
 
@@ -411,8 +465,7 @@
         <div class="scan-block-value" id="machineBlockValue">未設定</div>
         <div class="scan-block-meta" id="machineBlockMeta">—</div>
         <div class="scan-block-editor" id="machineBlockEditor">
-          <label for="scanMachineSelect">機種（スペック・期待値に使用）</label>
-          <select id="scanMachineSelect"></select>
+          <button type="button" class="open-picker-btn" id="openPickerFromResult">一覧から選ぶ（あ～わ行）</button>
         </div>
       </div>
 
@@ -456,21 +509,28 @@
     </div>
   </div>
 
-  <div id="machinePanel">
-    <label>デフォルト機種（毎回の初期値）</label>
-    <select id="machineSelect"></select>
-    <details>
-      <summary style="color:#94a3b8;font-size:13px;cursor:pointer">＋ カスタム機種を登録</summary>
-      <div style="margin-top:8px;display:flex;flex-direction:column;gap:8px">
-        <input id="customName" placeholder="機種名（例: 新世紀エヴァ）" />
-        <div class="row">
-          <input id="customDenom" type="number" placeholder="初当り 1/319 → 319" />
-          <input id="customCeiling" type="number" placeholder="天井 840" />
-        </div>
-        <label><input type="checkbox" id="customLt" checked /> LT重要機種</label>
-        <button type="button" class="save-custom" id="saveCustomBtn">登録して選択</button>
+  <div id="machinePickerModal">
+    <div id="pickerBackdrop"></div>
+    <div id="pickerSheet">
+      <div id="pickerHeader">
+        <h2>機種を選ぶ</h2>
+        <button type="button" id="pickerCloseBtn">閉じる</button>
       </div>
-    </details>
+      <div id="pickerCurrent">未選択</div>
+      <input id="pickerSearch" type="search" placeholder="通称で検索（例: バイオ、東リベ）" />
+      <div id="pickerGyoTabs"></div>
+      <div id="pickerList"></div>
+      <details id="pickerCustom">
+        <summary>＋ カスタム機種を登録</summary>
+        <div class="custom-fields">
+          <input id="pickerCustomName" placeholder="通称（例: バイオハザード）" />
+          <input id="pickerCustomDenom" type="number" placeholder="初当り 1/319 → 319" />
+          <input id="pickerCustomCeiling" type="number" placeholder="天井 840" />
+          <label style="color:#e2e8f0;font-size:13px"><input type="checkbox" id="pickerCustomLt" checked /> LT重要</label>
+          <button type="button" id="pickerSaveCustomBtn">登録して選択</button>
+        </div>
+      </details>
+    </div>
   </div>
 
   <div id="feedbackRow">
@@ -479,12 +539,11 @@
     <button id="fbSkip">スキップ</button>
   </div>
 
-  <div id="statusBar">画面に合わせて長押し</div>
+  <div id="statusBar">機種を選んでからカウンターにかざす</div>
 
   <div id="controls">
     <button id="pickMachineBtn">機種</button>
-    <button id="autoBtn">自動: OFF</button>
-    <button id="holdBtn">かざして長押し</button>
+    <button id="holdBtn">かざして読取</button>
   </div>
 
   <script type="module">
@@ -505,9 +564,9 @@
       formatCounterSummary,
       formatMachineSummary,
       applyDataOverrides,
-      suggestMachineIdFromOcr,
       mergeCounterData,
     } from "./scan-session.js";
+    import { mountMachinePicker, pickDisplayName, getMachineGyo } from "./machine-picker-ui.js";
 
     const video = document.getElementById("video");
     const canvas = document.getElementById("canvas");
@@ -515,15 +574,13 @@
     const panel = document.getElementById("verdictPanel");
     const statusBar = document.getElementById("statusBar");
     const holdBtn = document.getElementById("holdBtn");
-    const autoBtn = document.getElementById("autoBtn");
 
     let stream = null;
     let ocrWorker = null;
     let machineDb = null;
     let scanning = false;
-    let autoMode = false;
-    let autoTimer = null;
     let lastScanAt = 0;
+    let machinePicker = null;
 
     let lastEntry = null;
     let panelHideTimer = null;
@@ -535,13 +592,9 @@
     const panelCloseBtn = document.getElementById("panelCloseBtn");
     const SCAN_COOLDOWN_MS = 2500;
 
-    const machineSelect = document.getElementById("machineSelect");
-    const machinePanel = document.getElementById("machinePanel");
-    const scanMachineSelect = document.getElementById("scanMachineSelect");
     const machineBlock = document.getElementById("machineBlock");
     const machineBlockValue = document.getElementById("machineBlockValue");
     const machineBlockMeta = document.getElementById("machineBlockMeta");
-    const machineBlockEditor = document.getElementById("machineBlockEditor");
     const dataBlockValue = document.getElementById("dataBlockValue");
     const dataBlockMeta = document.getElementById("dataBlockMeta");
     const dataEditForm = document.getElementById("dataEditForm");
@@ -550,40 +603,40 @@
       rawOcr: null,
       ocrData: null,
       dataOverrides: {},
-      scanMachineId: "auto",
       ocrMachineName: null,
       confidence: null,
     };
 
-    function fillMachineSelectOptions(selectEl, includeAuto = true) {
-      selectEl.innerHTML = includeAuto
-        ? '<option value="auto">自動（OCRで推定）</option>'
-        : "";
-      for (const m of getAllMachineOptions(machineDb)) {
-        const opt = document.createElement("option");
-        opt.value = m.id;
-        opt.textContent = `${m.names[0]}（1/${m.first_hit_denom || "?"}）`;
-        selectEl.appendChild(opt);
-      }
+    function hasMachineSelected() {
+      const id = getSelectedMachineId();
+      return id && id !== "auto";
     }
 
-    function populateMachineSelect() {
-      fillMachineSelectOptions(machineSelect, true);
-      machineSelect.value = getSelectedMachineId();
-      fillMachineSelectOptions(scanMachineSelect, true);
+    function onMachinePicked(m) {
+      setSelectedMachineId(m.id);
+      statusBar.textContent = `機種: ${pickDisplayName(m)} — カウンターにかざして読取`;
+      if (scanSession.ocrData) recalculateFromSession();
     }
 
-    function getEffectiveCounterData() {
-      return mergeCounterData(scanSession.ocrData, scanSession.dataOverrides);
+    function openMachinePicker(gyo) {
+      if (!machinePicker) return;
+      const g = gyo || (hasMachineSelected()
+        ? getMachineGyo(getAllMachineOptions(machineDb).find((x) => x.id === getSelectedMachineId()) || {})
+        : "は");
+      machinePicker.open(g);
     }
 
     function getEffectiveMachineId() {
-      return scanSession.scanMachineId || "auto";
+      return getSelectedMachineId() || "auto";
     }
 
     function resolveSpecForSession(data) {
       const machineId = getEffectiveMachineId();
       return resolveMachineSpecSync(data, machineDb, machineId, matchMachine);
+    }
+
+    function getEffectiveCounterData() {
+      return mergeCounterData(scanSession.ocrData, scanSession.dataOverrides);
     }
 
     function updateMachineBlock(spec) {
@@ -596,14 +649,8 @@
       machineBlockValue.textContent = title;
       machineBlockMeta.textContent = meta;
       machineBlock.className = "scan-block";
-      if (machineId !== "auto" || spec?.match_source === "name" || spec?.match_source === "keyword") {
-        machineBlock.classList.add("hit");
-      } else if (scanSession.ocrMachineName) {
-        machineBlock.classList.add("warn");
-      } else {
-        machineBlock.classList.add("none");
-      }
-      if (scanMachineSelect.value !== machineId) scanMachineSelect.value = machineId;
+      if (hasMachineSelected()) machineBlock.classList.add("hit");
+      else machineBlock.classList.add("none");
     }
 
     function updateDataBlock(data, confidence) {
@@ -677,28 +724,30 @@
       document.getElementById("startScreen").classList.add("hide");
       statusBar.textContent = "機種データ取得中…";
       machineDb = await loadMachines(window.location.origin);
-      populateMachineSelect();
+      machinePicker = mountMachinePicker(
+        document.getElementById("machinePickerModal"),
+        machineDb,
+        {
+          getSelectedId: getSelectedMachineId,
+          onSelect: (m) => {
+            onMachinePicked(m);
+            machinePicker.close();
+          },
+          onClose: () => machinePicker.close(),
+        },
+      );
       await startCamera();
-      statusBar.textContent = `準備OK — 機種選択 or 長押し`;
+      if (!hasMachineSelected()) {
+        openMachinePicker("は");
+      } else {
+        const m = getAllMachineOptions(machineDb).find((x) => x.id === getSelectedMachineId());
+        statusBar.textContent = `機種: ${pickDisplayName(m)} — カウンターにかざして読取`;
+      }
     };
 
-    machineSelect.onchange = () => {
-      setSelectedMachineId(machineSelect.value);
-      statusBar.textContent =
-        machineSelect.value === "auto"
-          ? "次回スキャンの機種はOCR推定"
-          : `次回の初期機種: ${machineSelect.selectedOptions[0].textContent}`;
-    };
-
-    scanMachineSelect.onchange = () => {
-      scanSession.scanMachineId = scanMachineSelect.value;
-      recalculateFromSession();
-    };
-
-    document.getElementById("machineBlockEdit").onclick = () => {
-      machineBlockEditor.classList.toggle("show");
-      schedulePanelHide();
-    };
+    document.getElementById("pickMachineBtn").onclick = () => openMachinePicker();
+    document.getElementById("machineBlockEdit").onclick = () => openMachinePicker();
+    document.getElementById("openPickerFromResult").onclick = () => openMachinePicker();
 
     document.getElementById("dataBlockEdit").onclick = () => {
       fillDataEditForm(getEffectiveCounterData());
@@ -717,26 +766,6 @@
       });
       dataEditForm.classList.remove("show");
       recalculateFromSession();
-    };
-
-    document.getElementById("pickMachineBtn").onclick = () => {
-      machinePanel.classList.toggle("show");
-    };
-
-    document.getElementById("saveCustomBtn").onclick = () => {
-      const name = document.getElementById("customName").value.trim();
-      if (!name) return alert("機種名を入力");
-      const entry = saveCustomMachine({
-        name,
-        first_hit_denom: document.getElementById("customDenom").value || 319,
-        ceiling_spins: document.getElementById("customCeiling").value || 840,
-        lt_critical: document.getElementById("customLt").checked,
-      });
-      populateMachineSelect();
-      machineSelect.value = entry.id;
-      setSelectedMachineId(entry.id);
-      machinePanel.classList.remove("show");
-      statusBar.textContent = `登録: ${name}`;
     };
 
     async function startCamera() {
@@ -861,6 +890,11 @@
     }
 
     async function scanOnce() {
+      if (!hasMachineSelected()) {
+        openMachinePicker("は");
+        statusBar.textContent = "先に機種を選んでください";
+        return;
+      }
       const now = Date.now();
       if (scanning || now - lastScanAt < SCAN_COOLDOWN_MS) return;
       scanning = true;
@@ -895,19 +929,11 @@
           dataOverrides: {},
           ocrMachineName: data.machine_name,
           confidence,
-          scanMachineId: suggestMachineIdFromOcr({ ...data, ocr_raw: text }, machineDb, matchMachine),
         };
 
-        const sticky = getSelectedMachineId();
-        if (sticky !== "auto") {
-          scanSession.scanMachineId = sticky;
-        }
-
-        scanMachineSelect.value = scanSession.scanMachineId;
-        machineBlockEditor.classList.remove("show");
         dataEditForm.classList.remove("show");
         recalculateFromSession();
-        statusBar.textContent = "機種・台データを確認（それぞれ変更可）";
+        statusBar.textContent = "台データを確認（編集可）";
       } catch (e) {
         statusBar.textContent = "エラー: " + e.message;
       } finally {
@@ -915,20 +941,11 @@
       }
     }
 
-    function bindHold(el) {
-      const start = (e) => {
-        e.preventDefault();
-        el.classList.add("active");
-        scanOnce();
-      };
-      const end = () => el.classList.remove("active");
-      el.addEventListener("touchstart", start, { passive: false });
-      el.addEventListener("touchend", end);
-      el.addEventListener("mousedown", start);
-      el.addEventListener("mouseup", end);
-      el.addEventListener("mouseleave", end);
-    }
-    bindHold(holdBtn);
+    holdBtn.onclick = (e) => {
+      e.preventDefault();
+      holdBtn.classList.add("active");
+      scanOnce().finally(() => holdBtn.classList.remove("active"));
+    };
 
     function onFeedback(outcome) {
       if (!lastEntry) return;
@@ -946,28 +963,6 @@
     document.getElementById("fbLose").onclick = () => onFeedback("lose");
     document.getElementById("fbSkip").onclick = () => onFeedback("skip");
 
-    autoBtn.onclick = () => {
-      autoMode = !autoMode;
-      autoBtn.textContent = `自動: ${autoMode ? "ON" : "OFF"}`;
-      autoBtn.classList.toggle("on", autoMode);
-      if (autoMode) {
-        autoTimer = setInterval(scanOnce, 4000);
-        statusBar.textContent = "自動スキャン中（4秒間隔）";
-      } else {
-        clearInterval(autoTimer);
-        statusBar.textContent = "手動モード";
-      }
-    };
-
-    document.addEventListener("visibilitychange", () => {
-      if (document.hidden && autoTimer) {
-        clearInterval(autoTimer);
-        autoTimer = null;
-        autoMode = false;
-        autoBtn.textContent = "自動: OFF";
-        autoBtn.classList.remove("on");
-      }
-    });
   </script>
 </body>
 </html>

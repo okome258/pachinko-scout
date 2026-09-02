@@ -1,5 +1,7 @@
 /** 1回のスキャン = 機種情報と台データを別管理 */
 
+import { pickDisplayName } from "./machine-picker-ui.js";
+
 export function formatCounterSummary(data) {
   if (!data) return "データなし";
   const parts = [];
@@ -15,7 +17,8 @@ export function formatCounterSummary(data) {
 
 export function formatMachineSummary(spec, ocrName, machineId) {
   if (!spec) return { title: "未設定", meta: "機種を選択してください" };
-  const name = spec.names?.[0] || "—";
+  const name = pickDisplayName(spec);
+  const official = spec.names?.[0] && spec.names[0] !== name ? spec.names[0] : "";
   const denom = spec.first_hit_denom ? `1/${Math.round(spec.first_hit_denom)}` : "";
   const ceiling = spec.ceiling_spins ? `天井${spec.ceiling_spins}` : "";
   const src =
@@ -29,7 +32,8 @@ export function formatMachineSummary(spec, ocrName, machineId) {
             ? "手動"
             : "推定";
   let meta = [denom, ceiling, src].filter(Boolean).join(" · ");
-  if (ocrName && ocrName !== name) meta += `（OCR: ${ocrName}）`;
+  if (official) meta += ` · ${official}`;
+  if (ocrName && ocrName !== name && ocrName !== official) meta += `（OCR: ${ocrName}）`;
   return { title: name, meta };
 }
 
