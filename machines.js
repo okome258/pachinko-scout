@@ -18,7 +18,7 @@ export async function loadMachines(baseUrl = "") {
 }
 
 const KEYWORD_MACHINE_IDS = [
-  { re: /バイオ|BIOHAZARD|HAZARD|RE\s*:?\s*2/i, ids: ["p_e_バイオハザード6", "p_biohazard"] },
+  { re: /バイオハザード\s*6|e\s*バイオ|BIOHAZARD|HAZARD/i, ids: ["p_e_バイオハザード6", "p_biohazard"] },
 ];
 
 function matchByKeyword(blob, db) {

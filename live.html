@@ -67,6 +67,74 @@
     #verdictPanel.compact #evBox,
     #verdictPanel.compact #retreatBox,
     #verdictPanel.compact #verdictReasons { display: none; }
+    .scan-block {
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: rgba(15, 23, 42, 0.55);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+    }
+    .scan-block-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+    .scan-block-title {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      color: #94a3b8;
+      text-transform: uppercase;
+    }
+    .scan-block-edit {
+      flex: 0 0 auto;
+      padding: 4px 10px;
+      font-size: 11px;
+      border-radius: 6px;
+      border: 0;
+      background: rgba(56, 189, 248, 0.25);
+      color: #7dd3fc;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .scan-block-value {
+      font-size: 15px;
+      font-weight: 700;
+      color: #f1f5f9;
+      line-height: 1.35;
+    }
+    .scan-block-meta {
+      font-size: 12px;
+      color: #94a3b8;
+      margin-top: 4px;
+      line-height: 1.4;
+    }
+    .scan-block-editor {
+      display: none;
+      margin-top: 8px;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .scan-block-editor.show { display: flex; }
+    .scan-block-editor select,
+    .scan-block-editor input {
+      width: 100%;
+      padding: 8px 10px;
+      border-radius: 8px;
+      border: 1px solid #334155;
+      background: #1e293b;
+      color: #fff;
+      font-size: 13px;
+    }
+    .scan-block-editor label {
+      font-size: 11px;
+      color: #94a3b8;
+    }
+    #machineBlock.hit .scan-block-value { color: #4ade80; }
+    #machineBlock.warn .scan-block-value { color: #fbbf24; }
+    #machineBlock.none .scan-block-value { color: #f87171; }
     #panelActions {
       display: flex;
       gap: 8px;
@@ -332,10 +400,46 @@
     <div class="frame" id="frame"></div>
     <div class="frame-hint">枠内にデータ画面を合わせる（縦・横どちらでもOK）</div>
     <div id="verdictPanel">
-      <div id="machineNameBadge"></div>
-      <div id="machineStatus"></div>
       <div id="verdictMain">—</div>
       <div id="verdictSub"></div>
+
+      <div class="scan-block" id="machineBlock">
+        <div class="scan-block-head">
+          <span class="scan-block-title">機種情報</span>
+          <button type="button" class="scan-block-edit" id="machineBlockEdit">変更</button>
+        </div>
+        <div class="scan-block-value" id="machineBlockValue">未設定</div>
+        <div class="scan-block-meta" id="machineBlockMeta">—</div>
+        <div class="scan-block-editor" id="machineBlockEditor">
+          <label for="scanMachineSelect">機種（スペック・期待値に使用）</label>
+          <select id="scanMachineSelect"></select>
+        </div>
+      </div>
+
+      <div class="scan-block" id="dataBlock">
+        <div class="scan-block-head">
+          <span class="scan-block-title">台データ</span>
+          <button type="button" class="scan-block-edit" id="dataBlockEdit">編集</button>
+        </div>
+        <div class="scan-block-value" id="dataBlockValue">—</div>
+        <div class="scan-block-meta" id="dataBlockMeta">カウンター読み取り</div>
+        <div class="scan-block-editor" id="dataEditForm">
+          <label>現在回転</label>
+          <input id="editSpins" type="number" inputmode="numeric" placeholder="例: 182" />
+          <label>本日初当り</label>
+          <input id="editFirstHits" type="number" inputmode="numeric" placeholder="例: 3" />
+          <label>本日大当り</label>
+          <input id="editBigHits" type="number" inputmode="numeric" placeholder="例: 3" />
+          <label>LT（例: 0/3）</label>
+          <input id="editLt" type="text" placeholder="0/3" />
+          <label>最高出玉</label>
+          <input id="editMaxPay" type="number" inputmode="numeric" placeholder="例: 180" />
+          <label>実績初当り（例: 1/182）</label>
+          <input id="editProb" type="text" placeholder="1/182" />
+          <button type="button" class="scan-block-edit" id="dataApplyBtn" style="margin-top:4px">反映</button>
+        </div>
+      </div>
+
       <div id="verdictReasons"></div>
       <div id="evBox" hidden>
         <div class="ev-title" id="evSummary"></div>
@@ -353,7 +457,7 @@
   </div>
 
   <div id="machinePanel">
-    <label>機種選択（OCRより優先）</label>
+    <label>デフォルト機種（毎回の初期値）</label>
     <select id="machineSelect"></select>
     <details>
       <summary style="color:#94a3b8;font-size:13px;cursor:pointer">＋ カスタム機種を登録</summary>
@@ -397,6 +501,13 @@
       resolveMachineSpecSync,
       saveCustomMachine,
     } from "./machine-picker.js";
+    import {
+      formatCounterSummary,
+      formatMachineSummary,
+      applyDataOverrides,
+      suggestMachineIdFromOcr,
+      mergeCounterData,
+    } from "./scan-session.js";
 
     const video = document.getElementById("video");
     const canvas = document.getElementById("canvas");
@@ -426,16 +537,140 @@
 
     const machineSelect = document.getElementById("machineSelect");
     const machinePanel = document.getElementById("machinePanel");
+    const scanMachineSelect = document.getElementById("scanMachineSelect");
+    const machineBlock = document.getElementById("machineBlock");
+    const machineBlockValue = document.getElementById("machineBlockValue");
+    const machineBlockMeta = document.getElementById("machineBlockMeta");
+    const machineBlockEditor = document.getElementById("machineBlockEditor");
+    const dataBlockValue = document.getElementById("dataBlockValue");
+    const dataBlockMeta = document.getElementById("dataBlockMeta");
+    const dataEditForm = document.getElementById("dataEditForm");
 
-    function populateMachineSelect() {
-      machineSelect.innerHTML = '<option value="auto">自動（OCRで判定）</option>';
+    let scanSession = {
+      rawOcr: null,
+      ocrData: null,
+      dataOverrides: {},
+      scanMachineId: "auto",
+      ocrMachineName: null,
+      confidence: null,
+    };
+
+    function fillMachineSelectOptions(selectEl, includeAuto = true) {
+      selectEl.innerHTML = includeAuto
+        ? '<option value="auto">自動（OCRで推定）</option>'
+        : "";
       for (const m of getAllMachineOptions(machineDb)) {
         const opt = document.createElement("option");
         opt.value = m.id;
-        opt.textContent = `${m.names[0]}（1/${m.first_hit_denom || "?"} 天井${m.ceiling_spins || "?"})`;
-        machineSelect.appendChild(opt);
+        opt.textContent = `${m.names[0]}（1/${m.first_hit_denom || "?"}）`;
+        selectEl.appendChild(opt);
       }
+    }
+
+    function populateMachineSelect() {
+      fillMachineSelectOptions(machineSelect, true);
       machineSelect.value = getSelectedMachineId();
+      fillMachineSelectOptions(scanMachineSelect, true);
+    }
+
+    function getEffectiveCounterData() {
+      return mergeCounterData(scanSession.ocrData, scanSession.dataOverrides);
+    }
+
+    function getEffectiveMachineId() {
+      return scanSession.scanMachineId || "auto";
+    }
+
+    function resolveSpecForSession(data) {
+      const machineId = getEffectiveMachineId();
+      return resolveMachineSpecSync(data, machineDb, machineId, matchMachine);
+    }
+
+    function updateMachineBlock(spec) {
+      const machineId = getEffectiveMachineId();
+      const { title, meta } = formatMachineSummary(
+        spec,
+        scanSession.ocrMachineName,
+        machineId,
+      );
+      machineBlockValue.textContent = title;
+      machineBlockMeta.textContent = meta;
+      machineBlock.className = "scan-block";
+      if (machineId !== "auto" || spec?.match_source === "name" || spec?.match_source === "keyword") {
+        machineBlock.classList.add("hit");
+      } else if (scanSession.ocrMachineName) {
+        machineBlock.classList.add("warn");
+      } else {
+        machineBlock.classList.add("none");
+      }
+      if (scanMachineSelect.value !== machineId) scanMachineSelect.value = machineId;
+    }
+
+    function updateDataBlock(data, confidence) {
+      dataBlockValue.textContent = formatCounterSummary(data);
+      dataBlockMeta.textContent =
+        confidence === "low"
+          ? "読み取り不完全 — 編集で修正可"
+          : Object.keys(scanSession.dataOverrides).length
+            ? "手動修正あり"
+            : "カウンター読み取り";
+    }
+
+    function fillDataEditForm(data) {
+      document.getElementById("editSpins").value = data.current_spins ?? "";
+      document.getElementById("editFirstHits").value = data.today_first_hits ?? "";
+      document.getElementById("editBigHits").value = data.today_big_hits ?? "";
+      document.getElementById("editLt").value = data.lt_success ?? "";
+      document.getElementById("editMaxPay").value = data.today_max_payout ?? "";
+      document.getElementById("editProb").value =
+        data.first_hit_probability?.replace(/^1\s*\/\s*/, "") ?? "";
+    }
+
+    function recalculateFromSession() {
+      if (!scanSession.ocrData || !machineDb) return;
+      const data = getEffectiveCounterData();
+      const counterType = detectCounterType(scanSession.rawOcr || "", machineDb);
+      const machineId = getEffectiveMachineId();
+      const machineSpec = resolveSpecForSession(data);
+      let result = scoreMachine(data, machineSpec);
+      const bias = applyLearnedBias(
+        result.score,
+        machineSpec?.names?.[0],
+        counterType?.id,
+      );
+      if (bias.biasApplied) {
+        result = { ...result, score: bias.score };
+        if (bias.score >= 65) result.verdict = "打つ候補";
+        else if (bias.score < 45) result.verdict = "見送り";
+        else result.verdict = "様子見";
+        result.biasApplied = bias.biasApplied;
+      }
+      const ev = calcExpectedValue(data, machineSpec);
+      const retreat = calcRetreatPlan(data, machineSpec);
+      const nameFeedback = getMachineNameFeedback(
+        scanSession.ocrMachineName,
+        machineDb,
+        machineSpec,
+        machineId,
+      );
+      lastEntry = {
+        machine: machineSpec?.names?.[0],
+        counter: counterType?.id,
+        score: result.score,
+        verdict: result.verdict,
+        spins: data.current_spins,
+        ev: ev.ev,
+      };
+      showResult(
+        result,
+        scanSession.confidence,
+        machineSpec,
+        counterType,
+        data,
+        retreat,
+        ev,
+        nameFeedback,
+      );
     }
 
     document.getElementById("startBtn").onclick = async () => {
@@ -451,8 +686,37 @@
       setSelectedMachineId(machineSelect.value);
       statusBar.textContent =
         machineSelect.value === "auto"
-          ? "自動判定モード"
-          : `機種固定: ${machineSelect.selectedOptions[0].textContent}`;
+          ? "次回スキャンの機種はOCR推定"
+          : `次回の初期機種: ${machineSelect.selectedOptions[0].textContent}`;
+    };
+
+    scanMachineSelect.onchange = () => {
+      scanSession.scanMachineId = scanMachineSelect.value;
+      recalculateFromSession();
+    };
+
+    document.getElementById("machineBlockEdit").onclick = () => {
+      machineBlockEditor.classList.toggle("show");
+      schedulePanelHide();
+    };
+
+    document.getElementById("dataBlockEdit").onclick = () => {
+      fillDataEditForm(getEffectiveCounterData());
+      dataEditForm.classList.toggle("show");
+      schedulePanelHide();
+    };
+
+    document.getElementById("dataApplyBtn").onclick = () => {
+      scanSession.dataOverrides = applyDataOverrides(scanSession.ocrData, {
+        current_spins: document.getElementById("editSpins").value,
+        today_first_hits: document.getElementById("editFirstHits").value,
+        today_big_hits: document.getElementById("editBigHits").value,
+        lt_success: document.getElementById("editLt").value,
+        today_max_payout: document.getElementById("editMaxPay").value,
+        first_hit_probability: document.getElementById("editProb").value,
+      });
+      dataEditForm.classList.remove("show");
+      recalculateFromSession();
     };
 
     document.getElementById("pickMachineBtn").onclick = () => {
@@ -547,19 +811,12 @@
     };
     panelCloseBtn.onclick = () => hideResultPanel();
 
-    function showResult(result, confidence, machineSpec, counterType, data, retreat, ev, nameFeedback) {
+    function showResult(result, confidence, machineSpec, counterType, data, retreat, ev) {
       const color = verdictColor(result.verdict);
       frame.style.setProperty("--frame-color", color);
 
-      const badge = document.getElementById("machineNameBadge");
-      const fb = nameFeedback || { display: "機種名なし", status: "no_name", statusLabel: "" };
-      badge.textContent = `📛 ${fb.display}`;
-      badge.className = "none";
-      if (fb.status === "db_hit" || fb.status === "manual") badge.className = "hit";
-      else if (fb.status === "ocr_only") badge.className = "ocr";
-      else if (fb.status === "no_name") badge.className = "none";
-
-      document.getElementById("machineStatus").textContent = fb.statusLabel || "";
+      updateMachineBlock(machineSpec);
+      updateDataBlock(data, confidence);
 
       document.getElementById("verdictMain").textContent = `${result.score}点 ${result.verdict}`;
       document.getElementById("verdictMain").style.color = color;
@@ -623,7 +880,6 @@
           text = `${topResult.data.text}\n${text}`;
         }
         const { data, confidence } = parseOcrText(text);
-        data.ocr_raw = text;
 
         if (confidence === "none") {
           statusBar.textContent = "数字が読めません — 下の履歴バーまで枠に入れて";
@@ -632,42 +888,26 @@
         }
 
         if (!machineDb) machineDb = await loadMachines(window.location.origin);
-        const counterType = detectCounterType(text, machineDb);
-        const selectedId = getSelectedMachineId();
-        const machineSpec = resolveMachineSpecSync(data, machineDb, selectedId, matchMachine);
-        let result = scoreMachine(data, machineSpec);
-        const bias = applyLearnedBias(
-          result.score,
-          machineSpec?.names?.[0],
-          counterType?.id,
-        );
-        if (bias.biasApplied) {
-          result = { ...result, score: bias.score };
-          if (bias.score >= 65) result.verdict = "打つ候補";
-          else if (bias.score < 45) result.verdict = "見送り";
-          else result.verdict = "様子見";
-          result.biasApplied = bias.biasApplied;
-        }
-        const ev = calcExpectedValue(data, machineSpec);
-        const retreat = calcRetreatPlan(data, machineSpec);
-        const nameFeedback = getMachineNameFeedback(
-          data.machine_name,
-          machineDb,
-          machineSpec,
-          selectedId,
-        );
 
-        lastEntry = {
-          machine: machineSpec?.names?.[0],
-          counter: counterType?.id,
-          score: result.score,
-          verdict: result.verdict,
-          spins: data.current_spins,
-          ev: ev.ev,
+        scanSession = {
+          rawOcr: text,
+          ocrData: { ...data, ocr_raw: text },
+          dataOverrides: {},
+          ocrMachineName: data.machine_name,
+          confidence,
+          scanMachineId: suggestMachineIdFromOcr({ ...data, ocr_raw: text }, machineDb, matchMachine),
         };
 
-        showResult(result, confidence, machineSpec, counterType, data, retreat, ev, nameFeedback);
-        statusBar.textContent = `${nameFeedback.display} / ${retreat.summary}`;
+        const sticky = getSelectedMachineId();
+        if (sticky !== "auto") {
+          scanSession.scanMachineId = sticky;
+        }
+
+        scanMachineSelect.value = scanSession.scanMachineId;
+        machineBlockEditor.classList.remove("show");
+        dataEditForm.classList.remove("show");
+        recalculateFromSession();
+        statusBar.textContent = "機種・台データを確認（それぞれ変更可）";
       } catch (e) {
         statusBar.textContent = "エラー: " + e.message;
       } finally {

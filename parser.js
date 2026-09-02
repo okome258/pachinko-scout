@@ -45,9 +45,10 @@ function parseRecentHits(text) {
 
 function parseMachineName(text) {
   const patterns = [
+    /e\s*バイオハザード\s*6/i,
     /P\s*バイオハザード\s*RE\s*:?\s*2/i,
     /P\s*バイオ[^\s]*/i,
-    /(バイオハザード\s*RE\s*:?\s*2)/i,
+    /(バイオハザード\s*6|バイオハザード\s*RE\s*:?\s*2)/i,
     /CR\s*パチンコ[^\s]*/i,
     /P\s*([A-Z][A-Za-z\s]+)/,
     /(バイオハザード|BIOHAZARD|HAZARD)/i,
