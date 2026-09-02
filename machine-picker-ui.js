@@ -601,7 +601,7 @@ export function mountMachinePicker(modalEl, db, handlers) {
     }
     renderList();
   };
-  searchEl.placeholder = "例: エヴァ、バイオ、RE2、東リベ";
+  searchEl.placeholder = "かなでもOK（例: とうりべ、なな、ばいお、えヴぁ）";
 
   modalEl.querySelector("#pickerCloseBtn").onclick = () => onClose();
   modalEl.querySelector("#pickerBackdrop").onclick = () => onClose();
