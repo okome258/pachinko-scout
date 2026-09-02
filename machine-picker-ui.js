@@ -94,6 +94,8 @@ export function getPickerLabel(machine) {
       if (/RE\s*:?\s*2|RE2/i.test(n)) s += 30;
       if (/バイオハザード\s*6|e\s*バイオ|バイオ\s*6/i.test(n)) s += 28;
       if (/エヴァンゲリオン|エヴァ/i.test(n)) s += 26;
+      if (/東リベ/.test(n)) s += 40;
+      if (/東京リベンジャー/.test(n)) s += 20;
       if (/\d|RE|:/i.test(n)) s += 10;
       if (n.length <= 16) s += 6;
       if (/フィーバー/i.test(n)) s -= 20;
@@ -101,7 +103,11 @@ export function getPickerLabel(machine) {
     })
     .sort((a, b) => b.s - a.s || a.n.localeCompare(b.n, "ja"));
 
-  return scored[0].n;
+  let best = scored[0].n;
+  if (/東京リベンジャー/.test(best) && !/東リベ/.test(best)) {
+    best = best.replace(/東京リベンジャーズ?/, "東リベ");
+  }
+  return best;
 }
 
 /** ホールで通称として使う表示名を選ぶ */
@@ -133,9 +139,83 @@ export function pickDisplayName(machine) {
   return stripVersionSuffix(best);
 }
 
+/** 漢字タイトル先頭 → 五十音タブ（通称読み） */
+const KANJI_TAB_HINTS = {
+  東: "と", // 東京リベンジャーズ / 東リベ
+  新: "し", // 新世紀エヴァ
+  機: "き", // 機動戦士ガンダム
+  戦: "せ", // 戦国乙女 など
+  化: "け", // 化物語
+  大: "た", // 大海物語（だ→た）
+  海: "う",
+  火: "ひ",
+  花: "は",
+  銀: "き",
+  金: "き",
+  黒: "く",
+  白: "し",
+  青: "あ",
+  赤: "あ",
+  黄: "き",
+  呪: "じ", // 呪術 → じ
+  鬼: "お", // 鬼滅 → お
+  進: "し", // 進撃
+  一: "い",
+  二: "に",
+  三: "さ",
+  百: "ひ",
+  千: "せ",
+  万: "ま",
+  無: "む",
+  超: "ち",
+  聖: "せ",
+  神: "か",
+  魔: "ま",
+  龍: "り",
+  竜: "り",
+  獣: "け",
+  侍: "さ",
+  忍: "お",
+  押: "お",
+  ぱ: "は", // ぱちんこ… already stripped
+};
+
+/** 通称ヒント（表示名・タブ両用） */
+const SERIES_NICK_HINTS = [
+  { re: /東京リベンジャー|東リベ/i, nick: "東リベ", tab: "と" },
+  { re: /バイオハザード\s*RE|バイオ\s*RE|RE\s*:?\s*2/i, nick: null, tab: "は" },
+  { re: /バイオハザード\s*6|eバイオ|バイオ\s*6/i, nick: null, tab: "は" },
+  { re: /エヴァンゲリオン|^エヴァ|ゴジエヴァ/i, nick: null, tab: "え" },
+];
+
 export function getMachineKanaTab(machine) {
   if (machine?.picker_index) return machine.picker_index;
-  return normalizeToKanaTab(getPickerLabel(machine).charAt(0));
+
+  const blob = [
+    machine?.picker_label,
+    machine?.display_name,
+    ...(machine?.names || []),
+    machine?.id,
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  for (const hint of SERIES_NICK_HINTS) {
+    if (hint.tab && hint.re.test(blob)) return hint.tab;
+  }
+
+  const label = getPickerLabel(machine);
+  const first = label.charAt(0);
+  if (!first) return OTHER_TAB;
+
+  const kana = normalizeToKanaTab(first);
+  if (kana !== OTHER_TAB) return kana;
+
+  if (KANJI_TAB_HINTS[first]) {
+    return normalizeToKanaTab(KANJI_TAB_HINTS[first]);
+  }
+
+  return OTHER_TAB;
 }
 
 /** @deprecated use getMachineKanaTab */
