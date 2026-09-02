@@ -1,5 +1,7 @@
 /** ブラウザ内スコアリング（機種別対応） */
 
+import { getDepthLine } from "./depth.js";
+
 function parseFraction(value) {
   if (!value) return null;
   const m = String(value).match(/1\s*\/\s*(\d+)/);
@@ -128,15 +130,16 @@ function applyMachineRules(data, spec) {
     reasons.push(`${spec.names[0]}: まだ伸びあり`);
   }
 
-  if (spec.ceiling_spins && !Number.isNaN(spins)) {
-    const ratio = spins / spec.ceiling_spins;
+  const depth = getDepthLine(spec);
+  if (depth.spins && !Number.isNaN(spins)) {
+    const ratio = spins / depth.spins;
     const near = spec.ceiling_near_ratio ?? 0.75;
     if (ratio >= near) {
-      scoreDelta += 15;
-      reasons.push(`深度目安まであと${spec.ceiling_spins - spins}回転`);
+      scoreDelta += depth.kind === "yutime" ? 18 : 15;
+      reasons.push(`${depth.label}まであと${depth.spins - spins}回転`);
     } else if (ratio < 0.15 && todayFirst >= 2) {
       scoreDelta -= 6;
-      reasons.push(`深度目安まで余裕（${spins}/${spec.ceiling_spins}）`);
+      reasons.push(`${depth.label}まで余裕（${spins}/${depth.spins}）`);
     }
   }
 

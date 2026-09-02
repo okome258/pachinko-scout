@@ -71,7 +71,8 @@
       "small_hit_max": 350,
       "good_hit_min": 3000,
       "ceiling_near_ratio": 0.75,
-      "display_name": "777"
+      "display_name": "777",
+      "has_yutime": false
     },
     {
       "id": "p_p_re_ゼロから始める異世界生活_season2_129ver_",
@@ -114,7 +115,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 577.37
       },
-      "display_name": "Re:ゼロから始める異世界生活 season2 129ver."
+      "display_name": "Re:ゼロから始める異世界生活 season2 129ver.",
+      "has_yutime": false
     },
     {
       "id": "p_p_re_ゼロから始める異世界生活_season2_249ver_",
@@ -158,7 +160,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 432.17
       },
-      "display_name": "Re:ゼロから始める異世界生活 season2 249ver."
+      "display_name": "Re:ゼロから始める異世界生活 season2 249ver.",
+      "has_yutime": false
     },
     {
       "id": "p_p_re_ゼロから始める異世界生活_鬼がかり_199ver_",
@@ -202,7 +205,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 619.37
       },
-      "display_name": "Re:ゼロから始める異世界生活 鬼がかり 199ver."
+      "display_name": "Re:ゼロから始める異世界生活 鬼がかり 199ver.",
+      "has_yutime": false
     },
     {
       "id": "p_p_re_ゼロから始める異世界生活_鬼がかり_99ver_",
@@ -246,7 +250,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 900.9
       },
-      "display_name": "Re:ゼロから始める異世界生活 鬼がかり 99ver."
+      "display_name": "Re:ゼロから始める異世界生活 鬼がかり 99ver.",
+      "has_yutime": false
     },
     {
       "id": "p_p_いくさの子_戦極最強ドデカ199ver_",
@@ -284,7 +289,8 @@
         "theoretical_index": 150.75,
         "lt_entry_rate": 0.2
       },
-      "display_name": "いくさの子 戦極最強ドデカ199ver."
+      "display_name": "いくさの子 戦極最強ドデカ199ver.",
+      "has_yutime": false
     },
     {
       "id": "p_p_にゃんこ大戦争_多様性のネコ_神さまにおまかせ_88ver_",
@@ -322,7 +328,8 @@
         "entry_rate_primary": 0.5,
         "theoretical_index": 562.43
       },
-      "display_name": "にゃんこ大戦争 多様性のネコ 神さまにおまかせ 88ver."
+      "display_name": "にゃんこ大戦争 多様性のネコ 神さまにおまかせ 88ver.",
+      "has_yutime": false
     },
     {
       "id": "p_p_ウルトラマンメビウス_デカヘソ319",
@@ -364,7 +371,8 @@
         "entry_rate_primary": 0.51,
         "theoretical_index": 460.42
       },
-      "display_name": "ウルトラマンメビウス デカヘソ319"
+      "display_name": "ウルトラマンメビウス デカヘソ319",
+      "has_yutime": false
     },
     {
       "id": "p_p_ゴジラ対エヴァンゲリオン2_超デカシルバー",
@@ -412,7 +420,8 @@
         ],
         "fetched": "2026-09-02",
         "theoretical_index": 142.94
-      }
+      },
+      "has_yutime": false
     },
     {
       "id": "p_p_モモキュンソード_速撃99ver_",
@@ -453,7 +462,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 500.5
       },
-      "display_name": "モモキュンソード 速撃99ver."
+      "display_name": "モモキュンソード 速撃99ver.",
+      "has_yutime": false
     },
     {
       "id": "p_p_リングにかけろ1_129ver_",
@@ -499,7 +509,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 693.53
       },
-      "display_name": "リングにかけろ1 129ver."
+      "display_name": "リングにかけろ1 129ver.",
+      "has_yutime": false
     },
     {
       "id": "p_p_俺の妹がこんなに可愛いわけがない_攻略_スキップ159ver_",
@@ -540,7 +551,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 469.04
       },
-      "display_name": "俺の妹がこんなに可愛いわけがない。攻略!!スキップ159ver."
+      "display_name": "俺の妹がこんなに可愛いわけがない。攻略!!スキップ159ver.",
+      "has_yutime": false
     },
     {
       "id": "p_p_冬のソナタ_my_memory_sweet_version",
@@ -579,7 +591,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 600.6
       },
-      "display_name": "冬のソナタ My Memory SWEET Version"
+      "display_name": "冬のソナタ My Memory SWEET Version",
+      "has_yutime": false
     },
     {
       "id": "p_p_春一番_2026",
@@ -619,7 +632,8 @@
         "entry_rate_primary": 1.0,
         "theoretical_index": 1112.35
       },
-      "display_name": "春一番 2026"
+      "display_name": "春一番 2026",
+      "has_yutime": false
     },
     {
       "id": "p_p_犬夜叉3_0_大入り_甘spec",
@@ -662,7 +676,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 636.55
       },
-      "display_name": "犬夜叉3.0 大入り 甘SPEC"
+      "display_name": "犬夜叉3.0 大入り 甘SPEC",
+      "has_yutime": false
     },
     {
       "id": "p_p_魔法少女まどか_マギカ3_キュゥべえver_",
@@ -704,7 +719,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 550.55
       },
-      "display_name": "魔法少女まどか☆マギカ3 キュゥべえver."
+      "display_name": "魔法少女まどか☆マギカ3 キュゥべえver.",
+      "has_yutime": false
     },
     {
       "id": "p_paコマコマ倶楽部_with_坂本冬美_89確変ループ10ラウンド極",
@@ -742,7 +758,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 448.43
       },
-      "display_name": "Aコマコマ倶楽部 with 坂本冬美 89確変ループ10ラウンド極"
+      "display_name": "Aコマコマ倶楽部 with 坂本冬美 89確変ループ10ラウンド極",
+      "has_yutime": false
     },
     {
       "id": "p_paスーパー海物語in沖縄6_withえなこ",
@@ -783,7 +800,8 @@
         "theoretical_index": 1001.0,
         "lt_entry_rate": 1.0
       },
-      "display_name": "Aスーパー海物語IN沖縄6 Withえなこ"
+      "display_name": "Aスーパー海物語IN沖縄6 Withえなこ",
+      "has_yutime": false
     },
     {
       "id": "p_pa乗物娘_with_cyber_japan_dancers_2nd_seaso",
@@ -823,7 +841,8 @@
         "entry_rate_primary": 1.0,
         "theoretical_index": 1297.02
       },
-      "display_name": "A乗物娘 WITH CYBER JAPAN DANCERS 2nd season 77…"
+      "display_name": "A乗物娘 WITH CYBER JAPAN DANCERS 2nd season 77…",
+      "has_yutime": false
     },
     {
       "id": "p_pa大海物語withアグネス・ラム_premium_edition",
@@ -864,7 +883,8 @@
         "entry_rate_primary": 1.0,
         "theoretical_index": 1081.08
       },
-      "display_name": "A大海物語Withアグネス・ラム Premium Edition"
+      "display_name": "A大海物語Withアグネス・ラム Premium Edition",
+      "has_yutime": false
     },
     {
       "id": "p_pa愛の不時着_99スイート_ver_",
@@ -906,7 +926,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 510.51
       },
-      "display_name": "A愛の不時着 99スイート ver."
+      "display_name": "A愛の不時着 99スイート ver.",
+      "has_yutime": false
     },
     {
       "id": "p_pa戦国乙女7_終焉の関ヶ原_ときめき78バージョン",
@@ -948,7 +969,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 583.82
       },
-      "display_name": "A戦国乙女7 終焉の関ヶ原 ときめき78バージョン"
+      "display_name": "A戦国乙女7 終焉の関ヶ原 ときめき78バージョン",
+      "has_yutime": false
     },
     {
       "id": "p_pa海物語_極japan_withナギナミ",
@@ -989,7 +1011,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 1041.04
       },
-      "display_name": "A海物語 極JAPAN Withナギナミ"
+      "display_name": "A海物語 極JAPAN Withナギナミ",
+      "has_yutime": false
     },
     {
       "id": "p_pa清流物語4_ウキウキ79ver_",
@@ -1030,7 +1053,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 1051.31
       },
-      "display_name": "A清流物語4 ウキウキ79ver."
+      "display_name": "A清流物語4 ウキウキ79ver.",
+      "has_yutime": false
     },
     {
       "id": "p_pa義風堂_兼続と慶次_3_99ver_",
@@ -1071,7 +1095,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 465.07
       },
-      "display_name": "A義風堂々!!〜兼続と慶次〜3 99ver."
+      "display_name": "A義風堂々!!〜兼続と慶次〜3 99ver.",
+      "has_yutime": false
     },
     {
       "id": "p_pa花の慶次_傾奇一転_87ver_",
@@ -1111,7 +1136,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 1138.43
       },
-      "display_name": "A花の慶次〜傾奇一転 87ver."
+      "display_name": "A花の慶次〜傾奇一転 87ver.",
+      "has_yutime": false
     },
     {
       "id": "p_pa野生の王国_",
@@ -1152,7 +1178,8 @@
         "theoretical_index": 690.69,
         "lt_entry_rate": 1.0
       },
-      "display_name": "A野生の王国Ⅵ"
+      "display_name": "A野生の王国Ⅵ",
+      "has_yutime": false
     },
     {
       "id": "p_p_超甘lt_この素晴らしい世界に祝福を_最終クエスト1_49",
@@ -1194,7 +1221,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 324.05
       },
-      "display_name": "【超甘LT】この素晴らしい世界に祝福を！最終クエスト1/49"
+      "display_name": "【超甘LT】この素晴らしい世界に祝福を！最終クエスト1/49",
+      "has_yutime": false
     },
     {
       "id": "p_p_超甘lt_華牌rr_1_49_99de遊タイム",
@@ -1240,7 +1268,9 @@
         "fetched": "2026-09-02",
         "theoretical_index": 359.82
       },
-      "display_name": "【超甘LT】華牌RR 1/49×99de遊タイム"
+      "display_name": "【超甘LT】華牌RR 1/49×99de遊タイム",
+      "has_yutime": true,
+      "yutime_spins": 137
     },
     {
       "id": "p_pえとたま2_神祭_干支甘",
@@ -1281,7 +1311,8 @@
         "theoretical_index": 637.64,
         "lt_entry_rate": 0.7
       },
-      "display_name": "えとたま2 神祭 干支甘"
+      "display_name": "えとたま2 神祭 干支甘",
+      "has_yutime": false
     },
     {
       "id": "p_pぱちんこ押忍_番長_漢の頂_99ver_",
@@ -1324,7 +1355,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 693.69
       },
-      "display_name": "押忍！番長 漢の頂 99ver."
+      "display_name": "押忍！番長 漢の頂 99ver.",
+      "has_yutime": false
     },
     {
       "id": "p_pキングモンスターrush_67ver_",
@@ -1361,7 +1393,8 @@
         "theoretical_index": 318.05,
         "lt_entry_rate": 0.25
       },
-      "display_name": "キングモンスターRUSH 67Ver."
+      "display_name": "キングモンスターRUSH 67Ver.",
+      "has_yutime": false
     },
     {
       "id": "p_pゴッドイーター199ゴッドトリガーver_",
@@ -1405,7 +1438,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 315.79
       },
-      "display_name": "ゴッドイーター199ゴッドトリガーVER."
+      "display_name": "ゴッドイーター199ゴッドトリガーVER.",
+      "has_yutime": false
     },
     {
       "id": "p_pシャカrush_z_jr_",
@@ -1447,7 +1481,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 739.61
       },
-      "display_name": "シャカRUSH Z Jr."
+      "display_name": "シャカRUSH Z Jr.",
+      "has_yutime": false
     },
     {
       "id": "p_pスーパー海物語in沖縄6",
@@ -1485,7 +1520,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 281.6
       },
-      "display_name": "スーパー海物語IN沖縄6"
+      "display_name": "スーパー海物語IN沖縄6",
+      "has_yutime": false
     },
     {
       "id": "p_pドラムde_電音部_超ドラ熱4500ver_",
@@ -1526,7 +1562,8 @@
         "entry_rate_primary": 0.5,
         "theoretical_index": 579.15
       },
-      "display_name": "ドラムde 電音部 超ドラ熱4500ver."
+      "display_name": "ドラムde 電音部 超ドラ熱4500ver.",
+      "has_yutime": false
     },
     {
       "id": "p_pフィーバーうたわれるもの_lt_light_ver_",
@@ -1570,7 +1607,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 700.7
       },
-      "display_name": "うたわれるもの Light"
+      "display_name": "うたわれるもの Light",
+      "has_yutime": false
     },
     {
       "id": "p_pフィーバーからくりサーカス2_light_ver_",
@@ -1610,7 +1648,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 174.17
       },
-      "display_name": "からくりサーカス2 Light"
+      "display_name": "からくりサーカス2 Light",
+      "has_yutime": false
     },
     {
       "id": "p_pフィーバークィーン_",
@@ -1650,7 +1689,8 @@
         "entry_rate_primary": 1.0,
         "theoretical_index": 1001.0
       },
-      "display_name": "クィーンⅡ"
+      "display_name": "クィーンⅡ",
+      "has_yutime": false
     },
     {
       "id": "p_pフィーバーダンジョンに出会いを求めるのは間違っているだろうか2_lt_ligh",
@@ -1693,7 +1733,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 280.28
       },
-      "display_name": "ダンジョンに出会いを求めるのは間違っているだろうか2 LT-Light ve…"
+      "display_name": "ダンジョンに出会いを求めるのは間違っているだろうか2 LT-Light ve…",
+      "has_yutime": false
     },
     {
       "id": "p_pフィーバー彼女_お借りします_lt_light_ver_",
@@ -1739,7 +1780,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 553.51
       },
-      "display_name": "彼女、お借りします Light"
+      "display_name": "彼女、お借りします Light",
+      "has_yutime": false
     },
     {
       "id": "p_pメイドインアビス_奈落の連環蝕",
@@ -1780,7 +1822,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 539.71
       },
-      "display_name": "メイドインアビス 奈落の連環蝕"
+      "display_name": "メイドインアビス 奈落の連環蝕",
+      "has_yutime": false
     },
     {
       "id": "p_pルパン三世_one_collection_100ver_",
@@ -1825,7 +1868,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 982.52
       },
-      "display_name": "ルパン三世 ONE COLLECTION 100ver."
+      "display_name": "ルパン三世 ONE COLLECTION 100ver.",
+      "has_yutime": false
     },
     {
       "id": "p_p中森明菜・歌姫伝説_forfans_",
@@ -1865,7 +1909,8 @@
         "entry_rate_primary": 1.0,
         "theoretical_index": 469.19
       },
-      "display_name": "中森明菜・歌姫伝説～FORFANS～"
+      "display_name": "中森明菜・歌姫伝説～FORFANS～",
+      "has_yutime": false
     },
     {
       "id": "p_p冴えない彼女の育てかた_99ver_",
@@ -1910,7 +1955,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 900.9
       },
-      "display_name": "冴えない彼女の育てかた 99ver."
+      "display_name": "冴えない彼女の育てかた 99ver.",
+      "has_yutime": false
     },
     {
       "id": "p_p大海物語4スペシャル_black_plus",
@@ -1950,7 +1996,8 @@
         "entry_rate_primary": 1.0,
         "theoretical_index": 750.75
       },
-      "display_name": "大海物語4スペシャル BLACK PLUS"
+      "display_name": "大海物語4スペシャル BLACK PLUS",
+      "has_yutime": false
     },
     {
       "id": "p_p大海物語5スペシャル_赤セルver_",
@@ -1988,7 +2035,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 253.44
       },
-      "display_name": "大海物語5スペシャル 赤セルver."
+      "display_name": "大海物語5スペシャル 赤セルver.",
+      "has_yutime": false
     },
     {
       "id": "p_p少女_歌劇_レヴュースタァライト_99_lt3000",
@@ -2032,7 +2080,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 1001.0
       },
-      "display_name": "少女☆歌劇 レヴュースタァライト 99 LT3000"
+      "display_name": "少女☆歌劇 レヴュースタァライト 99 LT3000",
+      "has_yutime": false
     },
     {
       "id": "p_p戦国乙女7_終焉の関ヶ原_99ver_",
@@ -2076,7 +2125,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 630.63
       },
-      "display_name": "戦国乙女7 終焉の関ヶ原 99ver."
+      "display_name": "戦国乙女7 終焉の関ヶ原 99ver.",
+      "has_yutime": false
     },
     {
       "id": "p_p戦国乙女7_終焉の関ヶ原_llサイズ_299ver_",
@@ -2120,7 +2170,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 265.71
       },
-      "display_name": "戦国乙女7 終焉の関ヶ原 LLサイズ 299ver."
+      "display_name": "戦国乙女7 終焉の関ヶ原 LLサイズ 299ver.",
+      "has_yutime": false
     },
     {
       "id": "p_p攻殻機動隊sac_2045_lt99ver_",
@@ -2164,7 +2215,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 750.75
       },
-      "display_name": "攻殻機動隊SAC_2045 LT99ver."
+      "display_name": "攻殻機動隊SAC_2045 LT99ver.",
+      "has_yutime": false
     },
     {
       "id": "p_p沖ドキ_ドキドキ弾丸ツアー",
@@ -2206,7 +2258,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 1216.22
       },
-      "display_name": "沖ドキ！ドキドキ弾丸ツアー"
+      "display_name": "沖ドキ！ドキドキ弾丸ツアー",
+      "has_yutime": false
     },
     {
       "id": "p_p痛いのは嫌なので防御力に極振りしたいと思います_極振り129ver",
@@ -2251,7 +2304,8 @@
         "entry_rate_primary": 1.0,
         "theoretical_index": 2267.44
       },
-      "display_name": "痛いのは嫌なので防御力に極振りしたいと思います。 極振り129ver"
+      "display_name": "痛いのは嫌なので防御力に極振りしたいと思います。 極振り129ver",
+      "has_yutime": false
     },
     {
       "id": "p_p転生したらスライムだった件129ver_",
@@ -2291,7 +2345,8 @@
         "entry_rate_primary": 1.0,
         "theoretical_index": 771.01
       },
-      "display_name": "転生したらスライムだった件129ver."
+      "display_name": "転生したらスライムだった件129ver.",
+      "has_yutime": false
     },
     {
       "id": "p_p閃乱カグラ189大入りver_",
@@ -2335,7 +2390,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 692.98
       },
-      "display_name": "閃乱カグラ189大入りver."
+      "display_name": "閃乱カグラ189大入りver.",
+      "has_yutime": false
     },
     {
       "id": "p_p黄門ちゃま寿限無_llサイズ_259ver_",
@@ -2376,7 +2432,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 289.58
       },
-      "display_name": "黄門ちゃま寿限無 LLサイズ 259ver."
+      "display_name": "黄門ちゃま寿限無 LLサイズ 259ver.",
+      "has_yutime": false
     },
     {
       "id": "p_versus",
@@ -2390,7 +2447,8 @@
       "small_hit_max": 0,
       "good_hit_min": 500,
       "ceiling_near_ratio": 0.75,
-      "display_name": "VERSUS"
+      "display_name": "VERSUS",
+      "has_yutime": false
     },
     {
       "id": "p_e_aぷらねっとアポロgo",
@@ -2430,7 +2488,8 @@
         "entry_rate_primary": 1.0,
         "theoretical_index": 909.09
       },
-      "display_name": "AぷらねっとアポロGO"
+      "display_name": "AぷらねっとアポロGO",
+      "has_yutime": false
     },
     {
       "id": "p_e_edens_zero_究極lt_",
@@ -2474,7 +2533,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 562.64
       },
-      "display_name": "EDENS ZERO ～究極LT～"
+      "display_name": "EDENS ZERO ～究極LT～",
+      "has_yutime": false
     },
     {
       "id": "p_e_re_ゼロから始める異世界生活_鬼がかり2",
@@ -2518,7 +2578,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 550.16
       },
-      "display_name": "Re:ゼロから始める異世界生活 鬼がかり2"
+      "display_name": "Re:ゼロから始める異世界生活 鬼がかり2",
+      "has_yutime": false
     },
     {
       "id": "p_e_ultraman_4500_超ライト",
@@ -2562,7 +2623,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 1990.62
       },
-      "display_name": "ULTRAMAN 4500 超ライト"
+      "display_name": "ULTRAMAN 4500 超ライト",
+      "has_yutime": false
     },
     {
       "id": "p_e_アズールレーン2_the_animation_超次元",
@@ -2605,7 +2667,8 @@
         "theoretical_index": 662.15,
         "lt_entry_rate": 0.3
       },
-      "display_name": "アズールレーン2 THE ANIMATION 超次元"
+      "display_name": "アズールレーン2 THE ANIMATION 超次元",
+      "has_yutime": false
     },
     {
       "id": "p_e_ゴジラ対エヴァンゲリオン2_超デカゴールド",
@@ -2652,7 +2715,8 @@
         ],
         "fetched": "2026-09-02",
         "theoretical_index": 225.08
-      }
+      },
+      "has_yutime": false
     },
     {
       "id": "p_e_ソードアート・オンライン_アリシゼーション_夜空",
@@ -2694,7 +2758,8 @@
         "entry_rate_primary": 0.5,
         "theoretical_index": 1313.16
       },
-      "display_name": "ソードアート・オンライン アリシゼーション 夜空"
+      "display_name": "ソードアート・オンライン アリシゼーション 夜空",
+      "has_yutime": false
     },
     {
       "id": "p_e_ソードアート・オンライン_閃光の軌跡_99ver_",
@@ -2736,7 +2801,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 440.44
       },
-      "display_name": "ソードアート・オンライン 閃光の軌跡 99Ver."
+      "display_name": "ソードアート・オンライン 閃光の軌跡 99Ver.",
+      "has_yutime": false
     },
     {
       "id": "p_p_バイオハザードre_2",
@@ -2778,7 +2844,8 @@
         "avg_big_payout": 4500,
         "small_hit_payout": 1500,
         "theoretical_index": 18.5
-      }
+      },
+      "has_yutime": false
     },
     {
       "id": "p_e_バイオハザード6",
@@ -2830,7 +2897,8 @@
         ],
         "fetched": "2026-09-02",
         "theoretical_index": 1273.58
-      }
+      },
+      "has_yutime": false
     },
     {
       "id": "p_e_ベルセルク無双_第2章",
@@ -2875,7 +2943,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 562.64
       },
-      "display_name": "ベルセルク無双 第2章"
+      "display_name": "ベルセルク無双 第2章",
+      "has_yutime": false
     },
     {
       "id": "p_e_ライザのアトリエ_常闇の女王と秘密の隠れ家_",
@@ -2922,7 +2991,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 574.47
       },
-      "display_name": "ライザのアトリエ 〜常闇の女王と秘密の隠れ家〜"
+      "display_name": "ライザのアトリエ 〜常闇の女王と秘密の隠れ家〜",
+      "has_yutime": false
     },
     {
       "id": "p_e_七つの大罪3",
@@ -2970,7 +3040,8 @@
         "theoretical_index": 546.56,
         "lt_entry_rate": 1.0
       },
-      "display_name": "七つの大罪3"
+      "display_name": "七つの大罪3",
+      "has_yutime": false
     },
     {
       "id": "p_e_仮面ライダー電王_デカヘソ239",
@@ -3015,7 +3086,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 515.84
       },
-      "display_name": "仮面ライダー電王 デカヘソ239"
+      "display_name": "仮面ライダー電王 デカヘソ239",
+      "has_yutime": false
     },
     {
       "id": "p_e_化物語_鬼99ver_",
@@ -3055,7 +3127,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 752.25
       },
-      "display_name": "化物語 鬼99ver."
+      "display_name": "化物語 鬼99ver.",
+      "has_yutime": false
     },
     {
       "id": "p_e_北斗の拳11_暴凶星",
@@ -3101,7 +3174,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 526.39
       },
-      "display_name": "北斗の拳11 暴凶星"
+      "display_name": "北斗の拳11 暴凶星",
+      "has_yutime": false
     },
     {
       "id": "p_e_学園黙示録ハイスクール・オブ・ザ・デッド3",
@@ -3147,7 +3221,8 @@
         "theoretical_index": 200.53,
         "lt_entry_rate": 0.5
       },
-      "display_name": "学園黙示録ハイスクール・オブ・ザ・デッド3"
+      "display_name": "学園黙示録ハイスクール・オブ・ザ・デッド3",
+      "has_yutime": false
     },
     {
       "id": "p_p_新世紀エヴァンゲリオン_319_red",
@@ -3182,7 +3257,8 @@
         "continuation_rate": 0.81,
         "avg_big_payout": 1500,
         "small_hit_payout": 300
-      }
+      },
+      "has_yutime": false
     },
     {
       "id": "p_e_新世紀エヴァンゲリオン_はじまりの記憶_",
@@ -3232,7 +3308,8 @@
         ],
         "fetched": "2026-09-02",
         "theoretical_index": 445.26
-      }
+      },
+      "has_yutime": false
     },
     {
       "id": "p_e_東京リベンジャーズ_聖夜決戦編",
@@ -3279,7 +3356,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 563.06,
         "lt_entry_rate": 0.5
-      }
+      },
+      "has_yutime": false
     },
     {
       "id": "p_e_東京喰種_超デカ超一撃ver_",
@@ -3326,7 +3404,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 319.07
       },
-      "display_name": "東京喰種 超デカ超一撃ver."
+      "display_name": "東京喰種 超デカ超一撃ver.",
+      "has_yutime": false
     },
     {
       "id": "p_e_無職転生_異世界行ったら本気だす_",
@@ -3370,7 +3449,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 395.27
       },
-      "display_name": "無職転生 ～異世界行ったら本気だす～"
+      "display_name": "無職転生 ～異世界行ったら本気だす～",
+      "has_yutime": false
     },
     {
       "id": "p_e_獣王_獅子の一撃",
@@ -3413,7 +3493,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 351.89
       },
-      "display_name": "獣王 獅子の一撃"
+      "display_name": "獣王 獅子の一撃",
+      "has_yutime": false
     },
     {
       "id": "p_e_甲鉄城のカバネリ2_咲かせや燦然",
@@ -3457,7 +3538,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 547.39
       },
-      "display_name": "甲鉄城のカバネリ2 咲かせや燦然"
+      "display_name": "甲鉄城のカバネリ2 咲かせや燦然",
+      "has_yutime": false
     },
     {
       "id": "p_e_甲鉄城のカバネリ2_輪廻の果報119ver_",
@@ -3496,7 +3578,8 @@
         "entry_rate_primary": 0.255,
         "theoretical_index": 319.28
       },
-      "display_name": "甲鉄城のカバネリ2 輪廻の果報119ver."
+      "display_name": "甲鉄城のカバネリ2 輪廻の果報119ver.",
+      "has_yutime": false
     },
     {
       "id": "p_e_終末のワルキューレ",
@@ -3533,7 +3616,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 177.35
       },
-      "display_name": "終末のワルキューレ"
+      "display_name": "終末のワルキューレ",
+      "has_yutime": false
     },
     {
       "id": "p_e_聖戦士ダンバイン_3_zerosonic",
@@ -3577,7 +3661,8 @@
         "theoretical_index": 300.9,
         "lt_entry_rate": 0.501
       },
-      "display_name": "聖戦士ダンバイン 3 ZEROSONIC"
+      "display_name": "聖戦士ダンバイン 3 ZEROSONIC",
+      "has_yutime": false
     },
     {
       "id": "p_e_魔法少女まどか_マギカ3_時間遡行_始まりの願い_",
@@ -3623,7 +3708,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 492.34
       },
-      "display_name": "魔法少女まどか☆マギカ3 時間遡行〜始まりの願い〜"
+      "display_name": "魔法少女まどか☆マギカ3 時間遡行〜始まりの願い〜",
+      "has_yutime": false
     },
     {
       "id": "p_e86_エイティシックス_",
@@ -3664,7 +3750,8 @@
         "theoretical_index": 341.91,
         "lt_entry_rate": 0.545
       },
-      "display_name": "86-エイティシックス-"
+      "display_name": "86-エイティシックス-",
+      "has_yutime": false
     },
     {
       "id": "p_eacわんわんパラダイスcelebration",
@@ -3703,7 +3790,8 @@
         "entry_rate_primary": 0.52,
         "theoretical_index": 729.46
       },
-      "display_name": "ACわんわんパラダイスCELEBRATION"
+      "display_name": "ACわんわんパラダイスCELEBRATION",
+      "has_yutime": false
     },
     {
       "id": "p_eうしおととら_神のせspec_150ver_",
@@ -3750,7 +3838,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 898.14
       },
-      "display_name": "うしおととら〜神のせSPEC〜150ver."
+      "display_name": "うしおととら〜神のせSPEC〜150ver.",
+      "has_yutime": false
     },
     {
       "id": "p_eうしおととら_神のせspec_399ver_",
@@ -3796,7 +3885,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 686.42
       },
-      "display_name": "うしおととら〜神のせSPEC〜399ver."
+      "display_name": "うしおととら〜神のせSPEC〜399ver.",
+      "has_yutime": false
     },
     {
       "id": "p_eとある科学の超電磁砲_phase_next",
@@ -3835,7 +3925,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 220.98
       },
-      "display_name": "とある科学の超電磁砲 PHASE NEXT"
+      "display_name": "とある科学の超電磁砲 PHASE NEXT",
+      "has_yutime": false
     },
     {
       "id": "p_eぱちんこ押忍_番長_漢の頂_99ver_",
@@ -3878,7 +3969,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 693.69
       },
-      "display_name": "押忍！番長 漢の頂 99ver."
+      "display_name": "押忍！番長 漢の頂 99ver.",
+      "has_yutime": false
     },
     {
       "id": "p_eひきこまり吸血姫の悶_",
@@ -3925,7 +4017,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 2005.58
       },
-      "display_name": "ひきこまり吸血姫の悶々"
+      "display_name": "ひきこまり吸血姫の悶々",
+      "has_yutime": false
     },
     {
       "id": "p_eまわるん超ワープ_ギンギラパラダイス_viva_festa",
@@ -3967,7 +4060,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 211.2
       },
-      "display_name": "まわるん超ワープ ギンギラパラダイス VIVA FESTA"
+      "display_name": "まわるん超ワープ ギンギラパラダイス VIVA FESTA",
+      "has_yutime": false
     },
     {
       "id": "p_eようこそ実力至上主義の教室へ",
@@ -4009,7 +4103,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 428.69
       },
-      "display_name": "ようこそ実力至上主義の教室へ"
+      "display_name": "ようこそ実力至上主義の教室へ",
+      "has_yutime": false
     },
     {
       "id": "p_eアクセル・ワールド",
@@ -4050,7 +4145,8 @@
         "theoretical_index": 1584.51,
         "lt_entry_rate": 0.7
       },
-      "display_name": "アクセル・ワールド"
+      "display_name": "アクセル・ワールド",
+      "has_yutime": false
     },
     {
       "id": "p_eアクダマドライブ",
@@ -4093,7 +4189,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 436.48
       },
-      "display_name": "アクダマドライブ"
+      "display_name": "アクダマドライブ",
+      "has_yutime": false
     },
     {
       "id": "p_eカケグルイ_219ver",
@@ -4136,7 +4233,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 171.23
       },
-      "display_name": "カケグルイ 219ver"
+      "display_name": "カケグルイ 219ver",
+      "has_yutime": false
     },
     {
       "id": "p_eカケグルイ_7500ver",
@@ -4179,7 +4277,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 183.82
       },
-      "display_name": "カケグルイ 7500ver"
+      "display_name": "カケグルイ 7500ver",
+      "has_yutime": false
     },
     {
       "id": "p_eガールズ_パンツァー_最終章",
@@ -4223,7 +4322,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 574.32
       },
-      "display_name": "ガールズ＆パンツァー 最終章"
+      "display_name": "ガールズ＆パンツァー 最終章",
+      "has_yutime": false
     },
     {
       "id": "p_eガールズ_パンツァー_最終章_159ver_",
@@ -4267,7 +4367,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 469.34
       },
-      "display_name": "ガールズ＆パンツァー 最終章 159ver."
+      "display_name": "ガールズ＆パンツァー 最終章 159ver.",
+      "has_yutime": false
     },
     {
       "id": "p_eシン・ウルトラマン_79ver_",
@@ -4308,7 +4409,8 @@
         "entry_rate_primary": 0.33,
         "theoretical_index": 413.02
       },
-      "display_name": "シン・ウルトラマン 79ver."
+      "display_name": "シン・ウルトラマン 79ver.",
+      "has_yutime": false
     },
     {
       "id": "p_eソードアート・オンライン_オルタナティブ_ガンゲイル・オンライン",
@@ -4355,7 +4457,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 27.43
       },
-      "display_name": "ソードアート・オンライン オルタナティブ ガンゲイル・オンライン"
+      "display_name": "ソードアート・オンライン オルタナティブ ガンゲイル・オンライン",
+      "has_yutime": false
     },
     {
       "id": "p_eゾン100_ゾンビになるまでにしたい100のこと_",
@@ -4404,7 +4507,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 390.98
       },
-      "display_name": "ゾン100〜ゾンビになるまでにしたい100のこと〜"
+      "display_name": "ゾン100〜ゾンビになるまでにしたい100のこと〜",
+      "has_yutime": false
     },
     {
       "id": "p_eタクトオーパス_デスティニー",
@@ -4452,7 +4556,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 248.5
       },
-      "display_name": "タクトオーパス デスティニー"
+      "display_name": "タクトオーパス デスティニー",
+      "has_yutime": false
     },
     {
       "id": "p_eノーゲーム・ノーライフ_119ver_",
@@ -4493,7 +4598,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 417.36
       },
-      "display_name": "ノーゲーム・ノーライフ 119Ver."
+      "display_name": "ノーゲーム・ノーライフ 119Ver.",
+      "has_yutime": false
     },
     {
       "id": "p_eノーゲーム・ノーライフ_199ver_",
@@ -4534,7 +4640,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 375.38
       },
-      "display_name": "ノーゲーム・ノーライフ 199Ver."
+      "display_name": "ノーゲーム・ノーライフ 199Ver.",
+      "has_yutime": false
     },
     {
       "id": "p_eノーゲーム・ノーライフ_319ver_",
@@ -4574,7 +4681,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 281.6
       },
-      "display_name": "ノーゲーム・ノーライフ 319Ver."
+      "display_name": "ノーゲーム・ノーライフ 319Ver.",
+      "has_yutime": false
     },
     {
       "id": "p_eフィーバー_デッドマウント・デスプレイ_魂神9000",
@@ -4613,7 +4721,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 655.9
       },
-      "display_name": "デッドマウント・デスプレイ 魂神9000"
+      "display_name": "デッドマウント・デスプレイ 魂神9000",
+      "has_yutime": false
     },
     {
       "id": "p_eフィーバーbastard_暗黒の破壊神_",
@@ -4656,7 +4765,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 375.09
       },
-      "display_name": "BASTARD!! -暗黒の破壊神-"
+      "display_name": "BASTARD!! -暗黒の破壊神-",
+      "has_yutime": false
     },
     {
       "id": "p_eフィーバーもののがたり",
@@ -4700,7 +4810,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 595.4
       },
-      "display_name": "もののがたり"
+      "display_name": "もののがたり",
+      "has_yutime": false
     },
     {
       "id": "p_eフィーバーキン肉マン",
@@ -4747,7 +4858,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 573.89
       },
-      "display_name": "キン肉マン"
+      "display_name": "キン肉マン",
+      "has_yutime": false
     },
     {
       "id": "p_eフィーバーダンベル何キロ持てる_2",
@@ -4793,7 +4905,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 550.37
       },
-      "display_name": "ダンベル何キロ持てる？2"
+      "display_name": "ダンベル何キロ持てる？2",
+      "has_yutime": false
     },
     {
       "id": "p_eフィーバーブルーロック",
@@ -4835,7 +4948,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 529.51
       },
-      "display_name": "ブルーロック"
+      "display_name": "ブルーロック",
+      "has_yutime": false
     },
     {
       "id": "p_eフィーバーブルーロック_light_ver_",
@@ -4875,7 +4989,8 @@
         "entry_rate_primary": 1.0,
         "theoretical_index": 2331.39
       },
-      "display_name": "ブルーロック Light"
+      "display_name": "ブルーロック Light",
+      "has_yutime": false
     },
     {
       "id": "p_eフィーバー妖怪ウォッチ",
@@ -4916,7 +5031,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 429.31
       },
-      "display_name": "妖怪ウォッチ"
+      "display_name": "妖怪ウォッチ",
+      "has_yutime": false
     },
     {
       "id": "p_eフィーバー機動戦士ガンダムseed_クライマックス",
@@ -4961,7 +5077,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 562.64
       },
-      "display_name": "機動戦士ガンダムSEED クライマックス"
+      "display_name": "機動戦士ガンダムSEED クライマックス",
+      "has_yutime": false
     },
     {
       "id": "p_eフィーバー炎炎ノ消防隊2_99ver_",
@@ -5004,7 +5121,8 @@
         "theoretical_index": 171.17,
         "lt_entry_rate": 1.0
       },
-      "display_name": "炎炎ノ消防隊2 99ver."
+      "display_name": "炎炎ノ消防隊2 99ver.",
+      "has_yutime": false
     },
     {
       "id": "p_eラグナドール_妖しき皇帝と終焉の夜叉姫",
@@ -5047,7 +5165,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 751.57
       },
-      "display_name": "ラグナドール 妖しき皇帝と終焉の夜叉姫"
+      "display_name": "ラグナドール 妖しき皇帝と終焉の夜叉姫",
+      "has_yutime": false
     },
     {
       "id": "p_eリコリス・リコイル",
@@ -5094,7 +5213,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 673.85
       },
-      "display_name": "リコリス・リコイル"
+      "display_name": "リコリス・リコイル",
+      "has_yutime": false
     },
     {
       "id": "p_eリング_最恐領域",
@@ -5137,7 +5257,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 500.0
       },
-      "display_name": "リング 最恐領域"
+      "display_name": "リング 最恐領域",
+      "has_yutime": false
     },
     {
       "id": "p_eルパン三世vsキャッツ・アイ",
@@ -5180,7 +5301,8 @@
         "theoretical_index": 689.22,
         "rush_entry_rate": 0.79
       },
-      "display_name": "ルパン三世VSキャッツ・アイ"
+      "display_name": "ルパン三世VSキャッツ・アイ",
+      "has_yutime": false
     },
     {
       "id": "p_eルパン三世vsキャッツ・アイ_157ver_極限突破ブッた斬り_7500",
@@ -5223,7 +5345,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 750.47
       },
-      "display_name": "ルパン三世VSキャッツ・アイ 157ver. 極限突破ブッた斬り 7500"
+      "display_name": "ルパン三世VSキャッツ・アイ 157ver. 極限突破ブッた斬り 7500",
+      "has_yutime": false
     },
     {
       "id": "p_eワンパンマン2_正義執行",
@@ -5267,7 +5390,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 412.56
       },
-      "display_name": "ワンパンマン2～正義執行"
+      "display_name": "ワンパンマン2～正義執行",
+      "has_yutime": false
     },
     {
       "id": "p_eワールドダイスター",
@@ -5311,7 +5435,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 2873.98
       },
-      "display_name": "ワールドダイスター"
+      "display_name": "ワールドダイスター",
+      "has_yutime": false
     },
     {
       "id": "p_e中森明菜・歌姫伝説_forfans_",
@@ -5351,7 +5476,8 @@
         "entry_rate_primary": 1.0,
         "theoretical_index": 469.19
       },
-      "display_name": "中森明菜・歌姫伝説～FORFANS～"
+      "display_name": "中森明菜・歌姫伝説～FORFANS～",
+      "has_yutime": false
     },
     {
       "id": "p_e冥妃転生",
@@ -5395,7 +5521,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 844.59
       },
-      "display_name": "冥妃転生"
+      "display_name": "冥妃転生",
+      "has_yutime": false
     },
     {
       "id": "p_e吉宗_極乗3000ver_",
@@ -5439,7 +5566,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 450.23
       },
-      "display_name": "吉宗 極乗3000ver."
+      "display_name": "吉宗 極乗3000ver.",
+      "has_yutime": false
     },
     {
       "id": "p_e地獄少女7500ver_",
@@ -5477,7 +5605,8 @@
         "theoretical_index": 4775.51,
         "lt_entry_rate": 0.52
       },
-      "display_name": "地獄少女7500Ver."
+      "display_name": "地獄少女7500Ver.",
+      "has_yutime": false
     },
     {
       "id": "p_e大海物語5スペシャル_319遊タイムver_",
@@ -5515,7 +5644,9 @@
         "fetched": "2026-09-02",
         "theoretical_index": 253.44
       },
-      "display_name": "大海物語5スペシャル 319遊タイムver."
+      "display_name": "大海物語5スペシャル 319遊タイムver.",
+      "has_yutime": true,
+      "yutime_spins": 879
     },
     {
       "id": "p_e源外伝_episode_of_大龍_",
@@ -5555,7 +5686,8 @@
         "theoretical_index": 187.69,
         "lt_entry_rate": 0.25
       },
-      "display_name": "源外伝 EPISODE OF -大龍-"
+      "display_name": "源外伝 EPISODE OF -大龍-",
+      "has_yutime": false
     },
     {
       "id": "p_e牙狼11_冴島大河_魔戒burst_ver_",
@@ -5592,7 +5724,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 107.17
       },
-      "display_name": "牙狼11〜冴島大河〜魔戒BURST Ver."
+      "display_name": "牙狼11〜冴島大河〜魔戒BURST Ver.",
+      "has_yutime": false
     },
     {
       "id": "p_e異世界でチート能力を手にした俺は現実世界をも無双する_レベルアップは人生を変え",
@@ -5630,7 +5763,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 167.6
       },
-      "display_name": "異世界でチート能力を手にした俺は現実世界をも無双する 〜レベルアップは人生を変えた〜"
+      "display_name": "異世界でチート能力を手にした俺は現実世界をも無双する 〜レベルアップは人生を変えた〜",
+      "has_yutime": false
     },
     {
       "id": "p_e盾の勇者の成り上がり_アルティメット199ver_",
@@ -5671,7 +5805,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 391.96
       },
-      "display_name": "盾の勇者の成り上がり アルティメット199ver."
+      "display_name": "盾の勇者の成り上がり アルティメット199ver.",
+      "has_yutime": false
     },
     {
       "id": "p_e範馬刃牙_129ver_",
@@ -5713,7 +5848,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 408.64
       },
-      "display_name": "範馬刃牙 129ver."
+      "display_name": "範馬刃牙 129ver.",
+      "has_yutime": false
     },
     {
       "id": "p_e範馬刃牙_199ver_",
@@ -5755,7 +5891,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 375.38
       },
-      "display_name": "範馬刃牙 199ver."
+      "display_name": "範馬刃牙 199ver.",
+      "has_yutime": false
     },
     {
       "id": "p_e結城友奈は勇者である_極限7500_",
@@ -5797,7 +5934,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 664.04
       },
-      "display_name": "結城友奈は勇者である〜極限7500〜"
+      "display_name": "結城友奈は勇者である〜極限7500〜",
+      "has_yutime": false
     },
     {
       "id": "p_e花の慶次_黄金の一撃",
@@ -5841,7 +5979,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 516.56
       },
-      "display_name": "花の慶次〜黄金の一撃"
+      "display_name": "花の慶次〜黄金の一撃",
+      "has_yutime": false
     },
     {
       "id": "p_e虚構推理",
@@ -5883,7 +6022,8 @@
         "theoretical_index": 564.26,
         "lt_entry_rate": 0.505
       },
-      "display_name": "虚構推理"
+      "display_name": "虚構推理",
+      "has_yutime": false
     },
     {
       "id": "p_e転生したらスライムだった件2",
@@ -5926,7 +6066,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 344.9
       },
-      "display_name": "転生したらスライムだった件2"
+      "display_name": "転生したらスライムだった件2",
+      "has_yutime": false
     },
     {
       "id": "p_e魔女と野獣",
@@ -5973,7 +6114,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 671.99
       },
-      "display_name": "魔女と野獣"
+      "display_name": "魔女と野獣",
+      "has_yutime": false
     },
     {
       "id": "p__廻るヘソワイド_pホワイトシャカrush",
@@ -6013,7 +6155,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 550.55
       },
-      "display_name": "〜廻るヘソワイド〜PホワイトシャカRUSH"
+      "display_name": "〜廻るヘソワイド〜PホワイトシャカRUSH",
+      "has_yutime": false
     },
     {
       "id": "p_ぱちんこ_必殺仕事人_",
@@ -6058,7 +6201,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 240.7
       },
-      "display_name": "必殺仕事人Ⅵ"
+      "display_name": "必殺仕事人Ⅵ",
+      "has_yutime": false
     },
     {
       "id": "p_スマパチ_ssss_gridman_メガstart_159ver_",
@@ -6099,7 +6243,8 @@
         "theoretical_index": 750.94,
         "lt_entry_rate": 0.5
       },
-      "display_name": "SSSS.GRIDMAN メガSTART 159ver."
+      "display_name": "SSSS.GRIDMAN メガSTART 159ver.",
+      "has_yutime": false
     },
     {
       "id": "p_デカスタpシュタインズ・ゲート_ゼロ_まゆしぃば_じょん",
@@ -6142,7 +6287,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 500.5
       },
-      "display_name": "デカスタPシュタインズ・ゲート ゼロ まゆしぃば〜じょん"
+      "display_name": "デカスタPシュタインズ・ゲート ゼロ まゆしぃば〜じょん",
+      "has_yutime": false
     },
     {
       "id": "p_デカスタp戦国無双100ver_",
@@ -6186,7 +6332,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 247.57
       },
-      "display_name": "デカスタP戦国無双100ver."
+      "display_name": "デカスタP戦国無双100ver.",
+      "has_yutime": false
     },
     {
       "id": "p_デカスタeベルセルク無双第2章_10連撃ver_",
@@ -6228,7 +6375,8 @@
         "fetched": "2026-09-02",
         "theoretical_index": 250.63
       },
-      "display_name": "デカスタeベルセルク無双第2章 10連撃Ver."
+      "display_name": "デカスタeベルセルク無双第2章 10連撃Ver.",
+      "has_yutime": false
     },
     {
       "id": "p_biohazard",
@@ -6247,7 +6395,8 @@
       "small_hit_max": 300,
       "good_hit_min": 3000,
       "ceiling_near_ratio": 0.75,
-      "display_name": "バイオ"
+      "display_name": "バイオ",
+      "has_yutime": false
     },
     {
       "id": "p_onea_monogatari",
@@ -6262,7 +6411,8 @@
       "small_hit_max": 400,
       "good_hit_min": 3500,
       "ceiling_near_ratio": 0.7,
-      "display_name": "ワンエー"
+      "display_name": "ワンエー",
+      "has_yutime": false
     }
   ],
   "counter_types": [

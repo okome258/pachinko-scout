@@ -1,5 +1,6 @@
 /** 1回のスキャン = 機種情報と台データを別管理 */
 
+import { getDepthLine } from "./depth.js";
 import { pickDisplayName } from "./machine-picker-ui.js";
 
 export function formatCounterSummary(data) {
@@ -20,7 +21,8 @@ export function formatMachineSummary(spec, ocrName, machineId) {
   const name = pickDisplayName(spec);
   const official = spec.names?.[0] && spec.names[0] !== name ? spec.names[0] : "";
   const denom = spec.first_hit_denom ? `1/${Math.round(spec.first_hit_denom)}` : "";
-  const ceiling = spec.ceiling_spins ? `深度目安${spec.ceiling_spins}` : "";
+  const depth = getDepthLine(spec);
+  const depthLabel = depth.short;
   const src =
     machineId && machineId !== "auto" && machineId !== "ocr"
       ? "手動"
@@ -31,7 +33,7 @@ export function formatMachineSummary(spec, ocrName, machineId) {
           : spec.match_source === "manual"
             ? "手動"
             : "推定";
-  let meta = [denom, ceiling, src].filter(Boolean).join(" · ");
+  let meta = [denom, depthLabel, src].filter(Boolean).join(" · ");
   if (official) meta += ` · ${official}`;
   if (ocrName && ocrName !== name && ocrName !== official) meta += `（OCR: ${ocrName}）`;
   return { title: name, meta };

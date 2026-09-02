@@ -167,6 +167,30 @@ def parse_overview_rates(text: str | None) -> dict[str, float | None]:
     return rates
 
 
+def parse_yutime(specs: dict[str, str], overview: str, name: str, denom: float | None) -> dict:
+    """遊タイム有無と発動回転を抽出。"""
+    blob = " ".join(specs.values()) + " " + overview + " " + (name or "")
+    has = bool(re.search(r"遊タイム", blob))
+    spins = None
+    # 「大当り間500回転」「規定回転数は950回転」「遊タイム突入…700回転」など
+    patterns = [
+        r"遊タイム[^。\n]{0,40}?(\d{3,4})\s*回転",
+        r"大当り間\s*(\d{3,4})\s*回転\s*消化",
+        r"規定回転数[^。\n]{0,20}?(\d{3,4})\s*回転",
+        r"(\d{3,4})\s*回転\s*消化[^。\n]{0,20}?遊タイム",
+        r"電サポ回転数[^。\n]{0,40}?遊タイム[^。\n]{0,20}?(\d{3,4})",
+    ]
+    for pat in patterns:
+        m = re.search(pat, blob)
+        if m:
+            spins = int(m.group(1))
+            has = True
+            break
+    if has and spins is None and denom:
+        spins = int(round(denom * 2.75))  # 規格上 2.5〜3.0倍帯の中央
+    return {"has_yutime": has, "yutime_spins": spins}
+
+
 def infer_machine_mode(specs: dict[str, str], overview: str) -> str:
     blob = " ".join(specs.values()) + " " + overview
     if specs.get("確変突入率") and specs["確変突入率"].strip() not in ("-", "―"):
@@ -264,6 +288,8 @@ def build_ev_spec(dmm_id: str, specs: dict[str, str], listing_high: float | None
     else:
         entry_primary = lt_entry_total or lt_entry or rush_entry or kakuhen_entry
 
+    yutime = parse_yutime(specs, overview, specs.get("型式名", ""), denoms["first_hit_denom"])
+
     ev: dict = {
         "spec_level": "detail",
         "dmm_id": dmm_id,
@@ -285,6 +311,8 @@ def build_ev_spec(dmm_id: str, specs: dict[str, str], listing_high: float | None
         "small_hit_payout": small_hit,
         "avg_big_payout": avg_big,
         "electric_support_spins": spins,
+        "has_yutime": yutime["has_yutime"],
+        "yutime_spins": yutime["yutime_spins"],
         "fetched": date.today().isoformat(),
     }
 
@@ -335,6 +363,8 @@ def parse_machines_from_html(html: str) -> list[dict]:
         seen.add(mid)
 
         mtype = infer_type(denom)
+        has_yutime = bool(re.search(r"遊タイム", name))
+        yutime_spins = int(round(denom * 2.75)) if has_yutime else None
         machines.append(
             {
                 "id": mid,
@@ -346,7 +376,9 @@ def parse_machines_from_html(html: str) -> list[dict]:
                 if denoms["high_prob_denom"]
                 else None,
                 "dmm_id": dmm_id,
-                "ceiling_spins": default_ceiling(denom),
+                "ceiling_spins": yutime_spins or default_ceiling(denom),
+                "has_yutime": has_yutime,
+                "yutime_spins": yutime_spins,
                 "lt_critical": infer_lt_critical(mtype, name),
                 "small_hit_max": 300 if mtype in ("mid", "heavy") else 450,
                 "good_hit_min": 3000 if mtype in ("mid", "heavy") else 2000,
@@ -359,6 +391,8 @@ def parse_machines_from_html(html: str) -> list[dict]:
                     "high_prob_denom": round(denoms["high_prob_denom"], 1)
                     if denoms["high_prob_denom"]
                     else None,
+                    "has_yutime": has_yutime,
+                    "yutime_spins": yutime_spins,
                 },
             }
         )
@@ -421,10 +455,24 @@ def merge_machines(existing: list[dict], fetched: list[dict]) -> list[dict]:
 def refresh_display_names(machines: list[dict]) -> None:
     for m in machines:
         if m.get("picker_label"):
-            continue
-        official = (m.get("names") or [None])[0]
-        if official:
-            m["display_name"] = hall_display_name(official)
+            pass
+        else:
+            official = (m.get("names") or [None])[0]
+            if official:
+                m["display_name"] = hall_display_name(official)
+        # 遊タイムフラグを名前・ev_specから補完
+        blob = " ".join(m.get("names") or []) + " " + str(m.get("display_name") or "")
+        ev = m.get("ev_spec") or {}
+        if m.get("has_yutime") is None:
+            m["has_yutime"] = bool(re.search(r"遊タイム", blob)) or bool(ev.get("has_yutime"))
+        if m.get("has_yutime") and not m.get("yutime_spins"):
+            m["yutime_spins"] = ev.get("yutime_spins") or (
+                int(round(float(m["first_hit_denom"]) * 2.75))
+                if m.get("first_hit_denom")
+                else m.get("ceiling_spins")
+            )
+        if m.get("yutime_spins") and not m.get("ceiling_spins"):
+            m["ceiling_spins"] = m["yutime_spins"]
 
 
 def enrich_with_details(machines: list[dict], sleep_sec: float, limit: int | None, force: bool = False) -> int:
@@ -448,6 +496,11 @@ def enrich_with_details(machines: list[dict], sleep_sec: float, limit: int | Non
                 m["first_hit_denom"] = ev["first_hit_denom"]
             if ev.get("high_prob_denom"):
                 m["high_prob_denom"] = ev["high_prob_denom"]
+            if ev.get("has_yutime"):
+                m["has_yutime"] = True
+            if ev.get("yutime_spins"):
+                m["yutime_spins"] = ev["yutime_spins"]
+                m["ceiling_spins"] = ev["yutime_spins"]
             # LT重要機種をスペックから再推定
             if ev.get("lt_entry_rate_total") or ev.get("lt_entry_rate"):
                 if m.get("type") in ("mid", "heavy"):

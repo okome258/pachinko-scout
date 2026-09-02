@@ -583,12 +583,6 @@
     </div>
   </div>
 
-  <div id="feedbackRow">
-    <button id="fbWin">当たった</button>
-    <button id="fbLose">外れた</button>
-    <button id="fbSkip">スキップ</button>
-  </div>
-
   <div id="statusBar">機種を選んでからカウンターにかざす</div>
 
   <div id="controls">
@@ -601,8 +595,8 @@
     import { scoreMachine, verdictColor } from "./score.js";
     import { loadMachines, matchMachine, detectCounterType, getMachineNameFeedback } from "./machines.js";
     import { calcRetreatPlan } from "./retreat.js";
-    import { applyLearnedBias, recordFeedback } from "./learn.js";
     import { calcExpectedValue } from "./ev.js";
+    import { getDepthLine } from "./depth.js";
     import {
       calcBorder,
       getExchangeYen,
@@ -644,10 +638,9 @@
     let panelExpanded = false;
     const PANEL_AUTO_HIDE_MS = 6000;
 
-    const feedbackRow = document.getElementById("feedbackRow");
+    const SCAN_COOLDOWN_MS = 2500;
     const panelDetailBtn = document.getElementById("panelDetailBtn");
     const panelCloseBtn = document.getElementById("panelCloseBtn");
-    const SCAN_COOLDOWN_MS = 2500;
 
     const machineBlock = document.getElementById("machineBlock");
     const machineBlockValue = document.getElementById("machineBlockValue");
@@ -737,18 +730,6 @@
       const machineId = getEffectiveMachineId();
       const machineSpec = resolveSpecForSession(data);
       let result = scoreMachine(data, machineSpec);
-      const bias = applyLearnedBias(
-        result.score,
-        machineSpec?.names?.[0],
-        counterType?.id,
-      );
-      if (bias.biasApplied) {
-        result = { ...result, score: bias.score };
-        if (bias.score >= 65) result.verdict = "打つ候補";
-        else if (bias.score < 45) result.verdict = "見送り";
-        else result.verdict = "様子見";
-        result.biasApplied = bias.biasApplied;
-      }
       const ev = calcExpectedValue(data, machineSpec);
       const border = calcBorder(machineSpec);
       const retreat = calcRetreatPlan(data, machineSpec);
@@ -851,7 +832,11 @@
       return ocrWorker;
     }
 
-    function getCropCanvas(inset = { top: 0, height: 1 }) {
+    function getCropCanvas(opts = {}) {
+      const inset = {
+        top: opts.top ?? 0,
+        height: opts.height ?? 1,
+      };
       const vw = video.videoWidth;
       const vh = video.videoHeight;
       if (!vw || !vh) return null;
@@ -873,12 +858,36 @@
 
       const maxW = inset.height < 1 ? 360 : 480;
       const scale = Math.min(1, maxW / sw);
-      canvas.width = Math.round(sw * scale);
-      canvas.height = Math.round(sh * scale);
+      // enhance 用に別キャンバスを使う（共用 canvas の上書きを防ぐ）
+      const out = document.createElement("canvas");
+      out.width = Math.round(sw * scale);
+      out.height = Math.round(sh * scale);
 
-      const ctx = canvas.getContext("2d");
-      ctx.drawImage(video, sx, sy, sw, sh, 0, 0, canvas.width, canvas.height);
-      return canvas;
+      const ctx = out.getContext("2d");
+      ctx.drawImage(video, sx, sy, sw, sh, 0, 0, out.width, out.height);
+      if (opts.enhance) enhanceCanvasForOcr(ctx, out.width, out.height);
+      return out;
+    }
+
+    /** 軽量コントラスト強調（長押し時のみ・常時OCRではない） */
+    function enhanceCanvasForOcr(ctx, w, h) {
+      const img = ctx.getImageData(0, 0, w, h);
+      const d = img.data;
+      let sum = 0;
+      for (let i = 0; i < d.length; i += 4) {
+        const g = 0.299 * d[i] + 0.587 * d[i + 1] + 0.114 * d[i + 2];
+        sum += g;
+      }
+      const mean = sum / (d.length / 4);
+      const contrast = 1.35;
+      for (let i = 0; i < d.length; i += 4) {
+        let g = 0.299 * d[i] + 0.587 * d[i + 1] + 0.114 * d[i + 2];
+        g = (g - mean) * contrast + mean;
+        // やや二値寄り（反射に強く）
+        g = g > mean * 0.92 ? Math.min(255, g + 28) : Math.max(0, g - 18);
+        d[i] = d[i + 1] = d[i + 2] = g;
+      }
+      ctx.putImageData(img, 0, 0);
     }
 
     function hideResultPanel() {
@@ -887,7 +896,6 @@
       panel.classList.add("compact");
       panelExpanded = false;
       panelDetailBtn.textContent = "詳細";
-      feedbackRow.classList.remove("show");
     }
 
     function schedulePanelHide() {
@@ -947,7 +955,6 @@
       if (machineSpec?.first_hit_denom) sub += `1/${Math.round(machineSpec.first_hit_denom)}`;
       if (ev) sub += ` / ${ev.summary}`;
       sub += ` / ${borderInfo.summary}`;
-      if (result.biasApplied) sub += ` / 学習${result.biasApplied > 0 ? "+" : ""}${result.biasApplied}`;
       if (confidence === "low") sub += " ※読み取り不完全";
       document.getElementById("verdictSub").textContent = sub || "—";
       document.getElementById("verdictReasons").textContent = result.reasons.slice(0, 3).join(" / ");
@@ -957,7 +964,7 @@
         evBox.hidden = false;
         document.getElementById("evSummary").textContent = ev.summary;
         document.getElementById("evLines").innerHTML = [
-          `${ev.mode_label || "—"}: 1/${ev.spec_used.denom} 深度目安${ev.spec_used.ceiling}${ev.spec_used.lt_critical ? " LT重要" : ""}${ev.spec_used.entry_rate != null ? ` 突入${Math.round(ev.spec_used.entry_rate * 100)}%` : ""}`,
+          `${ev.mode_label || "—"}: 1/${ev.spec_used.denom} ${getDepthLine(machineSpec).short}${ev.spec_used.lt_critical ? " LT重要" : ""}${ev.spec_used.entry_rate != null ? ` 突入${Math.round(ev.spec_used.entry_rate * 100)}%` : ""}`,
           ...ev.factors,
           ev.retreat_hint,
         ].map((l) => `<div>${l}</div>`).join("");
@@ -985,7 +992,6 @@
       panel.classList.add("show", "compact");
       panelExpanded = false;
       panelDetailBtn.textContent = "詳細";
-      feedbackRow.classList.add("show");
       schedulePanelHide();
     }
 
@@ -1002,13 +1008,19 @@
       statusBar.textContent = "読み取り中…";
 
       try {
-        const crop = getCropCanvas();
+        const crop = getCropCanvas({ enhance: true });
         if (!crop) throw new Error("カメラ未準備");
 
         const worker = await ensureOcr();
-        const topCrop = getCropCanvas({ top: 0, height: 0.22 });
+        const topCrop = getCropCanvas({ top: 0, height: 0.22, enhance: true });
+        // 通常＋強調の2パス（長押し時のみ・負荷は許容範囲）
         const mainResult = await worker.recognize(crop);
         let text = mainResult.data.text;
+        const plainCrop = getCropCanvas({ enhance: false });
+        if (plainCrop) {
+          const plainResult = await worker.recognize(plainCrop);
+          text = `${text}\n${plainResult.data.text}`;
+        }
         if (topCrop) {
           const topResult = await worker.recognize(topCrop);
           text = `${topResult.data.text}\n${text}`;
@@ -1046,22 +1058,6 @@
       holdBtn.classList.add("active");
       scanOnce().finally(() => holdBtn.classList.remove("active"));
     };
-
-    function onFeedback(outcome) {
-      if (!lastEntry) return;
-      recordFeedback(lastEntry, outcome);
-      hideResultPanel();
-      statusBar.textContent =
-        outcome === "win"
-          ? "記録: 当たった → 次回から補正"
-          : outcome === "lose"
-            ? "記録: 外れた → 次回から補正"
-            : "スキップ";
-      lastEntry = null;
-    }
-    document.getElementById("fbWin").onclick = () => onFeedback("win");
-    document.getElementById("fbLose").onclick = () => onFeedback("lose");
-    document.getElementById("fbSkip").onclick = () => onFeedback("skip");
 
   </script>
 </body>

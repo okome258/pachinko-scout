@@ -1,5 +1,7 @@
 /** 機種スペック + ev_spec（DMM詳細）に基づく期待値 */
 
+import { getDepthLine } from "./depth.js";
+
 function parseDenom(prob) {
   if (!prob) return null;
   const m = String(prob).match(/1\s*\/\s*(\d+(?:\.\d+)?)/);
@@ -69,7 +71,8 @@ export function calcExpectedValue(data, spec = {}) {
     spec.first_hit_denom ||
     parseDenom(data.spec_on_screen || data.first_hit_probability) ||
     319;
-  const ceiling = spec.ceiling_spins || Math.round(denom * 2.8);
+  const depth = getDepthLine(spec);
+  const ceiling = depth.spins;
   const ltCritical =
     spec.lt_critical ??
     !!(evSpec.lt_entry_rate || evSpec.lt_entry_rate_total || evSpec.lt_continuation_rate);
@@ -99,11 +102,11 @@ export function calcExpectedValue(data, spec = {}) {
 
   const toCeiling = ceiling - spins;
   if (toCeiling > 0 && toCeiling <= 150) {
-    ev += 22;
-    factors.push(`深度目安${ceiling}まであと${toCeiling}回`);
+    ev += depth.kind === "yutime" ? 26 : 22;
+    factors.push(`${depth.label}${ceiling}まであと${toCeiling}回`);
   } else if (toCeiling > 150 && toCeiling < 400) {
-    ev += 8;
-    factors.push(`深度目安まで${toCeiling}回`);
+    ev += depth.kind === "yutime" ? 12 : 8;
+    factors.push(`${depth.label}まで${toCeiling}回`);
   } else if (spins < avgFirst * 0.25 && todayFirst >= 2) {
     ev -= 12;
     factors.push(`初当り直後${spins}回 — まだ早い`);
@@ -176,7 +179,7 @@ export function calcExpectedValue(data, spec = {}) {
     mode_label: modeLabel,
     retreat_hint:
       spinsToAvg > 0
-        ? `初当り狙いならあと${Math.min(spinsToAvg + 80, ceiling - spins)}回まで`
-        : `初当り圏内 — ${ceiling - spins}回で深度目安`,
+        ? `初当り狙いならあと${Math.min(spinsToAvg + 80, Math.max(0, ceiling - spins))}回まで`
+        : `初当り圏内 — ${Math.max(0, ceiling - spins)}回で${depth.label}`,
   };
 }

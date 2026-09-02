@@ -1,5 +1,7 @@
 /** 撤退回転数・打ち止めラインの計算 */
 
+import { getDepthLine } from "./depth.js";
+
 function parseDenom(prob) {
   if (!prob) return null;
   const m = String(prob).match(/1\s*\/\s*(\d+(?:\.\d+)?)/);
@@ -9,7 +11,8 @@ function parseDenom(prob) {
 export function calcRetreatPlan(data, spec = {}) {
   const spins = parseInt(data.current_spins, 10);
   const denom = parseDenom(data.spec_on_screen || data.first_hit_probability);
-  const ceiling = spec.ceiling_spins || (denom ? Math.round(denom * 2.8) : 1000);
+  const depth = getDepthLine(spec);
+  const ceiling = depth.spins;
   const todayFirst = data.today_first_hits || 0;
   const ltRate = data.lt_rate_percent;
   const todayMax = Number(data.today_max_payout) || 0;
@@ -39,10 +42,10 @@ export function calcRetreatPlan(data, spec = {}) {
   if (!Number.isNaN(spins) && ceiling) {
     const toCeiling = ceiling - spins;
     if (toCeiling > 0 && toCeiling <= 200) {
-      lines.push(`深度目安まで ${toCeiling}回転 — 期待値上がりやすい帯`);
+      lines.push(`${depth.label}まで ${toCeiling}回転 — 期待値上がりやすい帯`);
       hardStop = hardStop ? Math.min(hardStop, spins + toCeiling + 30) : spins + toCeiling + 30;
     } else if (toCeiling > 200) {
-      lines.push(`深度目安まで ${toCeiling}回転`);
+      lines.push(`${depth.label}まで ${toCeiling}回転`);
     }
   }
 
