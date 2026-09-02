@@ -1,0 +1,31 @@
+name: Update machines DB
+
+on:
+  schedule:
+    - cron: "0 3 * * 1"  # 毎週月曜 12:00 JST
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate machines.json
+        run: |
+          python3 -c "
+          import json, sys
+          from pathlib import Path
+          p = Path('machines.json')
+          if not p.exists():
+              p = Path('mobile/machines.json')
+          data = json.loads(p.read_text(encoding='utf-8'))
+          assert 'machines' in data and len(data['machines']) > 0
+          for m in data['machines']:
+              assert 'id' in m and 'names' in m
+          print(f\"OK: {len(data['machines'])} machines, version={data.get('version')}\")
+          "
+
+      # 将来: ここに公開スペックサイトからの取得スクリプトを追加
+      # - name: Fetch specs
+      #   run: python3 scripts/fetch_specs.py

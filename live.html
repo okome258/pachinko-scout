@@ -27,11 +27,20 @@
 
     .frame {
       position: absolute;
-      inset: 18% 5% 22%;
+      inset: 12% 4% 18%;
       border: 3px solid var(--frame-color, #38bdf8);
       border-radius: 8px;
       box-shadow: inset 0 0 60px rgba(0,0,0,0.2);
       transition: border-color 0.3s;
+    }
+    .frame-hint {
+      position: absolute;
+      bottom: calc(18% + 6px);
+      left: 0; right: 0;
+      text-align: center;
+      font-size: 11px;
+      color: rgba(255,255,255,0.55);
+      text-shadow: 0 1px 3px #000;
     }
 
     #verdictPanel {
@@ -68,6 +77,42 @@
       color: #94a3b8;
       margin-top: 8px;
     }
+    #retreatBox {
+      margin-top: 10px;
+      padding: 10px 12px;
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.35);
+      border-radius: 10px;
+      font-size: 13px;
+      line-height: 1.5;
+      color: #fecaca;
+    }
+    #retreatBox .retreat-title {
+      font-weight: 800;
+      font-size: 15px;
+      color: #fca5a5;
+      margin-bottom: 4px;
+    }
+    #feedbackRow {
+      position: fixed;
+      bottom: max(88px, calc(72px + env(safe-area-inset-bottom)));
+      left: 12px; right: 12px;
+      display: none;
+      gap: 8px;
+      z-index: 9;
+    }
+    #feedbackRow.show { display: flex; }
+    #feedbackRow button {
+      flex: 1;
+      padding: 10px 8px;
+      font-size: 13px;
+      border-radius: 10px;
+      border: 0;
+      font-weight: 700;
+    }
+    #fbWin { background: rgba(34,197,94,0.9); color: #052e16; }
+    #fbLose { background: rgba(239,68,68,0.9); color: #fff; }
+    #fbSkip { background: rgba(30,41,59,0.9); color: #cbd5e1; }
 
     #statusBar {
       position: fixed;
@@ -162,11 +207,22 @@
 
   <div id="hud">
     <div class="frame" id="frame"></div>
+    <div class="frame-hint">上:本日/LT/出玉　下:直近当たり・回転数</div>
     <div id="verdictPanel">
       <div id="verdictMain">—</div>
       <div id="verdictSub"></div>
       <div id="verdictReasons"></div>
+      <div id="retreatBox" hidden>
+        <div class="retreat-title" id="retreatSummary"></div>
+        <div id="retreatLines"></div>
+      </div>
     </div>
+  </div>
+
+  <div id="feedbackRow">
+    <button id="fbWin">当たった</button>
+    <button id="fbLose">外れた</button>
+    <button id="fbSkip">スキップ</button>
   </div>
 
   <div id="statusBar">画面に合わせて長押し</div>
@@ -179,6 +235,9 @@
   <script type="module">
     import { parseOcrText } from "./parser.js";
     import { scoreMachine, verdictColor } from "./score.js";
+    import { loadMachines, matchMachine, detectCounterType } from "./machines.js";
+    import { calcRetreatPlan } from "./retreat.js";
+    import { applyLearnedBias, recordFeedback } from "./learn.js";
 
     const video = document.getElementById("video");
     const canvas = document.getElementById("canvas");
@@ -190,17 +249,23 @@
 
     let stream = null;
     let ocrWorker = null;
+    let machineDb = null;
     let scanning = false;
     let autoMode = false;
     let autoTimer = null;
     let lastScanAt = 0;
 
+    let lastEntry = null;
+
+    const feedbackRow = document.getElementById("feedbackRow");
     const SCAN_COOLDOWN_MS = 2500;
 
     document.getElementById("startBtn").onclick = async () => {
       document.getElementById("startScreen").classList.add("hide");
+      statusBar.textContent = "機種データ取得中…";
+      machineDb = await loadMachines(window.location.origin);
       await startCamera();
-      statusBar.textContent = "準備OK — 長押しで読み取り";
+      statusBar.textContent = `準備OK（機種DB ${machineDb.version || "?"}）— 長押し`;
     };
 
     async function startCamera() {
@@ -248,15 +313,39 @@
       return canvas;
     }
 
-    function showResult(result, confidence) {
+    function showResult(result, confidence, machineSpec, counterType, data, retreat) {
       const color = verdictColor(result.verdict);
       frame.style.setProperty("--frame-color", color);
+      const machineLabel = result.machine_matched || machineSpec?.names?.[0] || "";
       document.getElementById("verdictMain").textContent = `${result.score}点 ${result.verdict}`;
       document.getElementById("verdictMain").style.color = color;
-      document.getElementById("verdictSub").textContent =
-        confidence === "low" ? "※読み取り不完全 — もう少し近づけて" : "データ画面を認識";
-      document.getElementById("verdictReasons").textContent = result.reasons.slice(0, 2).join(" / ");
+
+      let sub = machineLabel ? `機種: ${machineLabel}` : "データ画面を認識";
+      if (result.biasApplied) sub += ` / 学習補正${result.biasApplied > 0 ? "+" : ""}${result.biasApplied}`;
+      if (counterType) {
+        sub += counterType.machine_name_on_screen === false
+          ? " / 機種名なし"
+          : counterType.machine_name_on_screen
+            ? " / 機種名あり"
+            : "";
+      }
+      if (confidence === "low") sub += " ※読み取り不完全";
+      document.getElementById("verdictSub").textContent = sub;
+      document.getElementById("verdictReasons").textContent = result.reasons.slice(0, 3).join(" / ");
+
+      const rb = document.getElementById("retreatBox");
+      if (retreat) {
+        rb.hidden = false;
+        document.getElementById("retreatSummary").textContent = retreat.summary;
+        document.getElementById("retreatLines").innerHTML = retreat.lines
+          .map((l) => `<div>${l}</div>`)
+          .join("");
+      } else {
+        rb.hidden = true;
+      }
+
       panel.classList.add("show");
+      feedbackRow.classList.add("show");
     }
 
     async function scanOnce() {
@@ -275,14 +364,39 @@
         const { data, confidence } = parseOcrText(text);
 
         if (confidence === "none") {
-          statusBar.textContent = "数字が読めません — 近づけて長押し";
+          statusBar.textContent = "数字が読めません — 下の履歴バーまで枠に入れて";
           panel.classList.remove("show");
           return;
         }
 
-        const result = scoreMachine(data);
-        showResult(result, confidence);
-        statusBar.textContent = `${data.machine_name || "台"} — ${result.verdict}`;
+        if (!machineDb) machineDb = await loadMachines(window.location.origin);
+        const counterType = detectCounterType(text, machineDb);
+        const machineSpec = matchMachine(data.machine_name, machineDb, data);
+        let result = scoreMachine(data, machineSpec);
+        const bias = applyLearnedBias(
+          result.score,
+          machineSpec?.names?.[0],
+          counterType?.id,
+        );
+        if (bias.biasApplied) {
+          result = { ...result, score: bias.score };
+          if (bias.score >= 65) result.verdict = "打つ候補";
+          else if (bias.score < 45) result.verdict = "見送り";
+          else result.verdict = "様子見";
+          result.biasApplied = bias.biasApplied;
+        }
+        const retreat = calcRetreatPlan(data, machineSpec);
+
+        lastEntry = {
+          machine: machineSpec?.names?.[0],
+          counter: counterType?.id,
+          score: result.score,
+          verdict: result.verdict,
+          spins: data.current_spins,
+        };
+
+        showResult(result, confidence, machineSpec, counterType, data, retreat);
+        statusBar.textContent = `${retreat.summary}`;
       } catch (e) {
         statusBar.textContent = "エラー: " + e.message;
       } finally {
@@ -304,6 +418,22 @@
       el.addEventListener("mouseleave", end);
     }
     bindHold(holdBtn);
+
+    function onFeedback(outcome) {
+      if (!lastEntry) return;
+      recordFeedback(lastEntry, outcome);
+      feedbackRow.classList.remove("show");
+      statusBar.textContent =
+        outcome === "win"
+          ? "記録: 当たった → 次回から補正"
+          : outcome === "lose"
+            ? "記録: 外れた → 次回から補正"
+            : "スキップ";
+      lastEntry = null;
+    }
+    document.getElementById("fbWin").onclick = () => onFeedback("win");
+    document.getElementById("fbLose").onclick = () => onFeedback("lose");
+    document.getElementById("fbSkip").onclick = () => onFeedback("skip");
 
     autoBtn.onclick = () => {
       autoMode = !autoMode;

@@ -1,0 +1,159 @@
+{
+  "version": "2026-09-02b",
+  "updated": "2026-09-02",
+  "_note": "machinesは人気機種の追加データ。全機種は画面スペック(1/319等)とtype_profilesでカバー。狭める意図はない。",
+  "type_profiles": {
+    "amadeji": {
+      "spec_range": [1, 120],
+      "ceiling_spins": 500,
+      "small_hit_max": 500,
+      "good_hit_min": 1500,
+      "lt_critical": false,
+      "notes": "甘デジ。回転数・初当り実績重視"
+    },
+    "light_mid": {
+      "spec_range": [121, 250],
+      "ceiling_spins": 666,
+      "small_hit_max": 450,
+      "good_hit_min": 2000,
+      "lt_critical": false,
+      "notes": "ライトミドル"
+    },
+    "mid": {
+      "spec_range": [251, 400],
+      "ceiling_spins": 1000,
+      "small_hit_max": 300,
+      "good_hit_min": 3000,
+      "lt_critical": true,
+      "notes": "ミドル（1/319前後）"
+    },
+    "heavy": {
+      "spec_range": [401, 999],
+      "ceiling_spins": 1200,
+      "small_hit_max": 250,
+      "good_hit_min": 4000,
+      "lt_critical": true,
+      "notes": "ハイミドル・重め"
+    },
+    "pachislo": {
+      "spec_range": null,
+      "ceiling_spins": 800,
+      "small_hit_max": 0,
+      "good_hit_min": 500,
+      "lt_critical": false,
+      "notes": "パチスロ（BB/RB・ゲーム数で判断）"
+    }
+  },
+  "machines": [
+    {
+      "id": "p_biohazard",
+      "names": ["バイオ", "BIOHAZARD", "バイオハザード", "HAZARD"],
+      "type": "mid",
+      "lt_critical": true,
+      "ceiling_spins": 840,
+      "small_hit_r": 2,
+      "small_hit_max": 300,
+      "good_hit_min": 3000,
+      "ceiling_near_ratio": 0.75
+    },
+    {
+      "id": "p_onea_monogatari",
+      "names": ["ワンエー", "ワンエー物語", "oneA"],
+      "type": "mid",
+      "lt_critical": false,
+      "ceiling_spins": 1000,
+      "small_hit_max": 400,
+      "good_hit_min": 3500,
+      "ceiling_near_ratio": 0.7
+    },
+    {
+      "id": "p_cr777",
+      "names": ["CRパチンコ777", "パチンコ777", "777"],
+      "type": "mid",
+      "lt_critical": false,
+      "ceiling_spins": 900,
+      "small_hit_max": 350,
+      "good_hit_min": 3000,
+      "ceiling_near_ratio": 0.75
+    },
+    {
+      "id": "p_versus",
+      "names": ["VERSUS", "ヴァーサス"],
+      "type": "pachislo",
+      "lt_critical": false,
+      "ceiling_spins": 600,
+      "small_hit_max": 0,
+      "good_hit_min": 500,
+      "ceiling_near_ratio": 0.75
+    }
+  ],
+  "counter_types": [
+    {
+      "id": "dmm_lcd",
+      "label": "DMM系タッチ液晶（バイオハザード等）",
+      "keywords": ["振分割合", "獲得数", "スタート回数", "Lucky Trigger", "LT"],
+      "machine_name_on_screen": true,
+      "fields": ["machine_name", "today_big_hits", "today_first_hits", "probability", "lt", "max_payout", "timeline_spins", "recent_r"],
+      "tips": "全体を枠に。下の履歴数字列まで入れる"
+    },
+    {
+      "id": "onea_lcd",
+      "label": "oneA・ビラッキクス系液晶",
+      "keywords": ["現在スタート", "総スタート", "スランプ", "番台"],
+      "machine_name_on_screen": true,
+      "fields": ["machine_name", "today_big_hits", "current_spins", "total_spins", "probability", "history_payout"],
+      "tips": "機種名バー＋現在スタートが見える角度"
+    },
+    {
+      "id": "birakkusu_lcd",
+      "label": "ビラッキクス・CR系液晶",
+      "keywords": ["スペック", "過去最高玉数", "累計", "大当たり"],
+      "machine_name_on_screen": true,
+      "fields": ["machine_name", "spec", "today_big_hits", "current_spins", "total_spins", "max_payout"],
+      "tips": "スペック1/319とスタート回数が重要"
+    },
+    {
+      "id": "pachislo_lcd",
+      "label": "パチスロ液晶（VERSUS等）",
+      "keywords": ["ボーナス合計", "ゲーム", "BB", "RB", "枚"],
+      "machine_name_on_screen": true,
+      "fields": ["machine_name", "game_count", "bb", "rb", "max_medals"],
+      "tips": "ゲーム数（現在回転）とBB/RB本日数"
+    },
+    {
+      "id": "led_segment",
+      "label": "7セグLEDデータランプ",
+      "keywords": ["スタート", "大当", "確変", "平均", "持玉"],
+      "machine_name_on_screen": false,
+      "fields": ["current_spins", "today_big_hits", "kakuhen", "avg_probability", "max_held"],
+      "tips": "機種名は出ない。回転・大当・平均確率のみ信頼"
+    },
+    {
+      "id": "led_compact",
+      "label": "コンパクトLED（スタート・履歴棒グラフ）",
+      "keywords": ["履歴", "継続", "累計"],
+      "machine_name_on_screen": false,
+      "fields": ["current_spins", "today_big_hits", "history_spins"],
+      "tips": "機種名なし。左のスタート数字が現回転"
+    },
+    {
+      "id": "unknown",
+      "label": "不明",
+      "keywords": [],
+      "machine_name_on_screen": null,
+      "fields": ["probability", "current_spins"],
+      "tips": "数字が多い領域を枠に入れて長押し"
+    }
+  ],
+  "common_fields": {
+    "description": "スカウター種別に関わらず取れる共通概念",
+    "items": [
+      { "key": "current_spins", "labels": ["現在スタート", "スタート", "スタート回数", "ゲーム", "現在"] },
+      { "key": "today_big_hits", "labels": ["本日大当", "大当り", "大当たり", "ボーナス合計"] },
+      { "key": "today_first_hits", "labels": ["初当り", "初当"] },
+      { "key": "probability", "labels": ["確率", "スペック", "平均", "1/"] },
+      { "key": "max_payout", "labels": ["最高出玉", "最高持玉", "過去最高", "最高玉数", "最高枚数"] },
+      { "key": "machine_name", "labels": ["画面上部のタイトル"], "note": "液晶のみ。LEDランプには通常なし" }
+    ]
+  }
+}
