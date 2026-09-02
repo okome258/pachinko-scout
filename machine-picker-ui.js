@@ -1,20 +1,53 @@
-/** あ～わ行フィルタ付き機種選択UI（通称名で表示・分類） */
+/** あいうえお…五十音タブ付き機種選択UI（通称名で表示・分類） */
 
 import { getAllMachineOptions, getSeriesGroups, saveCustomMachine } from "./machine-picker.js";
 
-const GYO = [
-  { id: "あ", chars: "あいうえおアイウエオ" },
-  { id: "か", chars: "かきくけこがぎぐげごカキクケコガギグゲゴ" },
-  { id: "さ", chars: "さしすせそざじずぜぞサシスセソザジズゼゾ" },
-  { id: "た", chars: "たちつてとだぢづでどタチツテトダヂヅデド" },
-  { id: "な", chars: "なにぬねのナニヌネノ" },
-  { id: "は", chars: "はひふへほばびぶべぼぱぴぷぺぽハヒフヘホバビブベボパピプペポ" },
-  { id: "ま", chars: "まみむめもマミムメモ" },
-  { id: "や", chars: "やゆよヤユヨ" },
-  { id: "ら", chars: "らりるれろラリルレロ" },
-  { id: "わ", chars: "わをんワヲン" },
-  { id: "他", chars: "" },
-];
+const KANA_TABS = "あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん".split("");
+const OTHER_TAB = "他";
+
+const VOICED_TO_BASE = {
+  が: "か",
+  ぎ: "き",
+  ぐ: "く",
+  げ: "け",
+  ご: "こ",
+  ざ: "さ",
+  じ: "し",
+  ず: "す",
+  ぜ: "せ",
+  ぞ: "そ",
+  だ: "た",
+  ぢ: "ち",
+  づ: "つ",
+  で: "て",
+  ど: "と",
+  ば: "は",
+  び: "ひ",
+  ぶ: "ふ",
+  べ: "へ",
+  ぼ: "ほ",
+  ぱ: "は",
+  ぴ: "ひ",
+  ぷ: "ふ",
+  ぺ: "へ",
+  ぽ: "ほ",
+  ヴ: "う",
+};
+
+function toHiragana(char) {
+  const code = char.charCodeAt(0);
+  if (code >= 0x30a1 && code <= 0x30f6) return String.fromCharCode(code - 0x60);
+  return char;
+}
+
+/** 先頭文字 → あいうえおタブの1文字 */
+export function normalizeToKanaTab(char) {
+  if (!char) return OTHER_TAB;
+  let h = toHiragana(char);
+  if (VOICED_TO_BASE[h]) h = VOICED_TO_BASE[h];
+  if (KANA_TABS.includes(h)) return h;
+  return OTHER_TAB;
+}
 
 /** e/P/CR などの型式プレフィックスを除去 */
 export function normalizeMachineLabel(name) {
@@ -45,6 +78,7 @@ export function getPickerLabel(machine) {
       let s = 0;
       if (/RE\s*:?\s*2|RE2/i.test(n)) s += 30;
       if (/バイオハザード\s*6|e\s*バイオ/i.test(n)) s += 28;
+      if (/エヴァンゲリオン|エヴァ/i.test(n)) s += 26;
       if (/\d|RE|:/i.test(n)) s += 10;
       if (n.length <= 16) s += 6;
       return { n, s };
@@ -71,27 +105,25 @@ export function pickDisplayName(machine) {
     let s = Math.min(n.length, 30);
     if (n.length < 4) s -= 8;
     if (/^[A-Z0-9]+$/i.test(n)) s -= 15;
-    if (/物語|リベンジャーズ|ハザード|無双|ガンダム|エヴァ|物語|戦記/.test(n)) s += 12;
+    if (/物語|リベンジャーズ|ハザード|無双|ガンダム|エヴァ|戦記/.test(n)) s += 12;
+    if (/^エヴァ/.test(n)) s += 20;
     return s;
   };
 
   pool.sort((a, b) => score(b) - score(a) || a.localeCompare(b, "ja"));
-  return stripVersionSuffix(pool[0]);
+  const best = pool[0];
+  if (/エヴァンゲリオン/.test(best)) return "エヴァ";
+  return stripVersionSuffix(best);
 }
 
-export function getGyo(name) {
-  const label = stripVersionSuffix(normalizeMachineLabel(name));
-  const c = label.charAt(0);
-  if (!c) return "他";
-  for (const row of GYO) {
-    if (row.id === "他") continue;
-    if (row.chars.includes(c)) return row.id;
-  }
-  return "他";
+export function getMachineKanaTab(machine) {
+  if (machine?.picker_index) return machine.picker_index;
+  return normalizeToKanaTab(getPickerLabel(machine).charAt(0));
 }
 
+/** @deprecated use getMachineKanaTab */
 export function getMachineGyo(machine) {
-  return getGyo(pickDisplayName(machine));
+  return getMachineKanaTab(machine);
 }
 
 export function machineSearchText(machine) {
@@ -114,11 +146,11 @@ function resolveSeriesMachines(db, seriesId) {
     .map((id) => byId.get(id))
     .filter(Boolean);
   if (ordered.length) return ordered;
-  const q = (group.keywords || []).join(" ").toLowerCase();
-  return all.filter((m) => machineSearchText(m).includes(q.split(" ")[0]));
+  const keywords = (group.keywords || []).map((k) => k.toLowerCase());
+  return all.filter((m) => keywords.some((k) => machineSearchText(m).includes(k)));
 }
 
-export function filterMachines(machines, { gyo = "all", query = "", seriesId = null }) {
+export function filterMachines(machines, { kana = "all", query = "", seriesId = null }) {
   const q = query.trim().toLowerCase();
 
   if (seriesId) {
@@ -128,8 +160,9 @@ export function filterMachines(machines, { gyo = "all", query = "", seriesId = n
   return machines.filter((m) => {
     const text = machineSearchText(m);
     if (q) return text.includes(q);
-    if (gyo === "all") return true;
-    return getMachineGyo(m) === gyo;
+    if (kana === "all") return true;
+    if (kana === OTHER_TAB) return getMachineKanaTab(m) === OTHER_TAB;
+    return getMachineKanaTab(m) === kana;
   });
 }
 
@@ -141,7 +174,7 @@ export function mountMachinePicker(modalEl, db, handlers) {
   const searchEl = modalEl.querySelector("#pickerSearch");
   const listEl = modalEl.querySelector("#pickerList");
   const currentEl = modalEl.querySelector("#pickerCurrent");
-  let activeGyo = "all";
+  let activeKana = "all";
   let activeSeriesId = null;
 
   function allOptions() {
@@ -167,7 +200,7 @@ export function mountMachinePicker(modalEl, db, handlers) {
       btn.onclick = () => {
         activeSeriesId = activeSeriesId === g.id ? null : g.id;
         if (activeSeriesId) {
-          activeGyo = "all";
+          activeKana = "all";
           searchEl.value = "";
         }
         renderTabs();
@@ -182,10 +215,10 @@ export function mountMachinePicker(modalEl, db, handlers) {
     tabsEl.innerHTML = "";
     const allBtn = document.createElement("button");
     allBtn.type = "button";
-    allBtn.className = `picker-gyo-tab${activeGyo === "all" ? " active" : ""}`;
+    allBtn.className = `picker-gyo-tab${activeKana === "all" ? " active" : ""}`;
     allBtn.textContent = "すべて";
     allBtn.onclick = () => {
-      activeGyo = "all";
+      activeKana = "all";
       activeSeriesId = null;
       renderTabs();
       renderSeriesChips();
@@ -193,13 +226,13 @@ export function mountMachinePicker(modalEl, db, handlers) {
     };
     tabsEl.appendChild(allBtn);
 
-    for (const row of GYO) {
+    for (const kana of KANA_TABS) {
       const btn = document.createElement("button");
       btn.type = "button";
-      btn.className = `picker-gyo-tab${row.id === activeGyo ? " active" : ""}`;
-      btn.textContent = row.id === "他" ? "他" : `${row.id}行`;
+      btn.className = `picker-gyo-tab${kana === activeKana ? " active" : ""}`;
+      btn.textContent = kana;
       btn.onclick = () => {
-        activeGyo = row.id;
+        activeKana = kana;
         activeSeriesId = null;
         renderTabs();
         renderSeriesChips();
@@ -207,6 +240,19 @@ export function mountMachinePicker(modalEl, db, handlers) {
       };
       tabsEl.appendChild(btn);
     }
+
+    const otherBtn = document.createElement("button");
+    otherBtn.type = "button";
+    otherBtn.className = `picker-gyo-tab${activeKana === OTHER_TAB ? " active" : ""}`;
+    otherBtn.textContent = OTHER_TAB;
+    otherBtn.onclick = () => {
+      activeKana = OTHER_TAB;
+      activeSeriesId = null;
+      renderTabs();
+      renderSeriesChips();
+      renderList();
+    };
+    tabsEl.appendChild(otherBtn);
   }
 
   function renderList() {
@@ -216,7 +262,7 @@ export function mountMachinePicker(modalEl, db, handlers) {
       items = resolveSeriesMachines(db, activeSeriesId);
     } else {
       items = filterMachines(allOptions(), {
-        gyo: activeGyo,
+        kana: activeKana,
         query: searchEl.value,
       });
     }
@@ -225,7 +271,7 @@ export function mountMachinePicker(modalEl, db, handlers) {
       const hint =
         searchEl.value.trim() || activeSeriesId
           ? "該当なし — 検索語を変えるか「すべて」を選んでください"
-          : "該当なし — 「すべて」タブか検索（例: バイオ）を使ってください";
+          : "該当なし — 「すべて」か検索（例: エヴァ）を使ってください";
       listEl.innerHTML = `<p class="picker-empty">${hint}</p>`;
       return;
     }
@@ -234,12 +280,15 @@ export function mountMachinePicker(modalEl, db, handlers) {
       btn.type = "button";
       btn.className = `picker-item${m.id === selected ? " selected" : ""}`;
       const title = getPickerLabel(m);
+      const group = pickDisplayName(m);
       const official = m.names?.[0] && m.names[0] !== title ? m.names[0] : "";
       const denom = m.first_hit_denom ? `1/${Math.round(m.first_hit_denom)}` : "";
       const seriesTag = (m.series || [])[0] ? `<span class="picker-item-tag">${m.series[0]}</span>` : "";
+      const groupSub =
+        group && group !== title ? `<span class="picker-item-sub">${group}</span>` : "";
       btn.innerHTML = `${seriesTag}<span class="picker-item-name">${title}</span><span class="picker-item-meta">${denom}</span>${
         official ? `<span class="picker-item-sub">${official}</span>` : ""
-      }`;
+      }${groupSub && !official ? groupSub : ""}`;
       btn.onclick = () => {
         onSelect(m);
         renderCurrent();
@@ -259,14 +308,14 @@ export function mountMachinePicker(modalEl, db, handlers) {
 
   searchEl.oninput = () => {
     if (searchEl.value.trim()) {
-      activeGyo = "all";
+      activeKana = "all";
       activeSeriesId = null;
       renderTabs();
       renderSeriesChips();
     }
     renderList();
   };
-  searchEl.placeholder = "例: バイオ、RE2、東リベ、エヴァ";
+  searchEl.placeholder = "例: エヴァ、バイオ、RE2、東リベ";
 
   modalEl.querySelector("#pickerCloseBtn").onclick = () => onClose();
   modalEl.querySelector("#pickerBackdrop").onclick = () => onClose();
@@ -286,8 +335,8 @@ export function mountMachinePicker(modalEl, db, handlers) {
   };
 
   return {
-    open(gyo) {
-      activeGyo = gyo || "all";
+    open(kana) {
+      activeKana = kana || "all";
       activeSeriesId = null;
       searchEl.value = "";
       renderTabs();
@@ -298,7 +347,7 @@ export function mountMachinePicker(modalEl, db, handlers) {
     },
     openSeries(seriesId) {
       activeSeriesId = seriesId;
-      activeGyo = "all";
+      activeKana = "all";
       searchEl.value = "";
       renderTabs();
       renderSeriesChips();
