@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#0f172a" />
-  <title>パチスカウト 前日傾向</title>
+  <title>メッセ武蔵境 前日傾向</title>
   <style>
     * { box-sizing: border-box; }
     body { margin: 0; padding: 16px; background: #0f172a; color: #f8fafc; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
@@ -27,12 +27,12 @@
 </head>
 <body>
   <main>
-    <h1>前日データの傾向</h1>
-    <p>当たりを予測する画面ではありません。店内で最初に実測する機種・台を絞るための記録です。</p>
+    <h1>メッセ武蔵境・過去データ傾向</h1>
+    <p>当たりを予測する画面ではありません。メッセ武蔵境で最初に実測する機種・台を絞るための記録です。</p>
 
     <section class="card">
       <h2>日次データを取り込む</h2>
-      <p>許可されたCSV・自分で記録したデータを貼り付けてください。形式: <code>date,machine,unit,spins,net</code>。1行目は見出しでも可。</p>
+      <p>メッセ武蔵境の、許可されたCSV・自分で記録したデータを貼り付けてください。形式: <code>date,machine,unit,spins,net</code>。1行目は見出しでも可。</p>
       <div class="field"><label for="source">CSVまたはタブ区切り</label><textarea id="source" placeholder="2026-09-03,東京喰種,1,1280,5400&#10;2026-09-03,東京喰種,2,920,-2100"></textarea></div>
       <div class="actions"><button class="primary" id="import">取り込む</button><button class="secondary" id="export">JSONを書き出す</button><a class="button secondary" href="live.html">スカウターへ</a></div>
       <div id="message"></div>
@@ -58,7 +58,9 @@
     <section class="card"><h2>直近の記録</h2><div id="history"></div></section>
   </main>
   <script>
-    const KEY = "pachinko_daily_trend_rows_v1";
+    const STORE_ID = "100686";
+    const STORE_NAME = "メッセ武蔵境";
+    const KEY = "pachinko_messe_musashisakai_daily_trend_v1";
     const $ = (id) => document.getElementById(id);
     let eventOnly = false;
     const load = () => { try { return JSON.parse(localStorage.getItem(KEY) || "[]"); } catch { return []; } };
@@ -86,7 +88,7 @@
         if (cols.length < 5 || /date|日付/i.test(cols[0])) continue;
         const [date, machine, unit, spins, net] = cols;
         if (!/^\d{4}[\/-]\d{1,2}[\/-]\d{1,2}$/.test(date) || !machine) continue;
-        const parsed = { date: date.replace(/\//g, "-"), machine: machine.trim(), unit: String(unit).trim(), spins: number(spins), net: number(net) };
+        const parsed = { store: STORE_ID, date: date.replace(/\//g, "-"), machine: machine.trim(), unit: String(unit).trim(), spins: number(spins), net: number(net) };
         if (Number.isFinite(parsed.spins) || Number.isFinite(parsed.net)) rows.push(parsed);
       }
       return rows;
@@ -106,7 +108,7 @@
       $("count").textContent = rows.length;
       $("avgSpins").textContent = spins.length ? fmt(spins.reduce((sum, x) => sum + x.spins, 0) / spins.length) : "—";
       $("avgNet").textContent = nets.length ? `${nets.reduce((sum, x) => sum + x.net, 0) >= 0 ? "+" : ""}${fmt(nets.reduce((sum, x) => sum + x.net, 0) / nets.length)}` : "—";
-      $("title").textContent = `${eventOnly ? "0・5・7日" : "全日"}の集計`;
+      $("title").textContent = `${STORE_NAME}・${eventOnly ? "0・5・7日" : "全日"}の集計`;
       $("note").textContent = rows.length ? "回転数が高いほど、その機種・台が回されやすかった目安です。当日の釘・実測とは別に判断してください。" : "日次データを取り込むと、ここに傾向を表示します。";
 
       const grouped = new Map();
