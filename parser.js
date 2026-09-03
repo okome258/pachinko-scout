@@ -73,6 +73,34 @@ function parseMachineName(text) {
   return null;
 }
 
+/**
+ * 採点に必要なカウンター情報が揃ったかを判定する。
+ * game_type や機種名のような補助項目は、読取成功の根拠にしない。
+ */
+export function assessCounterReadability(data) {
+  const hasSpins =
+    data?.current_spins != null &&
+    data.current_spins !== "" &&
+    Number.isFinite(Number(data.current_spins));
+  const facts = [
+    data?.today_big_hits,
+    data?.today_first_hits,
+    data?.lt_success,
+    data?.today_max_payout,
+    data?.first_hit_probability,
+  ].filter((value) => value != null).length;
+
+  const missing = [];
+  if (!hasSpins) missing.push("現在スタート");
+  if (facts < 1) missing.push("初当り・大当り・LT・最高出玉のいずれか");
+
+  return {
+    ready: missing.length === 0,
+    missing,
+    facts,
+  };
+}
+
 export function parseOcrText(raw) {
   const text = raw.replace(/\s+/g, " ");
   const data = {
@@ -182,8 +210,11 @@ export function parseOcrText(raw) {
 
   data.recent_hits_summary = parseRecentHits(text);
 
+  const readability = assessCounterReadability(data);
   const keys = Object.keys(data).filter((k) => data[k] != null);
-  const confidence = keys.length >= 5 ? "ok" : keys.length >= 2 ? "low" : "none";
+  const confidence = readability.ready
+    ? keys.length >= 5 ? "ok" : "low"
+    : "none";
 
-  return { data, confidence, raw_length: text.length };
+  return { data, confidence, readability, raw_length: text.length };
 }

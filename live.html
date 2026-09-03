@@ -660,7 +660,7 @@
   </div>
 
   <script type="module">
-    import { parseOcrText } from "./parser.js";
+    import { assessCounterReadability, parseOcrText } from "./parser.js";
     import { scoreMachine, verdictColor } from "./score.js";
     import { loadMachines, matchMachine, detectCounterType, getMachineNameFeedback } from "./machines.js";
     import { calcRetreatPlan } from "./retreat.js";
@@ -1043,6 +1043,30 @@
       renderExchangeChips(machineSpec);
     }
 
+    function showUnreadableResult(data, readability) {
+      const machineSpec = resolveSpecForSession(data);
+      frame.style.setProperty("--frame-color", "#f59e0b");
+      updateMachineBlock(machineSpec);
+      updateDataBlock(data, "low");
+
+      document.getElementById("verdictMain").textContent = "読取不足";
+      document.getElementById("verdictMain").style.color = "#fbbf24";
+      document.getElementById("verdictSub").textContent = "点数・期待値は出しません";
+      document.getElementById("verdictReasons").textContent =
+        `未読: ${readability.missing.join(" / ")} — 枠を近づけて再読取、または下で修正`;
+      document.getElementById("evBox").hidden = true;
+      document.getElementById("borderBox").hidden = true;
+      document.getElementById("retreatBox").hidden = true;
+
+      fillDataEditForm(data);
+      dataEditForm.classList.add("show");
+      panel.classList.add("show");
+      panel.classList.remove("compact");
+      panelExpanded = true;
+      panelDetailBtn.textContent = "簡易";
+      schedulePanelHide();
+    }
+
     function showResult(result, confidence, machineSpec, counterType, data, retreat, ev, _nameFeedback, border) {
       lastShowArgs = { result, confidence, machineSpec, counterType, data, retreat, ev };
       const color = verdictColor(result.verdict);
@@ -1129,13 +1153,7 @@
           const topResult = await worker.recognize(topCrop);
           text = `${topResult.data.text}\n${text}`;
         }
-        const { data, confidence } = parseOcrText(text);
-
-        if (confidence === "none") {
-          statusBar.textContent = "数字が読めません — 下の履歴バーまで枠に入れて";
-          panel.classList.remove("show");
-          return;
-        }
+        const { data, confidence, readability } = parseOcrText(text);
 
         if (!machineDb) machineDb = await loadMachines();
 
@@ -1148,15 +1166,20 @@
         };
 
         dataEditForm.classList.remove("show");
-        recalculateFromSession();
-        if (confidence === "low") {
+        if (!readability.ready) {
+          showUnreadableResult(data, readability);
+          statusBar.textContent = "読取不足 — 点数は出していません。回転・当りを修正";
+        } else {
+          recalculateFromSession();
+        }
+        if (readability.ready && confidence === "low") {
           fillDataEditForm(getEffectiveCounterData());
           dataEditForm.classList.add("show");
           panel.classList.remove("compact");
           panelExpanded = true;
           panelDetailBtn.textContent = "簡易";
           statusBar.textContent = "読み取り弱い — 回転・LTを指で直して反映";
-        } else {
+        } else if (readability.ready) {
           statusBar.textContent = "台データを確認（編集可）";
         }
       } catch (e) {
