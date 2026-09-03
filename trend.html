@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0f172a" />
+  <title>パチスカウト 前日傾向</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 16px; background: #0f172a; color: #f8fafc; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    main { max-width: 720px; margin: auto; }
+    h1 { margin: 0; font-size: 23px; } h2 { margin: 0 0 8px; font-size: 16px; }
+    p, .muted { color: #94a3b8; font-size: 13px; line-height: 1.55; }
+    .card { margin-top: 14px; padding: 14px; border: 1px solid #334155; border-radius: 14px; background: #172033; }
+    .field { display: flex; flex-direction: column; gap: 5px; margin-top: 9px; }
+    label { color: #94a3b8; font-size: 12px; font-weight: 700; }
+    input, textarea { width: 100%; padding: 11px; border: 1px solid #475569; border-radius: 9px; color: #f8fafc; background: #0f172a; font: inherit; }
+    textarea { min-height: 130px; resize: vertical; }
+    .actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    button, a.button { min-height: 42px; padding: 10px 12px; border: 0; border-radius: 9px; font: inherit; font-size: 14px; font-weight: 800; cursor: pointer; text-decoration: none; }
+    .primary { background: #38bdf8; color: #082f49; } .secondary { background: #334155; color: #e2e8f0; } .danger { background: #7f1d1d; color: #fee2e2; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .stat { padding: 10px; border-radius: 9px; background: #0f172a; } .stat span { display: block; color: #94a3b8; font-size: 11px; } .stat strong { display: block; margin-top: 4px; font-size: 19px; }
+    table { width: 100%; border-collapse: collapse; font-size: 12px; } th, td { padding: 8px 4px; border-bottom: 1px solid #334155; text-align: right; } th:first-child, td:first-child { text-align: left; }
+    #message { min-height: 20px; margin-top: 10px; color: #7dd3fc; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>前日データの傾向</h1>
+    <p>当たりを予測する画面ではありません。店内で最初に実測する機種・台を絞るための記録です。</p>
+
+    <section class="card">
+      <h2>日次データを取り込む</h2>
+      <p>許可されたCSV・自分で記録したデータを貼り付けてください。形式: <code>date,machine,unit,spins,net</code>。1行目は見出しでも可。</p>
+      <div class="field"><label for="source">CSVまたはタブ区切り</label><textarea id="source" placeholder="2026-09-03,東京喰種,1,1280,5400&#10;2026-09-03,東京喰種,2,920,-2100"></textarea></div>
+      <div class="actions"><button class="primary" id="import">取り込む</button><button class="secondary" id="export">JSONを書き出す</button><a class="button secondary" href="live.html">スカウターへ</a></div>
+      <div id="message"></div>
+    </section>
+
+    <section class="card">
+      <h2>絞り込み</h2>
+      <div class="field"><label for="machine">機種名（空欄で全機種）</label><input id="machine" type="search" placeholder="例: 東京喰種" /></div>
+      <div class="actions"><button class="secondary" id="allDays">全日</button><button class="secondary" id="eventDays">0・5・7日</button><button class="danger" id="clear">保存データを全削除</button></div>
+    </section>
+
+    <section class="card">
+      <h2 id="title">集計</h2>
+      <div class="grid">
+        <div class="stat"><span>記録台数</span><strong id="count">—</strong></div>
+        <div class="stat"><span>平均回転数</span><strong id="avgSpins">—</strong></div>
+        <div class="stat"><span>平均差玉</span><strong id="avgNet">—</strong></div>
+      </div>
+      <p id="note">日次データを取り込むと、ここに傾向を表示します。</p>
+    </section>
+
+    <section class="card"><h2>台番別の傾向</h2><div id="units"></div></section>
+    <section class="card"><h2>直近の記録</h2><div id="history"></div></section>
+  </main>
+  <script>
+    const KEY = "pachinko_daily_trend_rows_v1";
+    const $ = (id) => document.getElementById(id);
+    let eventOnly = false;
+    const load = () => { try { return JSON.parse(localStorage.getItem(KEY) || "[]"); } catch { return []; } };
+    const save = (rows) => localStorage.setItem(KEY, JSON.stringify(rows.slice(-5000)));
+    const number = (v) => Number(String(v ?? "").replace(/[,\s玉回]/g, ""));
+    const fmt = (v) => Number.isFinite(v) ? Math.round(v).toLocaleString("ja-JP") : "—";
+    const isEventDay = (date) => { const day = Number(String(date).slice(-2)); return [0, 5, 7].includes(day % 10); };
+
+    function splitLine(line, delimiter) {
+      const fields = []; let value = ""; let quoted = false;
+      for (let i = 0; i < line.length; i += 1) {
+        const ch = line[i];
+        if (ch === '"') { if (quoted && line[i + 1] === '"') { value += '"'; i += 1; } else quoted = !quoted; }
+        else if (ch === delimiter && !quoted) { fields.push(value.trim()); value = ""; }
+        else value += ch;
+      }
+      fields.push(value.trim());
+      return fields;
+    }
+    function parseRows(text) {
+      const lines = text.split(/\r?\n/).map((x) => x.trim()).filter(Boolean);
+      const rows = [];
+      for (const line of lines) {
+        const cols = splitLine(line, line.includes("\t") ? "\t" : ",");
+        if (cols.length < 5 || /date|日付/i.test(cols[0])) continue;
+        const [date, machine, unit, spins, net] = cols;
+        if (!/^\d{4}[\/-]\d{1,2}[\/-]\d{1,2}$/.test(date) || !machine) continue;
+        const parsed = { date: date.replace(/\//g, "-"), machine: machine.trim(), unit: String(unit).trim(), spins: number(spins), net: number(net) };
+        if (Number.isFinite(parsed.spins) || Number.isFinite(parsed.net)) rows.push(parsed);
+      }
+      return rows;
+    }
+    function rowsForView() {
+      const query = $("machine").value.trim().toLocaleLowerCase();
+      return load().filter((row) => (!query || row.machine.toLocaleLowerCase().includes(query)) && (!eventOnly || isEventDay(row.date)));
+    }
+    function table(headers, rows) {
+      if (!rows.length) return '<p class="muted">記録がありません。</p>';
+      return `<table><thead><tr>${headers.map((x) => `<th>${x}</th>`).join("")}</tr></thead><tbody>${rows.join("")}</tbody></table>`;
+    }
+    function render() {
+      const rows = rowsForView();
+      const spins = rows.filter((x) => Number.isFinite(x.spins));
+      const nets = rows.filter((x) => Number.isFinite(x.net));
+      $("count").textContent = rows.length;
+      $("avgSpins").textContent = spins.length ? fmt(spins.reduce((sum, x) => sum + x.spins, 0) / spins.length) : "—";
+      $("avgNet").textContent = nets.length ? `${nets.reduce((sum, x) => sum + x.net, 0) >= 0 ? "+" : ""}${fmt(nets.reduce((sum, x) => sum + x.net, 0) / nets.length)}` : "—";
+      $("title").textContent = `${eventOnly ? "0・5・7日" : "全日"}の集計`;
+      $("note").textContent = rows.length ? "回転数が高いほど、その機種・台が回されやすかった目安です。当日の釘・実測とは別に判断してください。" : "日次データを取り込むと、ここに傾向を表示します。";
+
+      const grouped = new Map();
+      rows.forEach((row) => {
+        const key = `${row.machine} / ${row.unit || "台番なし"}`;
+        const g = grouped.get(key) || { machine: row.machine, unit: row.unit, rows: [], spins: [], nets: [] };
+        g.rows.push(row); if (Number.isFinite(row.spins)) g.spins.push(row.spins); if (Number.isFinite(row.net)) g.nets.push(row.net); grouped.set(key, g);
+      });
+      const unitRows = [...grouped.values()].sort((a, b) => (b.spins.reduce((s, x) => s + x, 0) / Math.max(b.spins.length, 1)) - (a.spins.reduce((s, x) => s + x, 0) / Math.max(a.spins.length, 1))).map((g) => `<tr><td>${escapeHtml(g.machine)} ${escapeHtml(g.unit)}</td><td>${g.rows.length}</td><td>${g.spins.length ? fmt(g.spins.reduce((s, x) => s + x, 0) / g.spins.length) : "—"}</td><td>${g.nets.length ? fmt(g.nets.reduce((s, x) => s + x, 0) / g.nets.length) : "—"}</td></tr>`);
+      $("units").innerHTML = table(["機種 / 台番", "日数", "平均回転", "平均差玉"], unitRows);
+      const historyRows = rows.sort((a, b) => b.date.localeCompare(a.date)).slice(0, 30).map((x) => `<tr><td>${escapeHtml(x.date)}</td><td>${escapeHtml(x.machine)}</td><td>${escapeHtml(x.unit)}</td><td>${fmt(x.spins)}</td><td>${fmt(x.net)}</td></tr>`);
+      $("history").innerHTML = table(["日付", "機種", "台番", "回転", "差玉"], historyRows);
+    }
+    function escapeHtml(value) { const el = document.createElement("span"); el.textContent = value ?? ""; return el.innerHTML; }
+    $("import").onclick = () => {
+      const rows = parseRows($("source").value);
+      if (!rows.length) { $("message").textContent = "形式を確認してください。日付・機種・台番・回転数・差玉の5列が必要です。"; return; }
+      const current = load(); const keys = new Set(current.map((x) => `${x.date}|${x.machine}|${x.unit}`));
+      const added = rows.filter((x) => { const key = `${x.date}|${x.machine}|${x.unit}`; if (keys.has(key)) return false; keys.add(key); return true; });
+      save([...current, ...added]); $("message").textContent = `${added.length}件を取り込みました（重複は除外）。`; $("source").value = ""; render();
+    };
+    $("machine").addEventListener("input", render);
+    $("allDays").onclick = () => { eventOnly = false; render(); };
+    $("eventDays").onclick = () => { eventOnly = true; render(); };
+    $("clear").onclick = () => { if (confirm("保存した前日データをすべて削除します。")) { localStorage.removeItem(KEY); render(); } };
+    $("export").onclick = () => {
+      const blob = new Blob([JSON.stringify(load(), null, 2)], { type: "application/json" });
+      const link = document.createElement("a"); link.href = URL.createObjectURL(blob); link.download = "pachinko-daily-trend.json"; link.click(); URL.revokeObjectURL(link.href);
+    };
+    render();
+  </script>
+</body>
+</html>
