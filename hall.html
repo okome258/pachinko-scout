@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0f172a" />
+  <title>メッセ武蔵境 台データ</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 18px; background: #0f172a; color: #f8fafc; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    main { max-width: 620px; margin: auto; }
+    h1 { margin: 0; font-size: 22px; }
+    h2 { margin: 0 0 10px; font-size: 16px; }
+    p { color: #94a3b8; line-height: 1.5; font-size: 13px; }
+    .card { margin-top: 14px; padding: 14px; border: 1px solid #334155; border-radius: 14px; background: #172033; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .field { display: flex; flex-direction: column; gap: 5px; margin-top: 9px; }
+    label { color: #94a3b8; font-size: 12px; font-weight: 700; }
+    input { width: 100%; padding: 11px; border: 1px solid #475569; border-radius: 9px; color: #f8fafc; background: #0f172a; font-size: 16px; }
+    button, a.button { display: inline-flex; justify-content: center; align-items: center; min-height: 42px; padding: 10px 12px; border: 0; border-radius: 9px; font-size: 14px; font-weight: 800; cursor: pointer; text-decoration: none; }
+    .primary { background: #38bdf8; color: #082f49; }
+    .secondary { background: #334155; color: #e2e8f0; }
+    .danger { background: #7f1d1d; color: #fee2e2; }
+    .actions { display: flex; gap: 8px; margin-top: 12px; }
+    .actions > * { flex: 1; }
+    .stat { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .stat div { padding: 10px; border-radius: 9px; background: #0f172a; }
+    .stat strong { display: block; margin-top: 4px; font-size: 18px; }
+    .muted { color: #94a3b8; font-size: 12px; }
+    .good { color: #4ade80; } .bad { color: #fca5a5; } .warn { color: #fcd34d; }
+    table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    th, td { padding: 8px 4px; text-align: right; border-bottom: 1px solid #334155; white-space: nowrap; }
+    th:first-child, td:first-child { text-align: left; }
+    .empty { padding: 14px; color: #94a3b8; text-align: center; }
+    #message { min-height: 20px; margin-top: 10px; color: #7dd3fc; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>メッセ武蔵境 台データ</h1>
+    <p>公開中の台詳細を開き、見た数値だけを保存して台ごとの履歴を比較します。外部サイトのデータを自動取得・推測はしません。</p>
+
+    <section class="card">
+      <h2>台を開く</h2>
+      <div class="row">
+        <div class="field"><label for="unit">台番</label><input id="unit" type="number" inputmode="numeric" value="1" min="1" /></div>
+        <div class="field"><label for="machine">機種メモ</label><input id="machine" placeholder="例: グール" /></div>
+      </div>
+      <div class="actions">
+        <a class="button primary" id="officialLink" target="_blank" rel="noopener">公式台データを開く</a>
+        <a class="button secondary" href="live.html">スカウターへ</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>見た数値を保存</h2>
+      <p>データ画面の「スタート・大当り・初当り・最高出玉」を入力。未確認の項目は空欄で構いません。</p>
+      <div class="row">
+        <div class="field"><label for="spins">現在スタート</label><input id="spins" type="number" inputmode="numeric" /></div>
+        <div class="field"><label for="big">当日大当り</label><input id="big" type="number" inputmode="numeric" /></div>
+        <div class="field"><label for="first">当日初当り</label><input id="first" type="number" inputmode="numeric" /></div>
+        <div class="field"><label for="payout">最高出玉</label><input id="payout" type="number" inputmode="numeric" /></div>
+      </div>
+      <div class="actions"><button class="primary" id="save">この時点を保存</button></div>
+      <div id="message"></div>
+    </section>
+
+    <section class="card">
+      <h2 id="summaryTitle">台番1の履歴</h2>
+      <div class="stat">
+        <div><span class="muted">記録数</span><strong id="count">—</strong></div>
+        <div><span class="muted">最新スタート</span><strong id="latestSpins">—</strong></div>
+        <div><span class="muted">最高出玉</span><strong id="maxPayout">—</strong></div>
+      </div>
+      <p id="analysis">台番を指定して記録を保存すると、ここに比較を出します。</p>
+      <div id="history"></div>
+      <div class="actions"><button class="danger" id="clearUnit">この台の記録を削除</button></div>
+    </section>
+  </main>
+  <script>
+    const STORE_ID = "100686";
+    const STORE_NAME = "メッセ武蔵境";
+    const KEY = "pachinko_messe_musashisakai_snapshots";
+    const $ = (id) => document.getElementById(id);
+    const n = (id) => {
+      const value = $(id).value.trim();
+      return value === "" ? null : Number(value);
+    };
+    const unitKey = () => String(n("unit") || 1);
+    const load = () => {
+      try { return JSON.parse(localStorage.getItem(KEY) || "[]"); }
+      catch { return []; }
+    };
+    const saveAll = (rows) => localStorage.setItem(KEY, JSON.stringify(rows.slice(-500)));
+    const fmt = (value) => value == null ? "—" : Number(value).toLocaleString();
+
+    function updateOfficialLink() {
+      const unit = unitKey();
+      $("officialLink").href = `https://daidata.goraggio.com/${STORE_ID}/detail?unit=${encodeURIComponent(unit)}`;
+      $("summaryTitle").textContent = `${STORE_NAME}・台番${unit}の履歴`;
+    }
+
+    function render() {
+      updateOfficialLink();
+      const unit = unitKey();
+      const rows = load().filter((x) => x.unit === unit).sort((a, b) => b.at - a.at);
+      $("count").textContent = rows.length;
+      const latest = rows[0];
+      $("latestSpins").textContent = fmt(latest?.spins);
+      $("maxPayout").textContent = fmt(Math.max(...rows.map((x) => x.payout || 0)) || null);
+
+      if (!rows.length) {
+        $("analysis").textContent = "まだ保存記録がありません。公式台データを見ながら値を入力してください。";
+        $("history").innerHTML = "";
+        return;
+      }
+
+      const previous = rows[1];
+      let note = `最新: 大当り${fmt(latest.big)} / 初当り${fmt(latest.first)} / 最高出玉${fmt(latest.payout)}玉。`;
+      if (previous && latest.spins != null && previous.spins != null) {
+        const diff = latest.spins - previous.spins;
+        note += diff > 0 ? ` 前回保存よりスタートが${diff}回増加。` : diff < 0 ? " 前回保存後に初当り等でスタートがリセットされています。" : " 前回とスタートは同じです。";
+      }
+      $("analysis").textContent = note;
+
+      $("history").innerHTML = `<table><thead><tr><th>時刻</th><th>スタート</th><th>大当</th><th>初当</th><th>最高出玉</th></tr></thead><tbody>${
+        rows.slice(0, 12).map((x) => `<tr><td>${new Date(x.at).toLocaleString("ja-JP", { month:"numeric", day:"numeric", hour:"2-digit", minute:"2-digit" })}</td><td>${fmt(x.spins)}</td><td>${fmt(x.big)}</td><td>${fmt(x.first)}</td><td>${fmt(x.payout)}</td></tr>`).join("")
+      }</tbody></table>`;
+    }
+
+    $("unit").addEventListener("input", render);
+    $("save").onclick = () => {
+      const unit = unitKey();
+      const values = { spins:n("spins"), big:n("big"), first:n("first"), payout:n("payout") };
+      if (Object.values(values).every((x) => x == null)) {
+        $("message").textContent = "保存する数値を1つ以上入力してください。";
+        return;
+      }
+      const rows = load();
+      rows.push({ store: STORE_ID, unit, machine: $("machine").value.trim(), ...values, at: Date.now() });
+      saveAll(rows);
+      $("message").textContent = `台番${unit}を保存しました。`;
+      render();
+    };
+    $("clearUnit").onclick = () => {
+      const unit = unitKey();
+      saveAll(load().filter((x) => x.unit !== unit));
+      $("message").textContent = `台番${unit}の保存記録を削除しました。`;
+      render();
+    };
+    render();
+  </script>
+</body>
+</html>

@@ -655,6 +655,7 @@
   <div id="statusBar">機種を選んでからカウンターにかざす</div>
 
   <div id="controls">
+    <button id="hallBtn">台データ</button>
     <button id="pickMachineBtn">機種</button>
     <button id="holdBtn">かざして読取</button>
   </div>
@@ -900,6 +901,9 @@
     };
 
     document.getElementById("pickMachineBtn").onclick = () => openMachinePicker();
+    document.getElementById("hallBtn").onclick = () => {
+      window.location.href = "hall.html";
+    };
     document.getElementById("machineBlockEdit").onclick = () => openMachinePicker();
     document.getElementById("openPickerFromResult").onclick = () => openMachinePicker();
 
