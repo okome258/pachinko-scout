@@ -16,7 +16,7 @@
     .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     .field { display: flex; flex-direction: column; gap: 5px; margin-top: 9px; }
     label { color: #94a3b8; font-size: 12px; font-weight: 700; }
-    input { width: 100%; padding: 11px; border: 1px solid #475569; border-radius: 9px; color: #f8fafc; background: #0f172a; font-size: 16px; }
+    input, textarea { width: 100%; padding: 11px; border: 1px solid #475569; border-radius: 9px; color: #f8fafc; background: #0f172a; font-size: 16px; font-family: inherit; }
     button, a.button { display: inline-flex; justify-content: center; align-items: center; min-height: 42px; padding: 10px 12px; border: 0; border-radius: 9px; font-size: 14px; font-weight: 800; cursor: pointer; text-decoration: none; }
     .primary { background: #38bdf8; color: #082f49; }
     .secondary { background: #334155; color: #e2e8f0; }
@@ -66,6 +66,13 @@
     </section>
 
     <section class="card">
+      <h2>公式ページの文字を取り込む</h2>
+      <p>公式台詳細を開き、表示中の文字をコピーしてここに貼り付けます。画像OCRではなく、ブラウザで表示された文字を解析します。</p>
+      <div class="field"><label for="sourceText">コピーした台データ</label><textarea id="sourceText" rows="5" placeholder="スタート・大当り・初当り・最高出玉を含む文字を貼り付け"></textarea></div>
+      <div class="actions"><button class="secondary" id="parseSource">文字から入力欄へ反映</button></div>
+    </section>
+
+    <section class="card">
       <h2 id="summaryTitle">台番1の履歴</h2>
       <div class="stat">
         <div><span class="muted">記録数</span><strong id="count">—</strong></div>
@@ -93,6 +100,13 @@
     };
     const saveAll = (rows) => localStorage.setItem(KEY, JSON.stringify(rows.slice(-500)));
     const fmt = (value) => value == null ? "—" : Number(value).toLocaleString();
+    const readNum = (text, patterns) => {
+      for (const re of patterns) {
+        const match = text.match(re);
+        if (match) return Number(match[1].replace(/,/g, ""));
+      }
+      return null;
+    };
 
     function updateOfficialLink() {
       const unit = unitKey();
@@ -141,6 +155,26 @@
       saveAll(rows);
       $("message").textContent = `台番${unit}を保存しました。`;
       render();
+    };
+    $("parseSource").onclick = () => {
+      const text = $("sourceText").value.replace(/\s+/g, " ");
+      if (!text) {
+        $("message").textContent = "公式画面からコピーした文字を貼り付けてください。";
+        return;
+      }
+      const values = {
+        spins: readNum(text, [/現在スタート[^\d]*(\d+)/, /スタート(?:回数)?[^\d]*(\d{1,4})/]),
+        big: readNum(text, [/大当り?[^\d]*(\d{1,3})/]),
+        first: readNum(text, [/初当り?[^\d]*(\d{1,3})/]),
+        payout: readNum(text, [/最高出玉[^\d]*(\d{2,6})/, /最高持玉[^\d]*(\d{2,6})/]),
+      };
+      for (const [id, value] of Object.entries(values)) {
+        if (value != null) $(id).value = value;
+      }
+      const filled = Object.values(values).filter((v) => v != null).length;
+      $("message").textContent = filled
+        ? `${filled}項目を入力欄へ反映しました。確認して保存してください。`
+        : "項目を判別できませんでした。必要な数字を手入力してください。";
     };
     $("clearUnit").onclick = () => {
       const unit = unitKey();

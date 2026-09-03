@@ -966,36 +966,13 @@
 
       const maxW = inset.height < 1 ? 360 : 480;
       const scale = Math.min(1, maxW / sw);
-      // enhance 用に別キャンバスを使う（共用 canvas の上書きを防ぐ）
       const out = document.createElement("canvas");
       out.width = Math.round(sw * scale);
       out.height = Math.round(sh * scale);
 
       const ctx = out.getContext("2d");
       ctx.drawImage(video, sx, sy, sw, sh, 0, 0, out.width, out.height);
-      if (opts.enhance) enhanceCanvasForOcr(ctx, out.width, out.height);
       return out;
-    }
-
-    /** 軽量コントラスト強調（長押し時のみ・常時OCRではない） */
-    function enhanceCanvasForOcr(ctx, w, h) {
-      const img = ctx.getImageData(0, 0, w, h);
-      const d = img.data;
-      let sum = 0;
-      for (let i = 0; i < d.length; i += 4) {
-        const g = 0.299 * d[i] + 0.587 * d[i + 1] + 0.114 * d[i + 2];
-        sum += g;
-      }
-      const mean = sum / (d.length / 4);
-      const contrast = 1.35;
-      for (let i = 0; i < d.length; i += 4) {
-        let g = 0.299 * d[i] + 0.587 * d[i + 1] + 0.114 * d[i + 2];
-        g = (g - mean) * contrast + mean;
-        // やや二値寄り（反射に強く）
-        g = g > mean * 0.92 ? Math.min(255, g + 28) : Math.max(0, g - 18);
-        d[i] = d[i + 1] = d[i + 2] = g;
-      }
-      ctx.putImageData(img, 0, 0);
     }
 
     function hideResultPanel() {
@@ -1140,19 +1117,13 @@
       statusBar.textContent = "読み取り中…";
 
       try {
-        const crop = getCropCanvas({ enhance: true });
+        const crop = getCropCanvas();
         if (!crop) throw new Error("カメラ未準備");
 
         const worker = await ensureOcr();
-        const topCrop = getCropCanvas({ top: 0, height: 0.22, enhance: true });
-        // 通常＋強調の2パス（長押し時のみ・負荷は許容範囲）
+        const topCrop = getCropCanvas({ top: 0, height: 0.22 });
         const mainResult = await worker.recognize(crop);
         let text = mainResult.data.text;
-        const plainCrop = getCropCanvas({ enhance: false });
-        if (plainCrop) {
-          const plainResult = await worker.recognize(plainCrop);
-          text = `${text}\n${plainResult.data.text}`;
-        }
         if (topCrop) {
           const topResult = await worker.recognize(topCrop);
           text = `${topResult.data.text}\n${text}`;
