@@ -180,6 +180,26 @@
       gap: 8px;
       margin-top: 8px;
     }
+    #sessionSheet {
+      position: fixed;
+      inset: auto 12px max(88px, env(safe-area-inset-bottom)) 12px;
+      z-index: 12;
+      display: none;
+      max-height: 42vh;
+      overflow-y: auto;
+      padding: 12px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.96);
+      color: #f8fafc;
+    }
+    #sessionSheet.show { display: block; }
+    .session-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .session-head strong { font-size: 14px; }
+    .session-row { padding: 9px 0; border-top: 1px solid #334155; }
+    .session-row:first-child { margin-top: 8px; }
+    .session-row strong { display: block; font-size: 14px; }
+    .session-row span { color: #94a3b8; font-size: 12px; }
     #panelActions button {
       flex: 1;
       padding: 8px 6px;
@@ -631,6 +651,7 @@
         <div id="retreatLines"></div>
       </div>
       <div id="panelActions">
+        <button type="button" id="saveSessionBtn">比較に追加</button>
         <button type="button" id="panelDetailBtn">詳細</button>
         <button type="button" id="panelCloseBtn">閉じる</button>
       </div>
@@ -666,7 +687,19 @@
 
   <div id="controls">
     <button id="pickMachineBtn">機種</button>
+    <button type="button" id="openSessionBtn">比較 0</button>
     <button id="holdBtn">かざして読取</button>
+  </div>
+
+  <div id="sessionSheet" aria-live="polite">
+    <div class="session-head">
+      <strong id="sessionTitle">比較リスト</strong>
+      <div>
+        <button type="button" id="clearSessionBtn">消去</button>
+        <button type="button" id="closeSessionBtn">閉じる</button>
+      </div>
+    </div>
+    <div id="sessionList"></div>
   </div>
 
   <script type="module">
@@ -720,6 +753,11 @@
     const SCAN_COOLDOWN_MS = 2500;
     const panelDetailBtn = document.getElementById("panelDetailBtn");
     const panelCloseBtn = document.getElementById("panelCloseBtn");
+    const SESSION_KEY = "pachinko_live_compare_v1";
+    const sessionSheet = document.getElementById("sessionSheet");
+    const sessionList = document.getElementById("sessionList");
+    const openSessionBtn = document.getElementById("openSessionBtn");
+    let compareSession = loadCompareSession();
 
     const machineBlock = document.getElementById("machineBlock");
     const machineBlockValue = document.getElementById("machineBlockValue");
@@ -727,6 +765,51 @@
     const dataBlockValue = document.getElementById("dataBlockValue");
     const dataBlockMeta = document.getElementById("dataBlockMeta");
     const dataEditForm = document.getElementById("dataEditForm");
+
+    function loadCompareSession() {
+      try {
+        const rows = JSON.parse(localStorage.getItem(SESSION_KEY) || "[]");
+        return Array.isArray(rows) ? rows.slice(-20) : [];
+      } catch {
+        return [];
+      }
+    }
+
+    function renderCompareSession() {
+      const rows = [...compareSession].sort((a, b) => (b.score ?? -1) - (a.score ?? -1));
+      openSessionBtn.textContent = `比較 ${rows.length}`;
+      document.getElementById("sessionTitle").textContent = `比較リスト（${rows.length}台）`;
+      sessionList.replaceChildren();
+      if (!rows.length) {
+        const empty = document.createElement("p");
+        empty.textContent = "判定後に「比較に追加」を押すと、ここに並びます。";
+        empty.className = "muted";
+        sessionList.appendChild(empty);
+        return;
+      }
+      rows.forEach((row, index) => {
+        const item = document.createElement("div");
+        item.className = "session-row";
+        const title = document.createElement("strong");
+        title.textContent = `#${index + 1} ${row.machine || "機種不明"} — ${row.score}点 ${row.verdict}`;
+        const detail = document.createElement("span");
+        detail.textContent = `${row.rate ?? "—"}回/千円 / 現在${row.spins ?? "—"}回 / ${new Date(row.at).toLocaleTimeString("ja-JP", { hour: "2-digit", minute: "2-digit" })}`;
+        item.append(title, detail);
+        sessionList.appendChild(item);
+      });
+    }
+
+    function addCurrentToCompareSession() {
+      if (!lastEntry || lastEntry.score == null) {
+        statusBar.textContent = "比較には試し打ち回転と投資額が必要です";
+        return;
+      }
+      compareSession.push({ ...lastEntry, at: Date.now() });
+      compareSession = compareSession.slice(-20);
+      localStorage.setItem(SESSION_KEY, JSON.stringify(compareSession));
+      renderCompareSession();
+      statusBar.textContent = "比較リストに追加しました";
+    }
 
     let scanSession = {
       rawOcr: null,
@@ -869,7 +952,8 @@
         score: result.score,
         verdict: result.verdict,
         spins: data.current_spins,
-        ev: ev.ev,
+        rate: data.spins_per_1000,
+        ev: ev?.ev ?? null,
       };
       showResult(
         result,
@@ -929,6 +1013,18 @@
     };
 
     document.getElementById("dataApplyBtn").onclick = () => applyDataEditForm();
+    document.getElementById("saveSessionBtn").onclick = () => addCurrentToCompareSession();
+    openSessionBtn.onclick = () => {
+      renderCompareSession();
+      sessionSheet.classList.add("show");
+    };
+    document.getElementById("closeSessionBtn").onclick = () => sessionSheet.classList.remove("show");
+    document.getElementById("clearSessionBtn").onclick = () => {
+      compareSession = [];
+      localStorage.removeItem(SESSION_KEY);
+      renderCompareSession();
+    };
+    renderCompareSession();
 
     async function startCamera() {
       stream = await navigator.mediaDevices.getUserMedia({
