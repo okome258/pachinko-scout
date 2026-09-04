@@ -687,6 +687,7 @@
 
   <div id="controls">
     <button id="pickMachineBtn">機種</button>
+    <button type="button" id="openTrendBtn">傾向</button>
     <button type="button" id="openSessionBtn">比較 0</button>
     <button id="holdBtn">かざして読取</button>
   </div>
@@ -1014,6 +1015,7 @@
 
     document.getElementById("dataApplyBtn").onclick = () => applyDataEditForm();
     document.getElementById("saveSessionBtn").onclick = () => addCurrentToCompareSession();
+    document.getElementById("openTrendBtn").onclick = () => { window.location.href = "trend.html"; };
     openSessionBtn.onclick = () => {
       renderCompareSession();
       sessionSheet.classList.add("show");
