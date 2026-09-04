@@ -1,6 +1,7 @@
 /** 機種スペック + ev_spec（DMM詳細）に基づく期待値 */
 
 import { getDepthLine } from "./depth.js";
+import { calcBorder } from "./border.js";
 
 function parseDenom(prob) {
   if (!prob) return null;
@@ -64,6 +65,45 @@ function calcTheoreticalBaseline(evSpec = {}) {
  * 機種個別スペック + 台カウンター → 期待値指数（-100〜+100）
  */
 export function calcExpectedValue(data, spec = {}) {
+  const observedRate = Number(data.spins_per_1000);
+  if (!(observedRate > 0)) return null;
+  const border = calcBorder(spec).border;
+  const difference = Math.round((observedRate - border) * 10) / 10;
+  const depthLine = getDepthLine(spec);
+  const currentSpins = Number(data.current_spins);
+  const yutimeNear =
+    depthLine.kind === "yutime" &&
+    Number(spec.yutime_spins) > 0 &&
+    Number.isFinite(currentSpins) &&
+    Math.max(0, depthLine.spins - currentSpins) <= 150;
+  const factors = [
+    `実測${observedRate.toFixed(1)}回/千円`,
+    `ボーダー${border}回/千円との差 ${difference >= 0 ? "+" : ""}${difference}`,
+  ];
+  if (yutimeNear) factors.push(`遊タイムまであと${Math.max(0, depthLine.spins - currentSpins)}回`);
+  const index = Math.max(-100, Math.min(100, Math.round(difference * 14 + (yutimeNear ? 10 : 0))));
+  const label = index >= 15 ? "プラス寄り" : index <= -15 ? "マイナス寄り" : "ボーダー付近";
+  return {
+    ev: index,
+    label,
+    factors,
+    spec_used: {
+      name: spec.names?.[0] || "汎用",
+      denom: Math.round(spec.first_hit_denom || 0),
+      ceiling: depthLine.spins,
+      lt_critical: !!spec.lt_critical,
+      spec_level: spec.ev_spec?.spec_level || "generic",
+      machine_mode: spec.ev_spec?.machine_mode,
+      entry_rate: spec.ev_spec?.entry_rate_primary,
+      has_detail: !!spec.ev_spec,
+    },
+    summary: `回転率評価 ${index >= 0 ? "+" : ""}${index}（${label}）`,
+    mode_label: "実測回転率 + 遊タイム",
+    retreat_hint: yutimeNear
+      ? `遊タイムまで${Math.max(0, depthLine.spins - currentSpins)}回`
+      : "回転率は試行回数でブレるため、追加試行で再確認",
+  };
+
   const spins = parseInt(data.current_spins, 10) || 0;
   const evSpec = spec.ev_spec || {};
   const denom =

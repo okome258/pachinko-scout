@@ -13,6 +13,9 @@ export function formatCounterSummary(data) {
   else if (data.lt_rate_percent != null) parts.push(`LT ${Math.round(data.lt_rate_percent)}%`);
   if (data.today_max_payout != null) parts.push(`最高${data.today_max_payout}玉`);
   if (data.first_hit_probability) parts.push(`実績${data.first_hit_probability}`);
+  if (data.spins_per_1000 != null) {
+    parts.push(`実測${Number(data.spins_per_1000).toFixed(1)}回/千円`);
+  }
   return parts.length ? parts.join(" · ") : "読み取り項目なし";
 }
 
@@ -48,16 +51,27 @@ export function mergeCounterData(base, overrides) {
   return out;
 }
 
-export function applyDataOverrides(base, form) {
+/** フォーム値をOCRデータへ重ねる差分にする。空欄はOCR値の削除を意味する。 */
+export function applyDataOverrides(_base, form) {
   const o = {};
-  const spins = form.current_spins?.trim();
-  if (spins !== "" && spins != null) o.current_spins = parseInt(spins, 10);
-  const first = form.today_first_hits?.trim();
-  if (first !== "" && first != null) o.today_first_hits = parseInt(first, 10);
-  const big = form.today_big_hits?.trim();
-  if (big !== "" && big != null) o.today_big_hits = parseInt(big, 10);
+  const setNumber = (key, raw) => {
+    const value = raw?.trim();
+    if (value === "" || value == null) {
+      o[key] = null;
+      return;
+    }
+    const parsed = parseInt(value, 10);
+    if (!Number.isNaN(parsed) && parsed >= 0) o[key] = parsed;
+  };
+
+  setNumber("current_spins", form.current_spins);
+  setNumber("today_first_hits", form.today_first_hits);
+  setNumber("today_big_hits", form.today_big_hits);
   const lt = form.lt_success?.trim();
-  if (lt) {
+  if (lt === "" || lt == null) {
+    o.lt_success = null;
+    o.lt_rate_percent = null;
+  } else {
     const m = lt.match(/(\d+)\s*\/\s*(\d+)/);
     if (m) {
       o.lt_success = `${m[1]}/${m[2]}`;
@@ -65,11 +79,29 @@ export function applyDataOverrides(base, form) {
       if (t > 0) o.lt_rate_percent = (parseInt(m[1], 10) / t) * 100;
     }
   }
-  const maxp = form.today_max_payout?.trim();
-  if (maxp !== "" && maxp != null) o.today_max_payout = parseInt(maxp, 10);
+  setNumber("today_max_payout", form.today_max_payout);
   const prob = form.first_hit_probability?.trim();
-  if (prob) o.first_hit_probability = prob.includes("/") ? prob : `1/${prob}`;
-  return mergeCounterData(base, o);
+  if (prob === "" || prob == null) o.first_hit_probability = null;
+  else if (/^(?:1\s*\/\s*)?\d+$/.test(prob)) {
+    o.first_hit_probability = prob.includes("/") ? prob : `1/${prob}`;
+  }
+
+  setNumber("trial_spins", form.trial_spins);
+  const trialThousands = Number(form.trial_thousands?.trim());
+  if (form.trial_thousands?.trim() === "" || form.trial_thousands == null) {
+    o.trial_thousands = null;
+    o.spins_per_1000 = null;
+  } else if (Number.isFinite(trialThousands) && trialThousands > 0) {
+    o.trial_thousands = trialThousands;
+  }
+  const trialSpins = o.trial_spins;
+  const thousands = o.trial_thousands;
+  if (Number.isFinite(trialSpins) && Number.isFinite(thousands) && thousands > 0) {
+    o.spins_per_1000 = Math.round((trialSpins / thousands) * 10) / 10;
+  } else if (trialSpins === null || thousands === null) {
+    o.spins_per_1000 = null;
+  }
+  return o;
 }
 
 export function suggestMachineIdFromOcr(data, db, matchMachineFn) {

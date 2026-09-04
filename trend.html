@@ -126,9 +126,18 @@
     $("import").onclick = () => {
       const rows = parseRows($("source").value);
       if (!rows.length) { $("message").textContent = "形式を確認してください。日付・機種・台番・回転数・差玉の5列が必要です。"; return; }
-      const current = load(); const keys = new Set(current.map((x) => `${x.date}|${x.machine}|${x.unit}`));
-      const added = rows.filter((x) => { const key = `${x.date}|${x.machine}|${x.unit}`; if (keys.has(key)) return false; keys.add(key); return true; });
-      save([...current, ...added]); $("message").textContent = `${added.length}件を取り込みました（重複は除外）。`; $("source").value = ""; render();
+      const byKey = new Map(load().map((x) => [`${x.date}|${x.machine}|${x.unit}`, x]));
+      let added = 0; let replaced = 0;
+      for (const row of rows) {
+        const key = `${row.date}|${row.machine}|${row.unit}`;
+        if (byKey.has(key)) replaced += 1;
+        else added += 1;
+        byKey.set(key, row);
+      }
+      save([...byKey.values()]);
+      $("message").textContent = `${added}件を追加、${replaced}件を更新しました。`;
+      $("source").value = "";
+      render();
     };
     $("machine").addEventListener("input", render);
     $("allDays").onclick = () => { eventOnly = false; render(); };

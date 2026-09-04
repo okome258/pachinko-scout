@@ -151,31 +151,44 @@ function applyMachineRules(data, spec) {
   return { scoreDelta, reasons, machineLabel: spec.names[0] };
 }
 
-export function scoreMachine(data, machineSpec = null) {
-  const base = applyBaseScore(data);
-  const machine = applyMachineRules(data, machineSpec);
-
-  let score = base.score + machine.scoreDelta;
-  score = Math.max(0, Math.min(100, score));
-
-  const reasons = [...base.reasons, ...machine.reasons];
-  if (machineSpec?.notes && machine.reasons.length === 0) {
-    reasons.push(machineSpec.notes);
+export function scoreMachine(data, machineSpec = null, { border } = {}) {
+  const rate = Number(data.spins_per_1000);
+  const target = Number(border);
+  if (!(rate > 0) || !(target > 0)) {
+    return {
+      score: null,
+      verdict: "実測待ち",
+      reasons: ["試し打ち回転と投資額を入れると、ボーダーとの差で判定します"],
+      machine_matched: machineSpec?.names?.[0] || null,
+    };
   }
-
-  let verdict = "様子見";
-  if (score >= 65) verdict = "打つ候補";
-  else if (score < 45) verdict = "見送り";
-
+  const difference = rate - target;
+  let measuredScore = Math.round(50 + difference * 14);
+  const measuredReasons = [
+    `実測 ${rate.toFixed(1)}回/千円（ボーダー${difference >= 0 ? "+" : ""}${difference.toFixed(1)}）`,
+  ];
+  const depth = getDepthLine(machineSpec || {});
+  const spins = Number(data.current_spins);
+  if (
+    depth.kind === "yutime" &&
+    Number(machineSpec?.yutime_spins) > 0 &&
+    Number.isFinite(spins) &&
+    Math.max(0, depth.spins - spins) <= 150
+  ) {
+    measuredScore += 10;
+    measuredReasons.push(`遊タイムまであと${Math.max(0, depth.spins - spins)}回`);
+  }
+  measuredScore = Math.max(0, Math.min(100, measuredScore));
   return {
-    score,
-    verdict,
-    reasons: reasons.length ? reasons.slice(0, 4) : ["他台と比較"],
-    machine_matched: machine.machineLabel || null,
+    score: measuredScore,
+    verdict: measuredScore >= 65 ? "打つ候補" : measuredScore < 45 ? "見送り" : "様子見",
+    reasons: measuredReasons,
+    machine_matched: machineSpec?.names?.[0] || null,
   };
 }
 
 export function verdictColor(verdict) {
+  if (verdict === "実測待ち") return "#94a3b8";
   if (verdict === "打つ候補") return "#22c55e";
   if (verdict === "見送り") return "#ef4444";
   return "#eab308";

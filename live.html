@@ -602,6 +602,16 @@
               <input id="editProb" type="text" inputmode="numeric" placeholder="182" />
             </div>
           </div>
+          <div class="edit-row">
+            <div class="edit-field">
+              <label>試し打ち回転</label>
+              <input id="editTrialSpins" type="number" inputmode="numeric" min="0" placeholder="例: 96" />
+            </div>
+            <div class="edit-field">
+              <label>投資（千円）</label>
+              <input id="editTrialThousands" type="number" inputmode="decimal" min="0.1" step="0.1" placeholder="例: 5" />
+            </div>
+          </div>
           <button type="button" id="dataApplyBtn">反映して再判定</button>
         </div>
       </div>
@@ -790,6 +800,8 @@
       document.getElementById("editMaxPay").value = data.today_max_payout ?? "";
       document.getElementById("editProb").value =
         data.first_hit_probability?.replace(/^1\s*\/\s*/, "") ?? "";
+      document.getElementById("editTrialSpins").value = data.trial_spins ?? "";
+      document.getElementById("editTrialThousands").value = data.trial_thousands ?? "";
       syncLtChips(data.lt_success || "");
     }
 
@@ -814,6 +826,8 @@
         lt_success: document.getElementById("editLt").value,
         today_max_payout: document.getElementById("editMaxPay").value,
         first_hit_probability: document.getElementById("editProb").value,
+        trial_spins: document.getElementById("editTrialSpins").value,
+        trial_thousands: document.getElementById("editTrialThousands").value,
       });
       dataEditForm.classList.remove("show");
       recalculateFromSession();
@@ -839,9 +853,9 @@
       const counterType = detectCounterType(scanSession.rawOcr || "", machineDb);
       const machineId = getEffectiveMachineId();
       const machineSpec = resolveSpecForSession(data);
-      let result = scoreMachine(data, machineSpec);
-      const ev = calcExpectedValue(data, machineSpec);
       const border = calcBorder(machineSpec);
+      let result = scoreMachine(data, machineSpec, { border: border.border });
+      const ev = calcExpectedValue(data, machineSpec);
       const retreat = calcRetreatPlan(data, machineSpec);
       const nameFeedback = getMachineNameFeedback(
         scanSession.ocrMachineName,
@@ -1075,7 +1089,8 @@
       updateMachineBlock(machineSpec);
       updateDataBlock(data, confidence);
 
-      document.getElementById("verdictMain").textContent = `${result.score}点 ${result.verdict}`;
+      document.getElementById("verdictMain").textContent =
+        result.score == null ? result.verdict : `${result.score}点 ${result.verdict}`;
       document.getElementById("verdictMain").style.color = color;
 
       const borderInfo = border || calcBorder(machineSpec || {});
