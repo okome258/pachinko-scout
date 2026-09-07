@@ -1,6 +1,6 @@
 {
-  "version": "2026-09-02",
-  "updated": "2026-09-02",
+  "version": "2026-09-07",
+  "updated": "2026-09-07",
   "_note": "machinesは人気機種の追加データ。全機種は画面スペック(1/319等)とtype_profilesでカバー。狭める意図はない。",
   "type_profiles": {
     "amadeji": {
@@ -6605,6 +6605,6 @@
     ]
   },
   "fetch_source": "dmm_ptown+detail",
-  "machine_count": 146,
-  "detail_spec_count": 142
+  "machine_count": 148,
+  "detail_spec_count": 143
 }
