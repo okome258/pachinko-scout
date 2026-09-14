@@ -1,6 +1,6 @@
 {
-  "version": "2026-09-07",
-  "updated": "2026-09-07",
+  "version": "2026-09-14",
+  "updated": "2026-09-14",
   "_note": "machinesは人気機種の追加データ。全機種は画面スペック(1/319等)とtype_profilesでカバー。狭める意図はない。",
   "type_profiles": {
     "amadeji": {
