@@ -14,7 +14,7 @@
 | `score.js` | 判定ロジック（機種別） |
 | `parser.js` | OCR結果の解析 |
 | `machines.js` | 機種DB読み込み |
-| `machines.json` | 機種スペック（週次更新） |
+| `machines.json` | 機種スペック（手動更新） |
 
 ## 更新方法
 

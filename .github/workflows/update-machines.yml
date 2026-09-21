@@ -1,8 +1,7 @@
 name: Update machines DB
 
 on:
-  schedule:
-    - cron: "0 3 * * 1"  # 毎週月曜 12:00 JST
+  # 定期実行停止。手動のみ。
   workflow_dispatch:
 
 permissions:
